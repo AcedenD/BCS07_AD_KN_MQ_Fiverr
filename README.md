@@ -13,7 +13,7 @@ Folders to create:
 - asssets : place to save all images, mp4, json ...
 - tempate
 
-  Libraries to install
+Libraries to install
 
 - react-router-dom
 - axios
@@ -22,9 +22,9 @@ Folders to create:
   - @reduxjs/toolkit
 - antd (ant design)
 - tailwindcss ; command: npx tailwindcss init // to create tailwind.config.js
-
 - sass , sass-loader
 - react-lottie
 - formik
 
 // link for fiverr api: https://fiverrnew.cybersoft.edu.vn/swagger/index.html
+// link for tasks managment: https://docs.google.com/spreadsheets/d/1EdppvnYpvNKnfRAItBKkTPSBDbNnh90a6kiqpM9ebtI/edit?usp=sharing
