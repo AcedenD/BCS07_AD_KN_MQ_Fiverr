@@ -19,7 +19,7 @@ const Page404 = () => {
       <Lottie options={defaultOptions} height={500} width={500} />
       <NavLink to="/">
         <Button type="primary" danger>
-          Go Home
+          Go Home please
         </Button>
       </NavLink>
     </div>
