@@ -1,6 +1,6 @@
 import React from "react";
 import Lottie from "react-lottie";
-import * as animation404 from "./../assets/animation/animation404.json";
+import * as animation404 from "../../assets/animation/animation404.json";
 import { NavLink } from "react-router-dom";
 import { Button } from "antd";
 

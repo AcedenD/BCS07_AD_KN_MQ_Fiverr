@@ -1,13 +1,15 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import UserTemplate from "./template/UserTemplate";
 import AdminTemplate from "./template/AdminTemplate";
-import Page404 from "./pages/Page404";
+import Page404 from "./pages/Page404/Page404";
+import HomePage from "./pages/HomePage/HomePage";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<UserTemplate />}>
+          <Route index element={<HomePage />} />
           <Route path="signin" />
           <Route path="login" />
         </Route>
