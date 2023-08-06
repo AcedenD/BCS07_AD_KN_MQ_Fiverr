@@ -3,6 +3,7 @@ import UserTemplate from "./template/UserTemplate";
 import AdminTemplate from "./template/AdminTemplate";
 import Page404 from "./pages/Page404/Page404";
 import HomePage from "./pages/HomePage/HomePage";
+import Title from "./pages/TitlePage/Title";
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="signin" />
           <Route path="login" />
+          <Route path="title/:id" element={<Title />} />
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" />
