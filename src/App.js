@@ -4,6 +4,7 @@ import AdminTemplate from "./template/AdminTemplate";
 import Page404 from "./pages/Page404/Page404";
 import HomePage from "./pages/HomePage/HomePage";
 import Title from "./pages/TitlePage/Title";
+import Categories from "./pages/Categories/Categories";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
           <Route path="signin" />
           <Route path="login" />
           <Route path="title/:id" element={<Title />} />
+          <Route path="categories/:id" element={<Categories />} />
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" />

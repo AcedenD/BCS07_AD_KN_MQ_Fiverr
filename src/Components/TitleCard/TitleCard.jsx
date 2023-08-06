@@ -18,7 +18,7 @@ const TitleCard = (props) => {
           alt=""
         />
       </a>
-      <div class="p-5">
+      <div class="p-3">
         <a href="#">
           <h5 class="mb-2 text-2xl font-bold tracking-tight text-gray-700 ">
             {category.tenNhom}
@@ -28,13 +28,16 @@ const TitleCard = (props) => {
           {dsChiTietLoai.map((item, index) => {
             console.log(item);
             return (
-              <li key={index} class="flex items-center py-2">
-                <NavLink to={`/categories/${item.id}`}>
-                  <p class="text-md font-normal text-gray-400 hover:text-green-700 transition duration-200 ml-2">
+              <NavLink to={`/categories/${item.id}`}>
+                <li
+                  key={index}
+                  class="flex items-center py-2 hover:bg-slate-100 rounded-sm"
+                >
+                  <p class="text-md font-semibold text-gray-500 ml-2">
                     {item.tenChiTiet}
                   </p>
-                </NavLink>
-              </li>
+                </li>
+              </NavLink>
             );
           })}
         </ul>
