@@ -8,7 +8,7 @@ import {
 } from "../../redux/slices/loadingSlice";
 import CategoriesCard from "../../Components/CategoriesCard/CategoriesCard";
 import { DownOutlined } from "@ant-design/icons";
-import { Dropdown, Space, Typography } from "antd";
+import { Dropdown, Space, Typography, Breadcrumb } from "antd";
 import CategoriesTopBar from "../../Components/CategoriesTopBar/CategoriesTopBar";
 
 const Categories = () => {
@@ -16,6 +16,8 @@ const Categories = () => {
   const dispatch = useDispatch();
   // console.log(id);
   const [avaCongViec, setAvaCongViec] = useState([]);
+  const [loaiCongViec, setLoaiCongViec] = useState("");
+  const [tenLoaiCongViec, setTenLoaiCongViec] = useState("");
   const [sortBy, setSortBy] = useState("Relevance");
   const items = [
     {
@@ -56,18 +58,15 @@ const Categories = () => {
     congViecServ
       .layCongViecTheoChiTietLoai(id)
       .then((res) => {
+        // console.log(res.data);
         console.log(res.data.content);
-        // dispatch({
-        //   type: "GET_LOAI_CONG_VIEC",
-        //   payload: res.data,
-        // });
         setAvaCongViec(res.data.content);
+        // console.log(res.data.content[0].tenChiTietLoai);
+        setLoaiCongViec(res.data.content[0].tenChiTietLoai);
+        setTenLoaiCongViec(res.data.content[0].tenLoaiCongViec);
 
         setTimeout(() => {
           dispatch(set_loading_ended());
-          // console.log(loaiCongViec);
-          // console.log(nhomChiTietLoai);
-          // console.log(chiTietLoai);
         }, 150);
       })
       .catch((err) => {
@@ -78,6 +77,17 @@ const Categories = () => {
 
   return (
     <div className="max-w-screen-xl mx-5 lg:mx-auto py-2">
+      <Breadcrumb
+        items={[
+          {
+            title: <a href="/">Home</a>,
+          },
+          {
+            title: <a href="">{tenLoaiCongViec}</a>,
+          },
+        ]}
+      />
+      <h1 className="font-bold text-3xl my-3 text-gray-700">{loaiCongViec}</h1>
       <CategoriesTopBar />
       <div className="flex justify-between items-center">
         <h1 className="my-4 font-semibold text-gray-500">
