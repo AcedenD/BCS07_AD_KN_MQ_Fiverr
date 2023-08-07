@@ -6,6 +6,7 @@ import HomePage from "./pages/HomePage/HomePage";
 import Title from "./pages/TitlePage/Title";
 import Categories from "./pages/Categories/Categories";
 
+
 function App() {
   return (
     <BrowserRouter>

@@ -1,3 +1,4 @@
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -5,4 +6,24 @@
 .disabled,
 .disabled:hover {
   background: #ccc !important;
+}
+
+/* TESTIMONIAL_HOMEPAGE */
+.container {
+  padding: 0 90px 90px 90px;
+}
+
+.videoBtn {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.videoBtnImg {
+  border-radius: 5px;
+}
+
+.slick-slider .slick-prev:before, .slick-slider .slick-next:before {
+  color: gray !important;
 }
