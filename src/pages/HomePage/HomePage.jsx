@@ -8,7 +8,7 @@ import MainCategories from "../../Components/HomePageComponents/MainCategories.j
 
 const HomePage = () => {
   return (
-    <div className="flex justify-center flex-col">
+    <div className="">
       <Banner />
       <Trusted />
       <CarouselServices />
