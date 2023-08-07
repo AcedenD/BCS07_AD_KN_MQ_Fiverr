@@ -25,7 +25,11 @@ Libraries to install
 - sass , sass-loader
 - react-lottie
 - formik
+- react-slick (https://react-slick.neostack.com/docs/get-started)
 
 // link for fiverr api: https://fiverrnew.cybersoft.edu.vn/swagger/index.html
 
 // link for tasks managment: https://docs.google.com/spreadsheets/d/1EdppvnYpvNKnfRAItBKkTPSBDbNnh90a6kiqpM9ebtI/edit?usp=sharing
+
+color:
+#1dbf73

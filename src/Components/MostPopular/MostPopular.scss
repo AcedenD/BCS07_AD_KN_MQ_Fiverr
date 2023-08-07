@@ -1,0 +1,44 @@
+.content {
+  align-items: center;
+  display: flex;
+  height: 94px;
+  justify-content: space-around;
+  overflow: hidden;
+  padding: 10px;
+
+  .item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    border-radius: 0.5rem;
+    background-color: #fff;
+    box-shadow: 0 0 0.5rem rgba(0, 0, 0, 0.18);
+    height: 100%;
+    padding: 0.5rem;
+    margin-right: 12px;
+    min-width: 74px;
+    img{
+      height: 100%;
+      border-radius: 0.5rem;
+    }
+
+    .popText{
+      display: flex;
+      align-items: center;
+      @media screen and (max-width: 1024px) {
+        span {
+          font-size: 12px;
+          font-weight: 500;
+        }
+      }
+      @media screen and (max-width: 992px) {
+        display: none;
+      }
+      span {
+        font-size: 16px;
+        font-weight: 500;
+      }
+    }
+  }
+}
