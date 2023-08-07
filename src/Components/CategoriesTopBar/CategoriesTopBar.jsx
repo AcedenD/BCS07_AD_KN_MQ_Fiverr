@@ -69,7 +69,6 @@ const CategoriesTopBar = () => {
             className="font-semibold text-gray-700 cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
-              console.log(e);
             }}
           >
             <Space>
@@ -90,7 +89,6 @@ const CategoriesTopBar = () => {
             className="font-semibold text-gray-700 cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
-              console.log(e);
             }}
           >
             <Space>
@@ -111,7 +109,6 @@ const CategoriesTopBar = () => {
             className="font-semibold text-gray-700 cursor-pointer"
             onClick={(e) => {
               e.preventDefault();
-              console.log(e);
             }}
           >
             <Space>

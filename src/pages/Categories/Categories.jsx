@@ -78,6 +78,7 @@ const Categories = () => {
   return (
     <div className="max-w-screen-xl mx-5 lg:mx-auto py-2">
       <Breadcrumb
+        separator=">"
         items={[
           {
             title: <a href="/">Home</a>,
