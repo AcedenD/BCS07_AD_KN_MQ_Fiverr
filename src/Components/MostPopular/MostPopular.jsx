@@ -23,7 +23,7 @@ const MostPopular = (props) => {
             alt="..."
           />
           <div className="popText">
-            <span>Architecture &amp; Interior Design</span>
+            <span>Architecture & Interior Design</span>
             <i class="fa-solid fa-arrow-right"></i>
           </div>
         </div>
@@ -53,7 +53,7 @@ const MostPopular = (props) => {
             alt="..."
           />
           <div className="popText">
-            <span>T-Shirts &amp; Merchandise</span>
+            <span>T-Shirts & Merchandise</span>
             <i class="fa-solid fa-arrow-right"></i>
           </div>
         </div>
