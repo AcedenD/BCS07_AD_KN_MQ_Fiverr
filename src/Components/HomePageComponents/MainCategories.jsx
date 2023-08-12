@@ -2,7 +2,7 @@ import React from "react";
 import "./MainCategories.scss";
 const MainCategories = () => {
   return (
-    <div className="main-categories max-w-5xl mx-auto">
+    <div className="main-categories max-w-5xl mx-auto py-20">
       <h1 className="text-3xl font-semibold mb-10 text-gray-600">
         Explore the marketplace
       </h1>

@@ -26,7 +26,7 @@ const Header = () => {
               </a>
               <a
                 href="..."
-                className="text-white hover:bg-[#14ee96] text-md px-3 py-2 md:px-4 md:py-1.5 mr-1 md:mr-2 border border-[#fff] bg-[transparent] ease-in duration-200 "
+                className="text-white hover:bg-[rgb(20,238,150)] text-md px-3 py-2 md:px-4 md:py-1.5 mr-1 md:mr-2 border border-[#fff] bg-[transparent] ease-in duration-200 "
               >
                 Login
               </a>
