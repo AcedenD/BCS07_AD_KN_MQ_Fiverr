@@ -27,25 +27,26 @@ const { serviceData } = useSelector((state) => state.services);
     },
     {
       title: 'Job ID',
-      dataIndex: 'jobID',
-      key: 'jobID',
+      dataIndex: 'maCongViec',
+      key: 'maCongViec',
 
     },
     {
       title: 'Hirer ID',
-      dataIndex: 'hirerID',
-      key: 'hirerID',
+      dataIndex: 'maNguoiThue',
+      key: 'maNguoiThue',
 
     },
     {
       title: 'Hire Day',
-      dataIndex: 'hireDay',
-      key: 'hireDay',
+      dataIndex: 'ngayThue',
+      key: 'ngayThue',
     },
     {
       title: 'Condition',
-      dataIndex: 'condition',
-      key: 'condition',
+      dataIndex: 'hoanThanh',
+      key: 'hoanThanh',
+      render: maHoanThanh => maHoanThanh ? "Completed" : "Not Completed"
     },
     {
       title: 'Action',

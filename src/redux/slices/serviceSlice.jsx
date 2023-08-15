@@ -23,7 +23,7 @@ extraReducers: (builder) => {
     //   const index = state.serviceData.findIndex(
     //     (service) => service.taiKhoan === action.payload.taiKhoan
     //   );
-      state.users = action.payload;
+      state.serviceData = action.payload;
     });
   },
 });

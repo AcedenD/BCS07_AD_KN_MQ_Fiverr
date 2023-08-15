@@ -23,7 +23,7 @@ extraReducers: (builder) => {
     //   const index = state.jobTypeData.findIndex(
     //     (jobType) => jobType.taiKhoan === action.payload.taiKhoan
     //   );
-      state.users = action.payload;
+      state.jobTypeData = action.payload;
     });
   },
 });
