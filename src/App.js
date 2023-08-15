@@ -5,8 +5,12 @@ import Page404 from "./pages/Page404/Page404";
 import HomePage from "./pages/HomePage/HomePage";
 import Title from "./pages/TitlePage/Title";
 import Categories from "./pages/Categories/Categories";
+
 import FormLogin from "./Components/FormLogin/FormLogin";
 import FormSignUp from "./Components/FormSignUp/FormSignUp";
+
+import JobDetail from "./pages/JobDetail/JobDetail";
+
 
 function App() {
   return (
@@ -18,6 +22,7 @@ function App() {
           <Route path="/login" element={<FormLogin />} />
           <Route path="title/:id" element={<Title />} />
           <Route path="categories/:id" element={<Categories />} />
+          <Route path="jobDetail/:id" element={<JobDetail />} />
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" />

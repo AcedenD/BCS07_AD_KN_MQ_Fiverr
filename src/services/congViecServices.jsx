@@ -9,4 +9,8 @@ export const congViecServ = {
   layCongViecTheoChiTietLoai: (id) => {
     return https.get(`/api/cong-viec/lay-cong-viec-theo-chi-tiet-loai/${id}`);
   },
+
+  layCongViecChiTiet: (id) => {
+    return https.get(`/api/cong-viec/lay-cong-viec-chi-tiet/${id}`);
+  },
 };
