@@ -5,7 +5,8 @@ import Page404 from "./pages/Page404/Page404";
 import HomePage from "./pages/HomePage/HomePage";
 import Title from "./pages/TitlePage/Title";
 import Categories from "./pages/Categories/Categories";
-
+import FormLogin from "./Components/FormLogin/FormLogin";
+import FormSignUp from "./Components/FormSignUp/FormSignUp";
 
 function App() {
   return (
@@ -13,8 +14,8 @@ function App() {
       <Routes>
         <Route path="/" element={<UserTemplate />}>
           <Route index element={<HomePage />} />
-          <Route path="signin" />
-          <Route path="login" />
+          <Route path="signup" element={<FormSignUp />} />
+          <Route path="/login" element={<FormLogin />} />
           <Route path="title/:id" element={<Title />} />
           <Route path="categories/:id" element={<Categories />} />
         </Route>
