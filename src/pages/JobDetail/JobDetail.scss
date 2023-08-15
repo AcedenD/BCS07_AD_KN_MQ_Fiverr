@@ -1,4 +1,26 @@
+.breadcrumb {
+  a{
+    &:hover{
+      text-decoration: underline;
+      background-color: transparent;
+      color: #138650;
+    }
+    
+  }
+}
+
+.checkout.mobile{
+  display: none;
+  @media screen and (max-width: 992px){
+    display: block;
+  }
+    
+}
+
 .jobDetail_left {
+  @media screen and (max-width: 992px){
+    grid-column: span 3 / span 3;
+  }
   .seller_overview{
     .seller_star_rating{
       .stars{
@@ -28,5 +50,8 @@
 .jobDetail_right{
   position: sticky;
   top: 128px;
-
+  @media screen and (max-width: 992px){
+    display: none;
+  }
+    
 }
