@@ -3,6 +3,10 @@
 @tailwind components;
 @tailwind utilities;
 
+body{
+  font-family: 'Montserrat', sans-serif;
+}
+
 .disabled,
 .disabled:hover {
   background: #ccc !important;

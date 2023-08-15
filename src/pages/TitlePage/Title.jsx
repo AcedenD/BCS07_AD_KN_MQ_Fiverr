@@ -29,6 +29,7 @@ const Title = () => {
         //   type: "GET_LOAI_CONG_VIEC",
         //   payload: res.data,
         // });
+        document.title = `Explore ${res.data.content[0].tenLoaiCongViec}`;
         console.log(res.data.content[0]);
         setLoaiCongViec(res.data.content[0]);
         console.log(res.data.content[0].dsNhomChiTietLoai);

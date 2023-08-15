@@ -2,12 +2,12 @@ import React from "react";
 import "./MainCategories.scss";
 const MainCategories = () => {
   return (
-    <div className="main-categories container">
+    <div className="main-categories max-w-5xl mx-auto py-20">
       <h1 className="text-3xl font-semibold mb-10 text-gray-600">
         Explore the marketplace
       </h1>
 
-      <div className="gap-12 justify-end grid grid-cols-3 lg:grid-cols-6 ">
+      <div className="gap-12 grid grid-cols-3 lg:grid-cols-6 ">
         <div className="main-item">
           <a href="">
             <img

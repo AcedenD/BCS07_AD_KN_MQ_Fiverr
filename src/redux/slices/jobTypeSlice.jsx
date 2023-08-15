@@ -2,10 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { layDuLieuLocal } from "../../utils/localStore";
 import { jobTypeServ } from "../../services/jobTypeServices";
 
-export const getAllJobType = createAsyncThunk("jobType/getAllJobType", async () => {
-  const res = await jobTypeServ.getAllJobType();
-  return res.data.content;
-});
+export const getAllJobType = createAsyncThunk(
+  "jobType/getAllJobType",
+  async () => {
+    const res = await jobTypeServ.getAllJobType();
+    return res.data.content;
+  }
+);
 
 const initialState = {
   hoTen: layDuLieuLocal("user"),
@@ -15,6 +18,7 @@ const initialState = {
 export const jobTypeSlice = createSlice({
   name: "jobTypes",
   initialState,
+
   reducers: {
   },
 extraReducers: (builder) => {
@@ -24,6 +28,7 @@ extraReducers: (builder) => {
     //     (jobType) => jobType.taiKhoan === action.payload.taiKhoan
     //   );
       state.jobTypeData = action.payload;
+
     });
   },
 });

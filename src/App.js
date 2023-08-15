@@ -8,6 +8,11 @@ import Categories from "./pages/Categories/Categories";
 import ServiceManage from "./pages/ServiceManage/ServiceManage";
 import JobTypeManage from "./pages/JobTypeManage/JobTypeManage";
 
+import FormLogin from "./Components/FormLogin/FormLogin";
+import FormSignUp from "./Components/FormSignUp/FormSignUp";
+
+import JobDetail from "./pages/JobDetail/JobDetail";
+
 
 function App() {
   return (
@@ -15,10 +20,11 @@ function App() {
       <Routes>
         <Route path="/" element={<UserTemplate />}>
           <Route index element={<HomePage />} />
-          <Route path="signin" />
-          <Route path="login" />
+          <Route path="signup" element={<FormSignUp />} />
+          <Route path="/login" element={<FormLogin />} />
           <Route path="title/:id" element={<Title />} />
           <Route path="categories/:id" element={<Categories />} />
+          <Route path="jobDetail/:id" element={<JobDetail />} />
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" />

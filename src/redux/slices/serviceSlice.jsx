@@ -2,10 +2,13 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { layDuLieuLocal } from "../../utils/localStore";
 import { serviceServ } from "../../services/serviceServices";
 
-export const getAllService = createAsyncThunk("service/getAllService", async () => {
-  const res = await serviceServ.getAllService();
-  return res.data.content;
-});
+export const getAllService = createAsyncThunk(
+  "service/getAllService",
+  async () => {
+    const res = await serviceServ.getAllService();
+    return res.data.content;
+  }
+);
 
 const initialState = {
   hoTen: layDuLieuLocal("user"),
@@ -15,6 +18,7 @@ const initialState = {
 export const serviceSlice = createSlice({
   name: "services",
   initialState,
+
   reducers: {
   },
 extraReducers: (builder) => {
@@ -24,6 +28,7 @@ extraReducers: (builder) => {
     //     (service) => service.taiKhoan === action.payload.taiKhoan
     //   );
       state.serviceData = action.payload;
+
     });
   },
 });
