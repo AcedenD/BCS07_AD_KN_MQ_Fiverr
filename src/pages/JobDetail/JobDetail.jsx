@@ -4,6 +4,8 @@ import { useParams } from "react-router-dom";
 import { congViecServ } from "../../services/congViecServices";
 import "./JobDetail.scss";
 import JobDetailCard from "../../Components/JobDetailCard/JobDetailCard";
+import FAQ from "./FAQ";
+import Reviews from "./Reviews";
 
 const JobDetail = () => {
   const { id } = useParams();
@@ -54,6 +56,8 @@ const JobDetail = () => {
           tenNguoiTao={tenNguoiTao}
           tenChiTietLoai={tenChiTietLoai}
         />
+        <FAQ />
+        <Reviews congViec={congViec} />
       </div>
       <div className="jobDetail_right border border-blue-400 col-span-1 max-h-96 p-5">
         testing

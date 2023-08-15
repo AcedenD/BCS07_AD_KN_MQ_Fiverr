@@ -22,9 +22,9 @@ const JobDetailCard = (props) => {
         </div>
         <div className="seller_star_rating flex ">
           <div className="stars">
-            <i className="fa-solid fa-star text-yellow-400 "></i>
-            <i className="fa-solid fa-star text-yellow-400"></i>
-            <i className="fa-solid fa-star text-yellow-400"></i>
+            <i className="fa-solid fa-star text-[#ffb33e] "></i>
+            <i className="fa-solid fa-star text-[#ffb33e]"></i>
+            <i className="fa-solid fa-star text-[#ffb33e]"></i>
             <i className="fa-solid fa-star text-gray-300"></i>
             <i className="fa-solid fa-star text-gray-300"></i>
             <span className="mx-3 text-yellow-500">{congViec.saoCongViec}</span>
@@ -74,12 +74,12 @@ const JobDetailCard = (props) => {
             </p>
             <div className="seller_star_rating flex ">
               <div className="stars">
-                <i className="fa-solid fa-star text-yellow-400 "></i>
-                <i className="fa-solid fa-star text-yellow-400"></i>
-                <i className="fa-solid fa-star text-yellow-400"></i>
+                <i className="fa-solid fa-star text-[#ffb33e] "></i>
+                <i className="fa-solid fa-star text-[#ffb33e]"></i>
+                <i className="fa-solid fa-star text-[#ffb33e]"></i>
                 <i className="fa-solid fa-star text-gray-300"></i>
                 <i className="fa-solid fa-star text-gray-300"></i>
-                <span className="mx-3 text-yellow-500">
+                <span className="mx-3 text-[#ffb33e]">
                   {congViec.saoCongViec}
                 </span>
                 <span className="text-gray-500">({congViec.danhGia})</span>
