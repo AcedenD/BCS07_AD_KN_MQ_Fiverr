@@ -7,6 +7,7 @@ import { getAllJobType } from '../../redux/slices/jobTypeSlice';
 
 const JobTypeTable = () => {
 const { jobTypeData } = useSelector((state) => state.jobTypes);
+console.log(jobTypeData);
   const dispatch = useDispatch();
   const ref = useRef();
 
@@ -23,12 +24,11 @@ const { jobTypeData } = useSelector((state) => state.jobTypes);
       title: 'ID',
       dataIndex: 'id',
       key: 'id',
-      render: (text) => <a>{text}</a>,
     },
     {
       title: 'Job Type',
-      dataIndex: 'jobType',
-      key: 'jobType',
+      dataIndex: 'tenLoaiCongViec',
+      key: 'tenLoaiCongViec',
 
     },
     {
@@ -65,13 +65,14 @@ const { jobTypeData } = useSelector((state) => state.jobTypes);
     },
   ];
 
-  const filteredAndMappedJobTypes = jobTypeData.map((item, index) => ({
-    ...item,
-    id: index + 1,
-  }));
+  // const filteredAndMappedJobTypes = jobTypeData.map((item, index) => ({
+  //   ...item,
+  //   order: index + 1,
+  // })
+  // );
 
   return (
-    <Table columns={columns} dataSource={filteredAndMappedJobTypes} />
+    <Table columns={columns} dataSource={jobTypeData} />
   )
 }
 
