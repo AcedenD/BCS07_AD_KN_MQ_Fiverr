@@ -48,3 +48,18 @@
   }
     
 }
+
+.comment {
+  .helpful{
+    
+    span{
+      &:hover{
+        cursor: pointer;
+        i{
+          color: #138650;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+}

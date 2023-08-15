@@ -6,6 +6,7 @@ import "./JobDetail.scss";
 import JobDetailCard from "../../Components/JobDetailCard/JobDetailCard";
 import FAQ from "./FAQ";
 import Reviews from "./Reviews";
+import Comments from "./Comments";
 
 const JobDetail = () => {
   const { id } = useParams();
@@ -58,6 +59,8 @@ const JobDetail = () => {
         />
         <FAQ />
         <Reviews congViec={congViec} />
+
+        <Comments id={id} avatar={avatar} tenNguoiTao={tenNguoiTao} />
       </div>
       <div className="jobDetail_right border border-blue-400 col-span-1 max-h-96 p-5">
         testing
