@@ -31,7 +31,7 @@ const Banner = () => {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentIndex((prevIndex) => (prevIndex + 1) % items.length);
-    }, 300000); // Change item every 3 seconds
+    }, 3000); // Change item every 3 seconds
 
     return () => clearInterval(interval);
   }, [items.length]);

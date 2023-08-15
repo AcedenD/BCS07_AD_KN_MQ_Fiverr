@@ -1,14 +1,13 @@
 import React from "react";
 
 import "./Header.scss";
+import { NavLink } from "react-router-dom";
+// import Login from "../../pages/Login/Login";
 
 const Header = () => {
   return (
     <div className="wrapper-header text-white">
-      <nav
-        className="border-gray-200 
-"
-      >
+      <nav className="border-gray-200 ">
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-4">
           <a href="/" className="flex items-center">
             <span className="self-center text-4xl font-bold whitespace-nowrap text-white">
@@ -18,18 +17,18 @@ const Header = () => {
           </a>
           <div className="flex justify-center items-center gap-2">
             <div className="flex items-center md:order-2">
-              <a
-                href="..."
+              <NavLink
+                to={"signup"}
                 className="text-white font-bold text-md px-3 py-2 md:px-2 md:py-1 mr-1 md:mr-2 "
               >
                 Sign up
-              </a>
-              <a
-                href="..."
-                className="text-white hover:bg-[rgb(20,238,150)] text-md px-3 py-2 md:px-4 md:py-1.5 mr-1 md:mr-2 border border-[#fff] bg-[transparent] ease-in duration-200 "
+              </NavLink>
+              <NavLink
+                to={"/login"}
+                className="text-white hover:bg-[#1dbf73] text-md px-3 py-2 md:px-4 md:py-1.5 mr-1 md:mr-2 border border-[#fff] bg-[transparent] ease-in duration-200 "
               >
                 Login
-              </a>
+              </NavLink>
               <button
                 data-collapse-toggle="mega-menu-icons"
                 type="button"
