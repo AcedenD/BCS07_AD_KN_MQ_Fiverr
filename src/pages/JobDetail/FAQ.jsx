@@ -37,11 +37,11 @@ const FAQ = () => {
       <div id="accordion-collapse" data-accordion="collapse">
         {faqList.map((item, index) => {
           return (
-            <div>
+            <div key={index}>
               <h2 id="accordion-collapse-heading-1">
                 <button
                   type="button"
-                  className="flex items-center justify-between w-full p-5 font-medium text-left text-gray-500  "
+                  className="flex items-center justify-between w-full p-5 font-semibold text-left text-gray-600  "
                   data-accordion-target={`#accordion-collapse-body-${index}`}
                   aria-expanded="true"
                   aria-controls={`accordion-collapse-body-${index}`}
