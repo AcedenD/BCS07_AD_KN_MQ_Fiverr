@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Space, Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { serviceServ } from '../../Services/serviceServices';
+import { serviceServ } from '../../services/serviceServices';
 import { getAllService } from '../../redux/slices/serviceSlice';
 
 const ServiceTable = () => {

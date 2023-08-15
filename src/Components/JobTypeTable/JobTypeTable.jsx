@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react'
 import { Space, Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
-import { jobTypeServ } from '../../Services/jobTypeServices';
+import { jobTypeServ } from '../../services/jobTypeServices';
 import { getAllJobType } from '../../redux/slices/jobTypeSlice';
 
 const JobTypeTable = () => {
