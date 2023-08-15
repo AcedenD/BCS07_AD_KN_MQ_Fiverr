@@ -1,0 +1,32 @@
+.jobDetail_left {
+  .seller_overview{
+    .seller_star_rating{
+      .stars{
+        i{
+          &:hover:not(.text-yellow-400){
+            cursor: pointer;
+            color: #1dbf73;
+          }
+        }
+      }
+      &:before{
+        content: '|';
+        color: #c5c6c9;
+        margin-right: 12px;
+      }
+
+      &:after{
+        content: '|';
+        color: #c5c6c9;
+        margin-left: 12px;
+      }
+
+    }
+  }
+}
+
+.jobDetail_right{
+  position: sticky;
+  top: 128px;
+
+}

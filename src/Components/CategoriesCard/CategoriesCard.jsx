@@ -40,7 +40,7 @@ const CategoriesCard = (props) => {
           </h5>
         </NavLink>
         <div>
-          <i class="fa-solid fa-star text-yellow-400 text-sm">
+          <i class="fa-solid fa-star text-yellow-500 text-sm">
             {congViec.saoCongViec}
           </i>
           <span className="text-gray-400 text-sm"> ({congViec.danhGia})</span>
