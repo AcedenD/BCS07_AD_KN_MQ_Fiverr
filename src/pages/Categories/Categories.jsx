@@ -64,6 +64,7 @@ const Categories = () => {
         // console.log(res.data.content[0].tenChiTietLoai);
         setLoaiCongViec(res.data.content[0].tenChiTietLoai);
         setTenLoaiCongViec(res.data.content[0].tenLoaiCongViec);
+        document.title = `${res.data.content[0].tenChiTietLoai}`;
 
         setTimeout(() => {
           dispatch(set_loading_ended());

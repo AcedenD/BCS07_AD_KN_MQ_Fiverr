@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Banner from "../../Components/Banner/Banner";
 import Trusted from "../../Components/Trusted/Trusted";
 import CarouselServices from "../../Components/CarouselServices/CarouselServices";
@@ -7,6 +7,10 @@ import Testimonial from "../../Components/HomePageComponents/Testimonial.jsx";
 import MainCategories from "../../Components/HomePageComponents/MainCategories.jsx";
 
 const HomePage = () => {
+  useEffect(() => {
+    document.title = `Fiverr`;
+  }, []);
+
   return (
     <div className="">
       <Banner />
