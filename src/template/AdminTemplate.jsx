@@ -19,7 +19,7 @@ const AdminTemplate = () => {
   } = theme.useToken();
 
   useEffect(() => {
-    console.log("helo admin");
+    // console.log("helo admin");
     // const user = layDuLieuLocal("user");
     // console.log(user);
     // if (user) {

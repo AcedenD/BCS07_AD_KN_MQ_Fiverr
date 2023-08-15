@@ -1,9 +1,11 @@
-import React, { useRef, useState } from "react";
-import { Space, Table, Tag } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { serviceServ } from "../../services/serviceServices";
-import { getAllService } from "../../redux/slices/serviceSlice";
+
+import React, { useRef, useState } from 'react'
+import { Space, Table, Tag } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { serviceServ } from '../../services/serviceServices';
+import { getAllService } from '../../redux/slices/serviceSlice';
+
 
 const ServiceTable = () => {
   const { serviceData } = useSelector((state) => state.services);
@@ -26,24 +28,29 @@ const ServiceTable = () => {
       render: (text) => <a>{text}</a>,
     },
     {
-      title: "Job ID",
-      dataIndex: "jobID",
-      key: "jobID",
+
+      title: 'Job ID',
+      dataIndex: 'maCongViec',
+      key: 'maCongViec',
+
     },
     {
-      title: "Hirer ID",
-      dataIndex: "hirerID",
-      key: "hirerID",
+      title: 'Hirer ID',
+      dataIndex: 'maNguoiThue',
+      key: 'maNguoiThue',
+
     },
     {
-      title: "Hire Day",
-      dataIndex: "hireDay",
-      key: "hireDay",
+      title: 'Hire Day',
+      dataIndex: 'ngayThue',
+      key: 'ngayThue',
     },
     {
-      title: "Condition",
-      dataIndex: "condition",
-      key: "condition",
+      title: 'Condition',
+      dataIndex: 'hoanThanh',
+      key: 'hoanThanh',
+      render: maHoanThanh => maHoanThanh ? "Completed" : "Not Completed"
+
     },
     {
       title: "Action",

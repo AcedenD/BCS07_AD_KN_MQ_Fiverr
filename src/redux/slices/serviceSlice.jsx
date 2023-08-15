@@ -18,13 +18,17 @@ const initialState = {
 export const serviceSlice = createSlice({
   name: "services",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(getAllService.fulfilled, (state, action) => {
-      //   const index = state.serviceData.findIndex(
-      //     (service) => service.taiKhoan === action.payload.taiKhoan
-      //   );
-      state.users = action.payload;
+
+  reducers: {
+  },
+extraReducers: (builder) => {
+    builder
+    .addCase(getAllService.fulfilled, (state, action) => {
+    //   const index = state.serviceData.findIndex(
+    //     (service) => service.taiKhoan === action.payload.taiKhoan
+    //   );
+      state.serviceData = action.payload;
+
     });
   },
 });

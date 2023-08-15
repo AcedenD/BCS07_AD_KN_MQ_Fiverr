@@ -1,12 +1,15 @@
-import React, { useRef, useState } from "react";
-import { Space, Table, Tag } from "antd";
-import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
-import { jobTypeServ } from "../../services/jobTypeServices";
-import { getAllJobType } from "../../redux/slices/jobTypeSlice";
+
+import React, { useRef, useState } from 'react'
+import { Space, Table, Tag } from 'antd';
+import { useDispatch, useSelector } from 'react-redux';
+import { NavLink } from 'react-router-dom';
+import { jobTypeServ } from '../../services/jobTypeServices';
+import { getAllJobType } from '../../redux/slices/jobTypeSlice';
 
 const JobTypeTable = () => {
-  const { jobTypeData } = useSelector((state) => state.jobTypes);
+const { jobTypeData } = useSelector((state) => state.jobTypes);
+console.log(jobTypeData);
+
   const dispatch = useDispatch();
   const ref = useRef();
 
@@ -20,15 +23,17 @@ const JobTypeTable = () => {
 
   const columns = [
     {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-      render: (text) => <a>{text}</a>,
+
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
     },
     {
-      title: "Job Type",
-      dataIndex: "jobType",
-      key: "jobType",
+      title: 'Job Type',
+      dataIndex: 'tenLoaiCongViec',
+      key: 'tenLoaiCongViec',
+
+
     },
     {
       title: "Action",
@@ -70,12 +75,17 @@ const JobTypeTable = () => {
     },
   ];
 
-  const filteredAndMappedJobTypes = jobTypeData.map((item, index) => ({
-    ...item,
-    id: index + 1,
-  }));
+  // const filteredAndMappedJobTypes = jobTypeData.map((item, index) => ({
+  //   ...item,
+  //   order: index + 1,
+  // })
+  // );
 
-  return <Table columns={columns} dataSource={filteredAndMappedJobTypes} />;
-};
+
+  return (
+    <Table columns={columns} dataSource={jobTypeData} />
+  )
+}
+
 
 export default JobTypeTable;

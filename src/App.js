@@ -5,6 +5,8 @@ import Page404 from "./pages/Page404/Page404";
 import HomePage from "./pages/HomePage/HomePage";
 import Title from "./pages/TitlePage/Title";
 import Categories from "./pages/Categories/Categories";
+import ServiceManage from "./pages/ServiceManage/ServiceManage";
+import JobTypeManage from "./pages/JobTypeManage/JobTypeManage";
 
 import FormLogin from "./Components/FormLogin/FormLogin";
 import FormSignUp from "./Components/FormSignUp/FormSignUp";
@@ -27,8 +29,8 @@ function App() {
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" />
           <Route path="job" />
-          <Route path="job-type" />
-          <Route path="service" />
+          <Route path="job-type" element={<JobTypeManage />}/>
+          <Route path="service" element={<ServiceManage />} />
         </Route>
         <Route path="*" element={<Page404 />} />
       </Routes>

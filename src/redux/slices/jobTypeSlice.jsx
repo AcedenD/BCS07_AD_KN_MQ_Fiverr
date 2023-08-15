@@ -18,13 +18,17 @@ const initialState = {
 export const jobTypeSlice = createSlice({
   name: "jobTypes",
   initialState,
-  reducers: {},
-  extraReducers: (builder) => {
-    builder.addCase(getAllJobType.fulfilled, (state, action) => {
-      //   const index = state.jobTypeData.findIndex(
-      //     (jobType) => jobType.taiKhoan === action.payload.taiKhoan
-      //   );
-      state.users = action.payload;
+
+  reducers: {
+  },
+extraReducers: (builder) => {
+    builder
+    .addCase(getAllJobType.fulfilled, (state, action) => {
+    //   const index = state.jobTypeData.findIndex(
+    //     (jobType) => jobType.taiKhoan === action.payload.taiKhoan
+    //   );
+      state.jobTypeData = action.payload;
+
     });
   },
 });
