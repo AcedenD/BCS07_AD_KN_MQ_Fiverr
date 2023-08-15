@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { layDuLieuLocal } from "../../utils/localStore";
-import { serviceServ } from "../../Services/serviceServices";
+import { serviceServ } from "../../services/serviceServices";
 
 export const getAllService = createAsyncThunk("service/getAllService", async () => {
   const res = await serviceServ.getAllService();

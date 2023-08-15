@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { layDuLieuLocal } from "../../utils/localStore";
-import { jobTypeServ } from "../../Services/jobTypeServices";
+import { jobTypeServ } from "../../services/jobTypeServices";
 
 export const getAllJobType = createAsyncThunk("jobType/getAllJobType", async () => {
   const res = await jobTypeServ.getAllJobType();
