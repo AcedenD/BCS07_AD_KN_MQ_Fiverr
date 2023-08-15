@@ -23,14 +23,7 @@
   }
   .seller_overview{
     .seller_star_rating{
-      .stars{
-        i{
-          &:hover:not(.text-yellow-400){
-            cursor: pointer;
-            color: #1dbf73;
-          }
-        }
-      }
+      
       &:before{
         content: '|';
         color: #c5c6c9;
