@@ -49,7 +49,7 @@ console.log(jobTypeData);
               );
               if (userConfirmed) {
                 jobTypeServ
-                  .deleteJobType(record.jobType)
+                  .deleteJobType(record.id)
                   .then((res) => {
                     alert("delete successful");
                     dispatch(getAllJobType());
@@ -74,6 +74,7 @@ console.log(jobTypeData);
       ),
     },
   ];
+
 
   return (
     <Table columns={columns} dataSource={jobTypeData} />
