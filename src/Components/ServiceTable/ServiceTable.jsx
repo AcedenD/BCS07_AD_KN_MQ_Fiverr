@@ -22,10 +22,9 @@ const ServiceTable = () => {
 
   const columns = [
     {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-      render: (text) => <a>{text}</a>,
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
     },
     {
 
@@ -66,7 +65,7 @@ const ServiceTable = () => {
               );
               if (userConfirmed) {
                 serviceServ
-                  .deleteService(record.service)
+                  .deleteService(record.id)
                   .then((res) => {
                     alert("delete successful");
                     dispatch(getAllService());
@@ -92,12 +91,11 @@ const ServiceTable = () => {
     },
   ];
 
-  const filteredAndMappedServices = serviceData.map((item, index) => ({
-    ...item,
-    id: index + 1,
-  }));
 
-  return <Table columns={columns} dataSource={filteredAndMappedServices} />;
-};
+  return (
+    <Table columns={columns} dataSource={serviceData} />
+  )
+}
+
 
 export default ServiceTable;

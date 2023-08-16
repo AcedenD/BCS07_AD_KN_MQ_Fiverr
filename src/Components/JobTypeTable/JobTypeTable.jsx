@@ -49,7 +49,7 @@ console.log(jobTypeData);
               );
               if (userConfirmed) {
                 jobTypeServ
-                  .deleteJobType(record.jobType)
+                  .deleteJobType(record.id)
                   .then((res) => {
                     alert("delete successful");
                     dispatch(getAllJobType());
@@ -74,12 +74,6 @@ console.log(jobTypeData);
       ),
     },
   ];
-
-  // const filteredAndMappedJobTypes = jobTypeData.map((item, index) => ({
-  //   ...item,
-  //   order: index + 1,
-  // })
-  // );
 
 
   return (

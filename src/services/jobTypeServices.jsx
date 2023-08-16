@@ -8,7 +8,7 @@ export const jobTypeServ = {
         return https.get(`/api/cong-viec/lay-cong-viec-chi-tiet/{MaCongViec}`, maCongViec);
     },
     deleteJobType: (id) => {
-        return https.delete(`/api/loai-cong-viec/{id}`, id);
+        return https.delete(`api/loai-cong-viec/${id}`);
     },
     addJobType: (data) => {
         return https.post("/api/loai-cong-viec", data);
