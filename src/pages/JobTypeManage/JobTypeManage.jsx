@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllJobType } from '../../redux/slices/jobTypeSlice';
 import JobTypeTable from '../../Components/JobTypeTable/JobTypeTable';
 import { Drawer } from 'antd';
+import FormAddMJobType from '../../Components/FormJobType/FormAddJobType';
 
 const JobTypeManage = () => {
   const [jobTypes, setJobTypes] = useState([]);
@@ -47,7 +48,7 @@ const JobTypeManage = () => {
   return (<div >
     <button
       className='bg-green-600 px-5 py-2 text-white rounded-lg mb-5 ' onClick={showDrawer} >
-      <i class="fa-solid fa-plus"></i>  Thêm Job
+      <i class="fa-solid fa-plus"></i>  Thêm Job Type
     </button>
     {/* <AdminSearch onSearch={handleSearch} /> */}
 
@@ -57,7 +58,8 @@ const JobTypeManage = () => {
       onClose={onClose}
       open={open}
       bodyStyle={{ paddingBottom: 80 }}>
-      {/* <FormAddJobType formData={formData} formKey={formKey} jobType={values} /> */}
+        <FormAddMJobType/>
+      {/* <FormAddJobType formData={data} formKey={formKey} jobType={values} /> */}
     </Drawer>
     <JobTypeTable showDrawer={showDrawer} />
 

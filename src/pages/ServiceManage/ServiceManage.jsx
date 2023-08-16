@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllService } from '../../redux/slices/serviceSlice';
 import ServiceTable from '../../Components/ServiceTable/ServiceTable';
 import { Drawer } from 'antd';
+import FormAddService from '../../Components/FormServices/FormAddService';
 
 const ServiceManage = () => {
   const [services, setServices] = useState([]);
@@ -57,6 +58,7 @@ const ServiceManage = () => {
       onClose={onClose}
       open={open}
       bodyStyle={{ paddingBottom: 80 }}>
+        <FormAddService/>
       {/* <FormAddService formData={formData} formKey={formKey} service={values} /> */}
     </Drawer>
     <ServiceTable showDrawer={showDrawer} />
