@@ -17,7 +17,6 @@ const dispatch = useDispatch();
     },
     
     onSubmit: async (values) => {
-      console.log(values)
       try{
         const res = await jobTypeServ.addJobType(values);
         messageApi.success("Thêm Công Việc Thành Công");

@@ -82,26 +82,20 @@ const ServiceTable = () => {
           </button>
           <button
       className='py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 suration-500'
-      title="Sửa" onClick={showDrawer2} >
+      title="Sửa" onClick={() => showDrawer2(record.id)} >
       <i class="fa-solid fa-pen-to-square"></i>
     </button>
-          {/* <NavLink
-            to={`/admin/service/edit?serviceId=${record.service}`} 
-            className='py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 suration-500'
-            title="Sửa"
-          >
-             <i class="fa-solid fa-pen-to-square"></i>
-          </NavLink> */}
         </Space>
       ),
     },
   ];
    //Drawers 2
    const [drawer2Visible, setDrawer2Visible] = useState(false);
+   const [selectedServiceId, setSelectedServiceId] = useState(null);
    const [open2, setOpen2] = useState(false);
    const formRef = useRef();
-   const showDrawer2 = (serviceData) => {
-     // setFormData(serviceData);
+   const showDrawer2 = (serviceId) => {
+    setSelectedServiceId(serviceId);
      setOpen2(true);
    };
    const onClose2 = () => {
@@ -118,7 +112,7 @@ const ServiceTable = () => {
       onClose={onClose2}
       open={open2}
       bodyStyle={{ paddingBottom: 80 }}>
-        <FormEditService/>
+        <FormEditService serviceId={selectedServiceId}/>
       {/* <FormAddJobType formData={data} formKey={formKey} jobType={values} /> */}
     </Drawer>
     <Table columns={columns} dataSource={serviceData} />

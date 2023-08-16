@@ -4,8 +4,8 @@ export const jobTypeServ = {
     getAllJobType: () => {
         return https.get("api/loai-cong-viec");
     },
-    getJobTypeDetail: (maCongViec) => {
-        return https.get(`/api/cong-viec/lay-cong-viec-chi-tiet/${maCongViec}`);
+    getJobTypeDetail: (id) => {
+        return https.get(`api/loai-cong-viec/${id}`);
     },
     deleteJobType: (id) => {
         return https.delete(`api/loai-cong-viec/${id}`);
@@ -13,8 +13,8 @@ export const jobTypeServ = {
     addJobType: (data) => {
         return https.post("/api/loai-cong-viec", data);
     },
-    updateJobType: (id) => {
-        return https.post(`/api/loai-cong-viec/${id}`);
+    updateJobType: (id,data) => {
+        return https.put(`/api/loai-cong-viec/${id}`,data);
     },
 
 };

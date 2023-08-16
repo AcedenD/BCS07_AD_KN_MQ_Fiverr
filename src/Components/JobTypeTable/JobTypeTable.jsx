@@ -58,16 +58,9 @@ console.log(jobTypeData);
           </button>
           <button
       className='py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 suration-500'
-      title="Sửa" onClick={showDrawer2} >
+      title="Sửa" onClick={() => showDrawer2(record.id)} >
       <i class="fa-solid fa-pen-to-square"></i>
     </button>
-          {/* <NavLink
-            to={`/admin/jobType/edit?jobTypeId=${record.jobType}`} 
-            className='py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 suration-500'
-            title="Sửa"
-          >
-             <i class="fa-solid fa-pen-to-square"></i>
-          </NavLink> */}
         </Space>
       ),
     },
@@ -75,10 +68,11 @@ console.log(jobTypeData);
 
     //Drawers 2
     const [drawer2Visible, setDrawer2Visible] = useState(false);
+    const [selectedJobId, setSelectedJobId] = useState(null);
     const [open2, setOpen2] = useState(false);
     const formRef = useRef();
-    const showDrawer2 = (jobTypeData) => {
-      // setFormData(jobTypeData);
+    const showDrawer2 = (jobTypeId) => {
+      setSelectedJobId(jobTypeId);
       setOpen2(true);
     };
     const onClose2 = () => {
@@ -96,8 +90,7 @@ console.log(jobTypeData);
       onClose={onClose2}
       open={open2}
       bodyStyle={{ paddingBottom: 80 }}>
-        <FormEditMJobType/>
-      {/* <FormAddJobType formData={data} formKey={formKey} jobType={values} /> */}
+        <FormEditMJobType jobId={selectedJobId}/>
     </Drawer>
     <Table columns={columns} dataSource={jobTypeData} />
 </>

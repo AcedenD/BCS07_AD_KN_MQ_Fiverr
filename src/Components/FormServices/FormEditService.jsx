@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React,  { useEffect, useState }  from 'react'
 import { Form, Input, DatePicker, Switch, Upload, Button, Col, Row, Space, message  } from 'antd';
 import { Formik, useFormik } from 'formik';
 import {serviceServ } from '../../services/serviceServices';
@@ -6,25 +6,39 @@ import { getAllService} from '../../redux/slices/serviceSlice';
 import { useDispatch } from 'react-redux';
 import moment from 'moment';
 
-const FormEditService = () => {
+const FormEditService = (props) => {
+    const congViecID = props.serviceId;
+    const [congViec, setCongViec] = useState([]);
+          useEffect(() => {
+            serviceServ.getServiceDetail(congViecID)
+              .then((res) => {
+                console.log(res);
+                setCongViec(res.data.content);
+              })
+              .catch((err) => {
+                console.log(err);
+              });
+          }, [congViecID]);
+        
 
 const [messageApi, contextHolder] = message.useMessage();
 const dispatch = useDispatch();
 
 const formik = useFormik({
+  enableReinitialize:true,
     initialValues: {
-    id: "0",
-    maCongViec: "",
-    maNguoiThue: "",
-    ngayThue: "",
-    hoanThanh: false,
+    id: congViec.id,
+    maCongViec: congViec.maCongViec,
+    maNguoiThue: congViec.maNguoiThue,
+    ngayThue: congViec.ngayThue,
+    hoanThanh: congViec.hoanThanh,
     },
 
     onSubmit: async (values) => {
-      console.log(values)
       try{
-        const res = await serviceServ.addService(values);
-        messageApi.success("Thêm Công Việc Thành Công");
+        const { id, ...restOfValues } = values;
+        const res = await serviceServ.updateService(id, restOfValues);
+        messageApi.success("Sửa Công Việc Thành Công");
         dispatch(getAllService());
         formik.resetForm();}
         catch (error) {
@@ -51,7 +65,7 @@ const{handleSubmit, handleChange, values} =formik
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <div className="w-full">
           <label htmlFor="id" className="block mb-2 text-sm font-medium text-gray-900 ">ID</label>
-          <input value={values.id}
+          <input value={formik.values.id}
               onChange={handleChange}
               type="text"
               name="id"
@@ -61,7 +75,7 @@ const{handleSubmit, handleChange, values} =formik
         <div className="w-full">
           <label htmlFor="maCongViec" className="block mb-2 text-sm font-medium text-gray-900">Mã Công Việc</label>
           <input 
-          value={values.maCongViec}
+          value={formik.values.maCongViec}
           onChange={handleChange}
           type="text" 
           name="maCongViec"
@@ -74,7 +88,7 @@ const{handleSubmit, handleChange, values} =formik
         <div className="w-full">
           <label htmlFor="maNguoiThue" className="block mb-2 text-sm font-medium text-gray-900">Mã Người Thuê</label>
           <input 
-          value={values.maNguoiThue}
+          value={formik.values.maNguoiThue}
           onChange={handleChange}
           type="text" 
           name="maNguoiThue"
@@ -95,7 +109,8 @@ const{handleSubmit, handleChange, values} =formik
           id="ngayThue"
           placeholder="Xin Nhập Ngày Thuê"
           className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5"
-          onChange={handleChangeDatePicker}/>
+          onChange={handleChangeDatePicker}
+          value={moment(formik.values.ngayThue)}/>
 </div>
 
 <div className="w-full flex items-center">
@@ -103,7 +118,7 @@ const{handleSubmit, handleChange, values} =formik
     Hoàn Thành
   </label>
   <Switch
-    checked={values.hoanThanh}
+    checked={formik.values.hoanThanh}
     onChange={(value)=>{formik.setFieldValue('hoanThanh',value)}}
     name="hoanThanh"
     id="hoanThanh"

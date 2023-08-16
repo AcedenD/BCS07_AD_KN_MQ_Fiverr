@@ -1,26 +1,37 @@
-import React from 'react'
+import React, { useEffect, useState }  from 'react'
 import {  message  } from 'antd';
 import { useFormik } from 'formik';
 import { jobTypeServ } from '../../services/jobTypeServices';
 import { getAllJobType } from '../../redux/slices/jobTypeSlice';
 import { useDispatch } from 'react-redux';
 
-const FormEditMJobType= () => {
+const FormEditMJobType= (props) => {
+  const jobID = props.jobId;
+  const [loaiCongViec, setLoaiCongViec] = useState([]);
+  useEffect(() => {
+    jobTypeServ.getJobTypeDetail(jobID)
+      .then((res) => {
+        setLoaiCongViec(res.data.content);
+      })
+      .catch((err) => {
+      });
+  }, [jobID]);
 
 const [messageApi, contextHolder] = message.useMessage();
 const dispatch = useDispatch();
 
   const formik = useFormik({
+    enableReinitialize:true,
     initialValues: {
-    id: "0",
-    tenLoaiCongViec: "",
+    id: loaiCongViec.id,
+    tenLoaiCongViec: loaiCongViec.tenLoaiCongViec,
     },
     
     onSubmit: async (values) => {
-      console.log(values)
       try{
-        const res = await jobTypeServ.addJobType(values);
-        messageApi.success("Thêm Công Việc Thành Công");
+        const { id, ...restOfValues } = values;
+        const res = await jobTypeServ.updateJobType(id, restOfValues);
+        messageApi.success("Sửa Công Việc Thành Công");
         dispatch(getAllJobType());
         formik.resetForm();}
         catch (error) {
@@ -42,7 +53,7 @@ const{handleSubmit, handleChange, values} =formik
       <div className="grid gap-4 sm:grid-cols-2 sm:gap-6">
         <div className="w-full">
           <label htmlFor="id" className="block mb-2 text-sm font-medium text-gray-900 ">ID</label>
-          <input value={values.id}
+          <input value={formik.values.id}
               onChange={handleChange}
               type="text"
               name="id"
@@ -52,7 +63,7 @@ const{handleSubmit, handleChange, values} =formik
         <div className="w-full">
           <label htmlFor="tenLoaiCongViec" className="block mb-2 text-sm font-medium text-gray-900">Job Type</label>
           <input 
-          value={values.tenLoaiCongViec}
+          value={formik.values.tenLoaiCongViec}
           onChange={handleChange}
           type="text" 
           name="tenLoaiCongViec"
