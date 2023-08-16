@@ -13,14 +13,6 @@ console.log(jobTypeData);
   const dispatch = useDispatch();
   const ref = useRef();
 
-  //   const shortenText = (text, maxLength) => {
-  //     if (text.split(' ').length > maxLength) {
-  //       const words = text.split(' ');
-  //       return words.slice(0, maxLength).join(' ') + '...';
-  //     }
-  //     return text;
-  //   };
-
   const columns = [
     {
 
