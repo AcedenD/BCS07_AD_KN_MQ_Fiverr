@@ -32,4 +32,4 @@ Libraries to install
 // link for tasks managment: https://docs.google.com/spreadsheets/d/1EdppvnYpvNKnfRAItBKkTPSBDbNnh90a6kiqpM9ebtI/edit?usp=sharing
 
 color:
-#1dbf73
+main green: #1dbf73

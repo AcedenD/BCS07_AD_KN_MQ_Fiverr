@@ -4,7 +4,7 @@ export const nguoiDungServ = {
   // group: "GP03",
 
   dangNhap: (data) => {
-    return https.post("/api/QuanLyNguoiDung/DangNhap", data);
+    return https.post("/api/auth/signin", data);
   },
 
   dangKy: (data) => {

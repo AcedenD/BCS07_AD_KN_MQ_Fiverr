@@ -1,6 +1,7 @@
 import { https } from "./config";
 
 export const serviceServ = {
+
     getAllService: () => {
         return https.get("/api/thue-cong-viec");
     },
