@@ -7,10 +7,6 @@ import Testimonial from "../../Components/HomePageComponents/Testimonial.jsx";
 import MainCategories from "../../Components/HomePageComponents/MainCategories.jsx";
 
 const HomePage = () => {
-  useEffect(() => {
-    document.title = `Fiverr`;
-  }, []);
-
   return (
     <div className="">
       <Banner />

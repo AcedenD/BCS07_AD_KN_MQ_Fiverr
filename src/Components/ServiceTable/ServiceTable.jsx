@@ -1,11 +1,9 @@
-
-import React, { useRef, useState } from 'react'
-import { Space, Table, Tag } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { serviceServ } from '../../services/serviceServices';
-import { getAllService } from '../../redux/slices/serviceSlice';
-
+import React, { useRef, useState } from "react";
+import { Space, Table, Tag } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { serviceServ } from "../../services/serviceServices";
+import { getAllService } from "../../redux/slices/serviceSlice";
 
 const ServiceTable = () => {
   const { serviceData } = useSelector((state) => state.services);
@@ -28,29 +26,25 @@ const ServiceTable = () => {
       render: (text) => <a>{text}</a>,
     },
     {
-
-      title: 'Job ID',
-      dataIndex: 'maCongViec',
-      key: 'maCongViec',
-
+      title: "Job ID",
+      dataIndex: "maCongViec",
+      key: "maCongViec",
     },
     {
-      title: 'Hirer ID',
-      dataIndex: 'maNguoiThue',
-      key: 'maNguoiThue',
-
+      title: "Hirer ID",
+      dataIndex: "maNguoiThue",
+      key: "maNguoiThue",
     },
     {
-      title: 'Hire Day',
-      dataIndex: 'ngayThue',
-      key: 'ngayThue',
+      title: "Hire Day",
+      dataIndex: "ngayThue",
+      key: "ngayThue",
     },
     {
-      title: 'Condition',
-      dataIndex: 'hoanThanh',
-      key: 'hoanThanh',
-      render: maHoanThanh => maHoanThanh ? "Completed" : "Not Completed"
-
+      title: "Condition",
+      dataIndex: "hoanThanh",
+      key: "hoanThanh",
+      render: (maHoanThanh) => (maHoanThanh ? "Completed" : "Not Completed"),
     },
     {
       title: "Action",
@@ -61,8 +55,9 @@ const ServiceTable = () => {
             className="py-2 px-5 bg-red-600 text-white rounded-lg hover:bg-red-700 suration-500"
             title="Xóa"
             onClick={() => {
+              console.log(record);
               const userConfirmed = window.confirm(
-                "Do you really want to delete?"
+                `Do you really want to delete?}`
               );
               if (userConfirmed) {
                 serviceServ
