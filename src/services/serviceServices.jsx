@@ -5,7 +5,7 @@ export const serviceServ = {
         return https.get("/api/thue-cong-viec");
     },
     deleteService: (id) => {
-        return https.delete(`/api/thue-cong-viec/{id}`, id);
+        return https.delete(`api/thue-cong-viec/${id}`);
     },
     addService: (data) => {
         return https.post("/api/thue-cong-viec", data);

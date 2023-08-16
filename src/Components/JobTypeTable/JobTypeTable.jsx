@@ -65,12 +65,6 @@ console.log(jobTypeData);
     },
   ];
 
-  // const filteredAndMappedJobTypes = jobTypeData.map((item, index) => ({
-  //   ...item,
-  //   order: index + 1,
-  // })
-  // );
-
   return (
     <Table columns={columns} dataSource={jobTypeData} />
   )

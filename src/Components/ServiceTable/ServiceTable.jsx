@@ -23,7 +23,7 @@ const { serviceData } = useSelector((state) => state.services);
       title: 'ID',
       dataIndex: 'id',
       key: 'id',
-      render: (text) => <a>{text}</a>,
+      // render: (text) => <a>{text}</a>,
     },
     {
       title: 'Job ID',
@@ -59,7 +59,7 @@ const { serviceData } = useSelector((state) => state.services);
               const userConfirmed = window.confirm("Do you really want to delete?");
               if (userConfirmed) {
                 serviceServ
-                  .deleteService(record.service)
+                  .deleteService(record.id)
                   .then((res) => {
                     alert("delete successful");
                     dispatch(getAllService());
@@ -82,13 +82,8 @@ const { serviceData } = useSelector((state) => state.services);
     },
   ];
 
-  const filteredAndMappedServices = serviceData.map((item, index) => ({
-    ...item,
-    id: index + 1,
-  }));
-
   return (
-    <Table columns={columns} dataSource={filteredAndMappedServices} />
+    <Table columns={columns} dataSource={serviceData} />
   )
 }
 
