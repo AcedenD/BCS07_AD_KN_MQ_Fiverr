@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getAllService } from '../../redux/slices/serviceSlice';
 import ServiceTable from '../../Components/ServiceTable/ServiceTable';
 import { Drawer } from 'antd';
+import FormAddService from '../../Components/FormServices/FormAddService';
 
 const ServiceManage = () => {
   const [services, setServices] = useState([]);
@@ -26,27 +27,26 @@ const ServiceManage = () => {
 
   //Drawers
 
-  const [drawerVisible, setDrawerVisible] = useState(false);
+  const [drawer1Visible, setDrawer1Visible] = useState(false);
 
-  const [open, setOpen] = useState(false);
+  const [open1, setOpen1] = useState(false);
   const formRef = useRef();
 
 
-  const showDrawer = (serviceData) => {
-    setFormData(serviceData);
-    setOpen(true);
+  const showDrawer1 = () => {
+    setFormData();
+    setOpen1(true);
   };
 
-  const onClose = () => {
-    setOpen(false);
+  const onClose1 = () => {
+    setOpen1(false);
     setFormData({});
-    setFormKey(prevKey => prevKey + 1);
   };
 
 
   return (<div >
     <button
-      className='bg-green-600 px-5 py-2 text-white rounded-lg mb-5 ' onClick={showDrawer} >
+      className='bg-green-600 px-5 py-2 text-white rounded-lg mb-5 ' onClick={showDrawer1} >
       <i class="fa-solid fa-plus"></i>  Thêm Service
     </button>
     {/* <AdminSearch onSearch={handleSearch} /> */}
@@ -54,12 +54,13 @@ const ServiceManage = () => {
     <Drawer
       title="Service"
       width={720}
-      onClose={onClose}
-      open={open}
+      onClose={onClose1}
+      open={open1}
       bodyStyle={{ paddingBottom: 80 }}>
+        <FormAddService/>
       {/* <FormAddService formData={formData} formKey={formKey} service={values} /> */}
     </Drawer>
-    <ServiceTable showDrawer={showDrawer} />
+    <ServiceTable showDrawer1={showDrawer1} />
 
   </div>)
 }
