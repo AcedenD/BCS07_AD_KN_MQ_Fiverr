@@ -1,5 +1,6 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { nguoiDungServ } from "../../services/nguoiDungServices";
+import { layDuLieuLocal } from "../../utils/localStore";
 
 // // nơi tạo các createAsyncThunk để xử lí các bất đồng bộ trước khi bắn dữ liệu lên store bằng redux-thunk, from @redux/toolkit
 
@@ -10,9 +11,10 @@ export const getAllUser = createAsyncThunk("nguoiDung/getAllUser", async () => {
 });
 
 const initialState = {
-  // hoTen: layDuLieuLocal("user"),
-  hoTen: "Aden",
+  hoTen: layDuLieuLocal("user"),
   users: [],
+  // email: layDuLieuLocal("user"),
+  // password: "",
 };
 
 export const nguoiDungSlice = createSlice({
@@ -22,8 +24,8 @@ export const nguoiDungSlice = createSlice({
     setDuLieuHoTen: (state, action) => {
       // check hoTen have value, if doesn't have then set value
       // console.log(action);
-      if (state.hoTen == null) {
-        state.hoTen = action.payload;
+      if (state.name == null) {
+        state.name = action.payload;
       }
     },
   },
@@ -35,7 +37,7 @@ export const nguoiDungSlice = createSlice({
     // fulfilled, pending, reject
     builder.addCase(getAllUser.fulfilled, (state, action) => {
       const index = state.users.findIndex(
-        (user) => user.taiKhoan === action.payload.taiKhoan
+        (user) => user.email === action.payload.email
       );
       // in action, payload will return data
       state.users = action.payload;

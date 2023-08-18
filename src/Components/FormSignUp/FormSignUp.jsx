@@ -1,19 +1,83 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import { message } from "antd";
+import { useFormik } from "formik";
+import { nguoiDungServ } from "../../services/nguoiDungServices";
+import { getAllUser } from "../../redux/slices/nguoiDungSlice";
+import { addUserSchema } from "../../utils/addUserSchema";
+import { v4 as uuidv4 } from "uuid";
+import { useNavigate } from "react-router-dom";
 
 const FormSignUp = () => {
-  const [account, setAccount] = useState({
-    username: "",
-    email: "",
-    password: "",
-    comfirmPassword: "",
-    phoneNumber: "",
-    date: "",
-    gender: true,
+  const dispatch = useDispatch();
+  const [messageApi, contextHolder] = message.useMessage();
+  const navigate = useNavigate();
+  const formik = useFormik({
+    initialValues: {
+      id: uuidv4(),
+      name: "",
+      email: "",
+      password: "",
+      confirmPassword: "",
+      phone: "",
+      birthday: "",
+      gender: true,
+      role: "",
+      skill: [],
+      certification: [],
+    },
+    onSubmit: async (values) => {
+      const request = {
+        ...values,
+        ...{
+          id: Math.ceil(Math.random(0, 1000)),
+          gender: values.gender === "male",
+          confirmPassword: undefined,
+        },
+      };
+      console.log(values);
+
+      try {
+        console.log("trying to dang ky");
+        const res = await nguoiDungServ.dangKy(request);
+        console.log(res);
+        // dispatch(getAllUser());
+        messageApi.success("Đăng ký thành công!");
+        formik.resetForm();
+        navigate("../login");
+      } catch (error) {
+        console.log(error);
+        messageApi.error("Oops! Đăng ký thất bại!");
+      }
+    },
+
+    // add validation using yup from yup library
+    validationSchema: addUserSchema,
   });
+  const {
+    handleSubmit,
+    handleChange,
+    handleBlur,
+    values,
+    errors,
+    touched,
+    isSubmitting,
+  } = formik;
+  //   const userTester = {
+  //     name: "tester01",
+  //     email: "tester01@gmail.com",
+  //     password: "tester01",
+  //     confirmPassword: "tester01",
+  //     phone: "1234567899",
+  //     gender: "male",
+  //   };
+
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+      {contextHolder}
       <div
-        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu
+        overflow-hidden blur-3xl sm:top-[-20rem]"
         aria-hidden="true"
       >
         <div
@@ -33,6 +97,7 @@ const FormSignUp = () => {
         </p>
       </div>
       <form
+        onSubmit={handleSubmit}
         action="#"
         method="POST"
         className="mx-auto mt-16 max-w-xl sm:mt-20"
@@ -40,37 +105,52 @@ const FormSignUp = () => {
         <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
           <div>
             <label
-              htmlFor="first-name"
+              htmlFor="name"
               className="block text-sm font-semibold leading-6 text-gray-900"
             >
               Username
             </label>
             <div className="mt-2.5">
               <input
+                onChange={handleChange}
+                onBlur={handleBlur}
                 type="text"
-                name="first-name"
-                id="first-name"
-                autoComplete="given-name"
+                name="name"
+                id="name"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                value={values.name}
               />
             </div>
+            {errors.name && touched.name ? (
+              <p className=" text-red-600">{formik.errors.name}</p>
+            ) : (
+              ""
+            )}
           </div>
           <div>
             <label
-              htmlFor="last-name"
+              htmlFor="email"
               className="block text-sm font-semibold leading-6 text-gray-900"
             >
               Email Address
             </label>
             <div className="mt-2.5">
               <input
+                onChange={handleChange}
+                onBlur={handleBlur}
                 type="text"
-                name="last-name"
-                id="last-name"
-                autoComplete="family-name"
+                name="email"
+                id="email"
+                autoComplete="email"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                value={values.email}
               />
             </div>
+            {errors.email && touched.email ? (
+              <p className=" text-red-600">{formik.errors.email}</p>
+            ) : (
+              ""
+            )}
           </div>
           <div className="sm:col-span-2">
             <label
@@ -79,92 +159,175 @@ const FormSignUp = () => {
             >
               Password
             </label>
-            <div className="mt-2.5">
+            <div className="relative mt-2.5">
               <input
+                onChange={handleChange}
+                onBlur={handleBlur}
                 type="password"
                 name="password"
                 id="password"
                 autoComplete="organization"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                value={values.password}
               />
+              <span
+                onClick={() => {
+                  if (document.getElementById("password").type == "password") {
+                    document.getElementById("password").type = "text";
+                    document
+                      .getElementById("eye")
+                      .classList.remove("fa-eye-slash");
+                    document.getElementById("eye").classList.add("fa-eye");
+                  } else {
+                    document.getElementById("password").type = "password";
+                    document.getElementById("eye").classList.remove("fa-eye");
+                    document
+                      .getElementById("eye")
+                      .classList.add("fa-eye-slash");
+                  }
+                }}
+                className="absolute right-0 top-0 mt-3 mr-4 text-gray-500 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-600 transition-colors duration-400"
+                style={{ cursor: "pointer" }}
+              >
+                <i className="fa-regular fa-eye" id="eye"></i>
+              </span>
             </div>
+            {errors.password && touched.password ? (
+              <p className=" text-red-600">{formik.errors.password}</p>
+            ) : (
+              ""
+            )}
           </div>
           <div className="sm:col-span-2">
             <label
-              htmlFor="password"
+              htmlFor="confirmPassword"
               className="block text-sm font-semibold leading-6 text-gray-900"
             >
-              Conform Password
+              Confirm Password
             </label>
-            <div className="mt-2.5">
+            <div className="relative mt-2.5">
               <input
+                onChange={handleChange}
+                onBlur={handleBlur}
                 type="password"
-                name="comfirm-password"
-                id="comfirm-password"
+                name="confirmPassword"
+                id="confirmPassword"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                value={values.confirmPassword}
               />
+              <span
+                onClick={() => {
+                  if (
+                    document.getElementById("confirmPassword").type ==
+                    "password"
+                  ) {
+                    document.getElementById("confirmPassword").type = "text";
+                    document
+                      .getElementById("eye1")
+                      .classList.remove("fa-eye-slash");
+                    document.getElementById("eye1").classList.add("fa-eye");
+                  } else {
+                    document.getElementById("confirmPassword").type =
+                      "password";
+                    document.getElementById("eye1").classList.remove("fa-eye");
+                    document
+                      .getElementById("eye1")
+                      .classList.add("fa-eye-slash");
+                  }
+                }}
+                className="absolute right-0 top-0 mt-3 mr-4 text-gray-500 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-600 transition-colors duration-400"
+                style={{ cursor: "pointer" }}
+              >
+                <i className="fa-regular fa-eye" id="eye1"></i>
+              </span>
             </div>
+            {errors.confirmPassword && touched.confirmPassword ? (
+              <p className=" text-red-600">{formik.errors.confirmPassword}</p>
+            ) : (
+              ""
+            )}
           </div>
           <div className="sm:col-span-2">
             <label
-              htmlFor="phone-number"
+              htmlFor="phone"
               className="block text-sm font-semibold leading-6 text-gray-900"
             >
               Phone number
             </label>
             <div className="mt-2.5">
               <input
+                onChange={handleChange}
+                onBlur={handleBlur}
                 type="tel"
-                name="phone-number"
-                id="phone-number"
-                autoComplete="tel"
+                name="phone"
+                id="phone"
+                // autoComplete="tel"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                value={values.phone}
               />
             </div>
+            {errors.phone && touched.phone ? (
+              <p className=" text-red-600">{formik.errors.phone}</p>
+            ) : (
+              ""
+            )}
           </div>
           <div className="sm:col-span-2">
             <label
-              htmlFor="date"
+              htmlFor="birthday"
               className="block text-sm font-semibold leading-6 text-gray-900"
             >
               Date of birth
             </label>
             <div className="mt-2.5">
               <input
+                onChange={handleChange}
+                onBlur={handleBlur}
                 type="date"
-                name="date"
-                id="date"
+                name="birthday"
+                id="birthday"
                 className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
                 defaultValue={""}
+                value={values.birthday}
               />
             </div>
+            {errors.birthday && touched.birthday ? (
+              <p className=" text-red-600">{formik.errors.birthday}</p>
+            ) : (
+              ""
+            )}
           </div>
           <div>
             <label
-              htmlFor="last-name"
+              htmlFor="gender"
               className="block text-sm font-semibold leading-6 text-gray-900"
             >
               Gender
             </label>
-            <div className="mt-2.5">
-              <input
-                type="radio"
-                name="gender"
-                id="female"
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
-              />
-              <label htmlFor="female" className="radio-label">
+            <div className="relative mt-2.5">
+              <label>
+                <input
+                  onChange={handleChange}
+                  type="radio"
+                  name="gender"
+                  id="female"
+                  className="absolute block w-full rounded-md border-0 px-3.5 py-2 text-[#1dbf73] placeholder:text-[#1dbf73] sm:text-sm sm:leading-6"
+                  value="female"
+                  checked
+                />
                 Female
               </label>
             </div>
-            <div className="mt-2.5">
+            <div className="relative mt-2.5">
               <input
+                onChange={handleChange}
                 type="radio"
                 name="gender"
                 id="male"
-                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                className="absolute block w-full rounded-md border-0 px-3.5 py-2 text-[#1dbf73] placeholder:text-[#1dbf73] sm:text-sm sm:leading-6"
+                value="male"
               />
-              <label htmlFor="male" className="radio-label">
+              <label htmlFor="gender" className="radio-label">
                 Male
               </label>
             </div>
@@ -208,6 +371,7 @@ const FormSignUp = () => {
           <button
             type="submit"
             className="block w-full rounded-md bg-[#1dbf73] px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-[#1dbf73] focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1dbf73]"
+            disabled={isSubmitting}
           >
             Submit
           </button>

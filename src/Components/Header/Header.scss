@@ -1,10 +1,63 @@
 .wrapper-header {
-    position: fixed;
-    top: 0;
+  top: 0;
+  left: 0;
+  z-index: 100;
+  width: 100%;
+}
+.scroll-header {
+  background: #ffff;
+  padding: 10px 10px 0 10px;
+
+  .nav2 {
+    // position: absolute;
+    bottom: 0;
     left: 0;
-    background: transparent;
-    z-index: 100;
-    width: 100%;
-    color: #fff;
+    padding: 8px;
+    border-top: 1px solid #eee;
+    border-bottom: 1px solid #eee;
+
+    .nav2-item {
+      transition: all ease 0.5s;
+      position: relative;
+
+      &::after {
+        content: "";
+        position: absolute;
+        bottom: -9px;
+        left: 0;
+        height: 3px;
+        margin-top: 8px;
+        width: 0;
+        background: #1dbf73;
+        transition: all ease-out 0.3s;
+      }
+      &:hover .nav-link {
+        color: #1dbf73;
+      }
+      &:hover .nav2-dropdown {
+        display: block;
+      }
+      &:hover::after {
+        width: 100%;
+      }
+      .nav2-dropdown {
+        display: none;
+        position: absolute;
+        top: 32px;
+        left: 0;
+        background-color: white;
+        border: 1px solid #eeee;
+        padding: 20px 20px 20px 40px;
+        width: 350px;
+        transition: all ease 0.5s;
+        li:hover {
+          color: #1dbf73;
+        }
+      }
+    }
   }
-  
+}
+
+.display-none {
+  display: none;
+}
