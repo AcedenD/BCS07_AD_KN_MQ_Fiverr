@@ -1,7 +1,9 @@
 import React from "react";
+import { binhLuanServ } from "../../services/binhLuanServices";
 
 const Comment = (props) => {
-  const { item } = props;
+  const { item, delete_binhLuan } = props;
+
   return (
     <div className="comment flex flex-row mb-4 pb-4 border-b-2 gap-4">
       <div className="w-2/12">
@@ -9,13 +11,23 @@ const Comment = (props) => {
       </div>
       <div className="w-10/12">
         <div className="flex flex-col">
-          <div className="commenter_name">
-            <span className="text-gray-700 font-semibold mr-2">
-              {item.tenNguoiBinhLuan}
-            </span>
-            <i className="fa-solid fa-star text-[#ffb33e] font text-sm">
-              {item.saoBinhLuan}
-            </i>
+          <div className="flex flex-row justify-between">
+            <div className="commenter_name">
+              <span className="text-gray-700 font-semibold mr-2">
+                {item.tenNguoiBinhLuan}
+              </span>
+              <i className="fa-solid fa-star text-[#ffb33e] font text-sm">
+                {item.saoBinhLuan}
+              </i>
+            </div>
+            <div className="delete_binhLuan">
+              <i
+                class="text-lg fa-solid fa-xmark text-red-400 hover:cursor-pointer hover:text-red-700 w-6 h-6"
+                onClick={() => {
+                  delete_binhLuan(item.id);
+                }}
+              ></i>
+            </div>
           </div>
           <div className="commenter_country flex items-center">
             <img

@@ -6,7 +6,9 @@ import "./JobDetail.scss";
 import JobDetailCard from "../../Components/JobDetailCard/JobDetailCard";
 import FAQ from "./FAQ";
 import Reviews from "./Reviews";
-import Comments from "./Comments";
+import Comments from "../../Components/Comments/Comments";
+import CheckOut from "../../Components/Checkout/CheckOut";
+import { luuXuongLocal } from "../../utils/localStore";
 
 const JobDetail = () => {
   const { id } = useParams();
@@ -24,6 +26,7 @@ const JobDetail = () => {
       .then((res) => {
         console.log(res.data.content[0]);
         setCongViec(res.data.content[0].congViec);
+        luuXuongLocal("congViec", res.data.content[0].congViec);
         setAvatar(res.data.content[0].avatar);
         setTenNguoiTao(res.data.content[0].tenNguoiTao);
         setTenLoaiCongViec(res.data.content[0].tenLoaiCongViec);
@@ -35,7 +38,7 @@ const JobDetail = () => {
 
   return (
     <div className="max-w-screen-xl mx-5 lg:mx-auto mt-32 py-2 grid grid-cols-3 gap-5 ">
-      <div className="jobDetail_left border border-red-400 col-span-2 min-h-screen p-10 ">
+      <div className="jobDetail_left  col-span-2 min-h-screen p-10 ">
         <Breadcrumb
           className={"breadcrumb text-lg font-semibold mb-5"}
           separator=">"
@@ -62,8 +65,8 @@ const JobDetail = () => {
 
         <Comments id={id} avatar={avatar} tenNguoiTao={tenNguoiTao} />
       </div>
-      <div className="jobDetail_right border border-blue-400 col-span-1 max-h-96 p-5">
-        testing
+      <div className="jobDetail_right  ">
+        <CheckOut congViec={congViec} />
       </div>
     </div>
   );
