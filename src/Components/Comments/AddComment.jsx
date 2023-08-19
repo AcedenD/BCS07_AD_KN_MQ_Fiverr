@@ -93,7 +93,7 @@ const AddComment = (props) => {
           type="submit"
           className="bg-green-600 px-5 py-2 text-white rounded-lg mt-4 mb-5 hover:bg-green-800"
         >
-          Add Service
+          Add comment
         </button>
       </form>
     </div>
