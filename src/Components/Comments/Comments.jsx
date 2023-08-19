@@ -2,25 +2,54 @@ import React, { useEffect, useState } from "react";
 import { Input, Space } from "antd";
 import { binhLuanServ } from "../../services/binhLuanServices";
 import Comment from "./Comment";
+import { message } from "antd";
+import AddComment from "./AddComment";
 
 const Comments = (props) => {
+  const [messageApi, contextHolder] = message.useMessage();
   const { id, avatar, tenNguoiTao } = props;
   const { Search } = Input;
   const onSearch = (value) => console.log(value);
   const [binhLuan, setBinhLuan] = useState([]);
   useEffect(() => {
-    console.log("Comments");
     binhLuanServ
       .getBinhLuan(id)
       .then((res) => {
-        console.log(res.data.content);
+        // console.log(res.data.content);
         setBinhLuan(res.data.content);
       })
       .catch((err) => {});
   }, []);
 
+  useEffect(() => {
+    binhLuanServ
+      .getBinhLuan(id)
+      .then((res) => {
+        // console.log(res.data.content);
+        setBinhLuan(res.data.content);
+      })
+      .catch((err) => {});
+  }, [binhLuan.length]);
+
+  const delete_binhLuan = (id) => {
+    binhLuanServ
+      .deleteBinhLuan(id)
+      .then((res) => {
+        setBinhLuan(binhLuan.filter((item) => item.id !== id));
+        messageApi.success("Xóa bình luận thành công");
+      })
+      .catch((err) => {
+        messageApi.error(
+          "Xóa bình luận thất bại, bình luận này không còn tồn tại"
+        );
+        // setBinhLuan(binhLuan.filter((item) => item.id !== id));
+      });
+  };
+
   return (
     <div className="my-10">
+      {contextHolder}
+
       <div className=" border-b-2 my-4">
         <h2 className="text-xl font-bold text-gray-700">Filters</h2>
         <div>
@@ -47,7 +76,7 @@ const Comments = (props) => {
               <span className="text-gray-700 font-semibold mr-2">
                 {tenNguoiTao.charAt(0).toUpperCase() + tenNguoiTao.slice(1)}
               </span>
-              <i className="fa-solid fa-star text-[#ffb33e] font text-sm"></i>
+              <i className="fa-solid fa-star text-[#ffb33e] font text-sm">5</i>
             </div>
             <div className="commenter_country flex items-center">
               <img
@@ -85,8 +114,17 @@ const Comments = (props) => {
       </div>
       <div>
         {binhLuan.map((item, index) => {
-          return <Comment key={index} item={item} />;
+          return (
+            <Comment
+              key={index}
+              item={item}
+              delete_binhLuan={delete_binhLuan}
+            />
+          );
         })}
+      </div>
+      <div className="my-4">
+        <AddComment />
       </div>
     </div>
   );

@@ -8,7 +8,7 @@ import MainCategories from "../../Components/HomePageComponents/MainCategories.j
 
 const HomePage = () => {
   useEffect(() => {
-    document.title = `Fiverr`;
+    document.title = "Fiverr - Group 3";
   }, []);
 
   return (

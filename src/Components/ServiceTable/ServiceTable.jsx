@@ -1,10 +1,13 @@
 
+
 import React, { useRef, useState } from 'react'
-import { Space, Table, Tag } from 'antd';
+import {Drawer, Space, Table, Tag } from 'antd';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { serviceServ } from '../../services/serviceServices';
 import { getAllService } from '../../redux/slices/serviceSlice';
+import FormEditService from '../FormServices/FormEditService';
+
 
 
 const ServiceTable = () => {
@@ -22,35 +25,30 @@ const ServiceTable = () => {
 
   const columns = [
     {
-      title: "ID",
-      dataIndex: "id",
-      key: "id",
-      render: (text) => <a>{text}</a>,
+      title: 'ID',
+      dataIndex: 'id',
+      key: 'id',
     },
     {
-
-      title: 'Job ID',
-      dataIndex: 'maCongViec',
-      key: 'maCongViec',
-
+      title: "Job ID",
+      dataIndex: "maCongViec",
+      key: "maCongViec",
     },
     {
-      title: 'Hirer ID',
-      dataIndex: 'maNguoiThue',
-      key: 'maNguoiThue',
-
+      title: "Hirer ID",
+      dataIndex: "maNguoiThue",
+      key: "maNguoiThue",
     },
     {
-      title: 'Hire Day',
-      dataIndex: 'ngayThue',
-      key: 'ngayThue',
+      title: "Hire Day",
+      dataIndex: "ngayThue",
+      key: "ngayThue",
     },
     {
-      title: 'Condition',
-      dataIndex: 'hoanThanh',
-      key: 'hoanThanh',
-      render: maHoanThanh => maHoanThanh ? "Completed" : "Not Completed"
-
+      title: "Condition",
+      dataIndex: "hoanThanh",
+      key: "hoanThanh",
+      render: (maHoanThanh) => (maHoanThanh ? "Completed" : "Not Completed"),
     },
     {
       title: "Action",
@@ -61,12 +59,13 @@ const ServiceTable = () => {
             className="py-2 px-5 bg-red-600 text-white rounded-lg hover:bg-red-700 suration-500"
             title="Xóa"
             onClick={() => {
+              console.log(record);
               const userConfirmed = window.confirm(
-                "Do you really want to delete?"
+                `Do you really want to delete?}`
               );
               if (userConfirmed) {
                 serviceServ
-                  .deleteService(record.service)
+                  .deleteService(record.id)
                   .then((res) => {
                     alert("delete successful");
                     dispatch(getAllService());
@@ -80,24 +79,45 @@ const ServiceTable = () => {
           >
             <i class="fa-solid fa-trash-can"></i>
           </button>
-          {/* <NavLink
-            to={`/admin/service/edit?serviceId=${record.service}`} 
-            className='py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 suration-500'
-            title="Sửa"
-          >
-             <i class="fa-solid fa-pen-to-square"></i>
-          </NavLink> */}
+          <button
+      className='py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 suration-500'
+      title="Sửa" onClick={() => showDrawer2(record.id)} >
+      <i class="fa-solid fa-pen-to-square"></i>
+    </button>
         </Space>
       ),
     },
   ];
+   //Drawers 2
+   const [drawer2Visible, setDrawer2Visible] = useState(false);
+   const [selectedServiceId, setSelectedServiceId] = useState(null);
+   const [open2, setOpen2] = useState(false);
+   const formRef = useRef();
+   const showDrawer2 = (serviceId) => {
+    setSelectedServiceId(serviceId);
+     setOpen2(true);
+   };
+   const onClose2 = () => {
+     setOpen2(false);
+     // setFormData({});
+     // setFormKey(prevKey => prevKey + 1);
+   };
 
-  const filteredAndMappedServices = serviceData.map((item, index) => ({
-    ...item,
-    id: index + 1,
-  }));
+  return (
+    <>
+    <Drawer
+      title="Service"
+      width={720}
+      onClose={onClose2}
+      open={open2}
+      bodyStyle={{ paddingBottom: 80 }}>
+        <FormEditService serviceId={selectedServiceId}/>
+      {/* <FormAddJobType formData={data} formKey={formKey} jobType={values} /> */}
+    </Drawer>
+    <Table columns={columns} dataSource={serviceData} />
+  </>
+  )
+}
 
-  return <Table columns={columns} dataSource={filteredAndMappedServices} />;
-};
 
 export default ServiceTable;

@@ -9,12 +9,54 @@
   }
 }
 
-.checkout.mobile{
+.mobile{
   display: none;
   @media screen and (max-width: 992px){
     display: block;
   }
     
+}
+
+.checkout {
+  border: 1px solid #c5c6c9;
+  width: 99%;
+  li{
+    border-bottom: 1px solid #c5c6c9;
+    text-align: center;
+    &:nth-child(2){
+    border-left: 1px solid #c5c6c9;
+    border-right: 1px solid #c5c6c9;
+      
+    }
+    
+    button{
+      width: 100%;
+      height: 100%;
+      padding: 1rem;
+      background-color: #ececec;
+      
+
+      &.active{
+        border-bottom: 2px solid #1dbf73;
+        color: #1dbf73;
+        background-color: white;
+      }
+  
+      &:hover{
+        
+      }
+    }
+  }
+
+  #myTabContent{
+    &>div{
+      padding: 1rem;
+      
+    }
+  }
+  
+  
+
 }
 
 .jobDetail_left {
@@ -38,6 +80,38 @@
 
     }
   }
+
+  .stars_rating{
+    i{
+      color: gray;
+      font-size: 1.5rem;
+      position: relative;
+      transition: all 0.2s ease-in-out;
+      &:hover{
+        cursor: pointer;
+        color: #1dbf73;
+      }
+      &.active{
+        color: #ffb33e;
+      }
+      &.hover{
+        color: #ffb33e;
+      }
+    }
+    div{
+      position: absolute;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      &:nth-child(1){
+        border: 1px solid #1dbf73;
+      }  
+    }
+
+    
+      
+    
+  }
 }
 
 .jobDetail_right{
@@ -46,6 +120,8 @@
   @media screen and (max-width: 992px){
     display: none;
   }
+
+  
     
 }
 
