@@ -1,4 +1,5 @@
 import React from "react";
+import CheckOut from "../Checkout/CheckOut";
 
 const JobDetailCard = (props) => {
   const { congViec, avatar, tenNguoiTao, tenChiTietLoai } = props;
@@ -42,14 +43,8 @@ const JobDetailCard = (props) => {
           alt=""
         />
       </div>
-      <div className="checkout mobile">
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque
-          repellat odit doloremque quaerat dicta voluptates magni eos assumenda
-          deleniti iusto nobis suscipit obcaecati eveniet tenetur aliquid sunt,
-          quod ullam est provident, porro voluptatibus? Cum, deserunt aut.
-          Inventore, dolorum possimus. Modi.
-        </p>
+      <div className="mobile">
+        <CheckOut />
       </div>
       <div className="jobDetail_content py-6 border-b-[1px] border-gray-400 ">
         <div className="jobDescription ">
