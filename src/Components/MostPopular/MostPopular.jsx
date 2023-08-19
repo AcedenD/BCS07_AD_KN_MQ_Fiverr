@@ -4,7 +4,7 @@ import "./MostPopular.scss";
 const MostPopular = (props) => {
   return (
     <div className="">
-      <h1 className="font-bold text-3xl mb-3 text-gray-700">{`Most popular in ${props.tenLoaiCongViec}`}</h1>
+      <h1 className="font-bold text-xl md:text-3xl mb-3 text-gray-700">{`Most popular in ${props.tenLoaiCongViec}`}</h1>
 
       <div className="content">
         <div className="item ">

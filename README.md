@@ -37,3 +37,4 @@ Libraries to install
 
 color:
 main green: #1dbf73
+darker green: #0C3B24
