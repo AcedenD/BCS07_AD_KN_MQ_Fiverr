@@ -6,9 +6,11 @@ import {
   set_loading_ended,
   set_loading_started,
 } from "../../redux/slices/loadingSlice";
-import TitleCard from "../../Components/TitleCard/TitleCard";
+
 import Explore from "../../Components/Explore/Explore";
 import MostPopular from "../../Components/MostPopular/MostPopular";
+import TitleBanner from "../../Components/TitleBanner/TitleBanner";
+import RelatedServices from "../../Components/RelatedServices/RelatedServices";
 
 const Title = () => {
   const { id } = useParams();
@@ -49,15 +51,19 @@ const Title = () => {
   }, []);
 
   return (
-    <div className="max-w-screen-xl  mx-10 lg:mx-auto   py-10 ">
-      <MostPopular tenLoaiCongViec={loaiCongViec.tenLoaiCongViec} />
-      <div>
-        <h1 className="font-bold text-3xl mb-3 text-gray-700">
-          {"Explore "}
-          {loaiCongViec.tenLoaiCongViec}
-        </h1>
+    <div className="max-w-full">
+      <TitleBanner tenLoaiCongViec={loaiCongViec.tenLoaiCongViec} />
+      <div className="max-w-screen-xl mx-10 lg:mx-auto   py-10 ">
+        <MostPopular tenLoaiCongViec={loaiCongViec.tenLoaiCongViec} />
+        <div>
+          <h1 className="font-bold text-xl md:text-3xl mb-3 text-gray-700">
+            {"Explore "}
+            {loaiCongViec.tenLoaiCongViec}
+          </h1>
+        </div>
+        <Explore nhomChiTietLoai={nhomChiTietLoai} />
+        <RelatedServices tenLoaiCongViec={loaiCongViec.tenLoaiCongViec} />
       </div>
-      <Explore nhomChiTietLoai={nhomChiTietLoai} />
     </div>
   );
 };

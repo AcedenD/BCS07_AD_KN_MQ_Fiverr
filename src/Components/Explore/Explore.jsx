@@ -5,7 +5,7 @@ const Explore = (props) => {
   const { nhomChiTietLoai } = props;
   console.log(nhomChiTietLoai);
   return (
-    <div className="grid md:grid-cols-3 gap-5 grid-cols-2">
+    <div className="grid lg:grid-cols-3 md:grid-cols-2 gap-5 grid-cols-1">
       {nhomChiTietLoai.map((item, index) => {
         return (
           <TitleCard

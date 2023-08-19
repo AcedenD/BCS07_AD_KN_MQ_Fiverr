@@ -22,13 +22,7 @@ const Comments = (props) => {
   }, []);
 
   useEffect(() => {
-    binhLuanServ
-      .getBinhLuan(id)
-      .then((res) => {
-        // console.log(res.data.content);
-        setBinhLuan(res.data.content);
-      })
-      .catch((err) => {});
+    reload_binhLuan();
   }, [binhLuan.length]);
 
   const delete_binhLuan = (id) => {
@@ -44,6 +38,16 @@ const Comments = (props) => {
         );
         // setBinhLuan(binhLuan.filter((item) => item.id !== id));
       });
+  };
+
+  const reload_binhLuan = () => {
+    binhLuanServ
+      .getBinhLuan(id)
+      .then((res) => {
+        // console.log(res.data.content);
+        setBinhLuan(res.data.content);
+      })
+      .catch((err) => {});
   };
 
   return (
@@ -124,7 +128,7 @@ const Comments = (props) => {
         })}
       </div>
       <div className="my-4">
-        <AddComment />
+        <AddComment reload_binhLuan={reload_binhLuan} />
       </div>
     </div>
   );

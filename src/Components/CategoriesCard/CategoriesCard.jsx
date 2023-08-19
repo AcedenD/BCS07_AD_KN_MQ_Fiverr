@@ -14,7 +14,7 @@ const CategoriesCard = (props) => {
         alt=""
       />
       <div class="p-3 h-48 ">
-        <div className="seller-info flex items-center gap-3  pr-3">
+        <div className="seller-info flex items-center gap-3 pr-3">
           <div className="avatar">
             <img
               width={27}
@@ -35,7 +35,7 @@ const CategoriesCard = (props) => {
         </div>
 
         <NavLink to={`/jobDetail/${congViec.id}`}>
-          <h5 class="mt-5 mb-2 text-lg tracking-tight text-gray-600 font-semibold hover:text-[#1dbf73] transition duration-200 ease-in-out h-[60px]">
+          <h5 class="mt-5 mb-2 text-sm md:text-base  tracking-tight text-gray-600 font-semibold hover:text-[#1dbf73] transition duration-200 ease-in-out h-[60px]">
             {congViec.tenCongViec}
           </h5>
         </NavLink>
