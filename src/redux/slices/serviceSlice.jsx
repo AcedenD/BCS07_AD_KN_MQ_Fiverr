@@ -5,6 +5,7 @@ import { serviceServ } from "../../services/serviceServices";
 export const getAllService = createAsyncThunk(
   "service/getAllService",
   async () => {
+    console.log("get all service");
     const res = await serviceServ.getAllService();
     return res.data.content;
   }
@@ -19,16 +20,13 @@ export const serviceSlice = createSlice({
   name: "services",
   initialState,
 
-  reducers: {
-  },
-extraReducers: (builder) => {
-    builder
-    .addCase(getAllService.fulfilled, (state, action) => {
-    //   const index = state.serviceData.findIndex(
-    //     (service) => service.taiKhoan === action.payload.taiKhoan
-    //   );
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(getAllService.fulfilled, (state, action) => {
+      //   const index = state.serviceData.findIndex(
+      //     (service) => service.taiKhoan === action.payload.taiKhoan
+      //   );
       state.serviceData = action.payload;
-
     });
   },
 });

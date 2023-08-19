@@ -9,9 +9,17 @@ import Reviews from "./Reviews";
 import Comments from "../../Components/Comments/Comments";
 import CheckOut from "../../Components/Checkout/CheckOut";
 import { luuXuongLocal } from "../../utils/localStore";
+import {
+  set_loading_ended,
+  set_loading_started,
+} from "../../redux/slices/loadingSlice";
+import { useDispatch, useSelector } from "react-redux";
+import { layCongViecChiTiet } from "../../redux/slices/congViecSlice";
 
 const JobDetail = () => {
   const { id } = useParams();
+  const dispatch = useDispatch();
+
   const [congViec, setCongViec] = useState({});
   const [avatar, setAvatar] = useState("");
   const [tenNguoiTao, setTenNguoiTao] = useState("");
@@ -20,18 +28,21 @@ const JobDetail = () => {
   const [tenNhomChiTietLoai, setTenNhomChiTietLoai] = useState("");
 
   useEffect(() => {
-    console.log(id);
+    dispatch(set_loading_started());
     congViecServ
       .layCongViecChiTiet(id)
       .then((res) => {
         console.log(res.data.content[0]);
         setCongViec(res.data.content[0].congViec);
-        luuXuongLocal("congViec", res.data.content[0].congViec);
+        // luuXuongLocal("congViec", res.data.content[0].congViec);
         setAvatar(res.data.content[0].avatar);
         setTenNguoiTao(res.data.content[0].tenNguoiTao);
         setTenLoaiCongViec(res.data.content[0].tenLoaiCongViec);
         setTenChiTietLoai(res.data.content[0].tenChiTietLoai);
         setTenNhomChiTietLoai(res.data.content[0].tenNhomChiTietLoai);
+        setTimeout(() => {
+          dispatch(set_loading_ended());
+        }, 150);
       })
       .catch((err) => {});
   }, []);
