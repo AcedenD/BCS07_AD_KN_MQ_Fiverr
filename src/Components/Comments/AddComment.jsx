@@ -7,6 +7,7 @@ import { binhLuanServ } from "../../services/binhLuanServices";
 import { message } from "antd";
 
 const AddComment = () => {
+  const [saoBinhLuan, setSaoBinhLuan] = useState(0);
   const [messageApi, contextHolder] = message.useMessage();
   const congViec = layDuLieuLocal("congViec");
   const user = layDuLieuLocal("user");
@@ -17,7 +18,7 @@ const AddComment = () => {
       maNguoiBinhLuan: user.user.id,
       noiDung: "",
       ngayBinhLuan: moment(new Date()).format("DD/MM/YYYY"),
-      saoBinhLuan: "0",
+      saoBinhLuan: saoBinhLuan,
     },
 
     onSubmit: async (values) => {
@@ -45,7 +46,7 @@ const AddComment = () => {
       {contextHolder}
       <div className="flex flex-row my-4 items-center justify-between">
         <h2 className="text-xl font-bold text-gray-700">Leave some comments</h2>
-        <StarRating handleChange={handleChange} />
+        <StarRating setSaoBinhLuan={setSaoBinhLuan} />
       </div>
 
       <form onSubmit={handleSubmit}>

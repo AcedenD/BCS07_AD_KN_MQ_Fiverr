@@ -1,13 +1,15 @@
 import React from "react";
 
 const StarRating = (props) => {
-  const { handleChange } = props;
+  const { setSaoBinhLuan } = props;
   const clickAreas = document.querySelectorAll(".stars_rating div");
   const stars = document.querySelectorAll(".stars_rating i");
 
   clickAreas.forEach((area, i) => {
     area.addEventListener("click", () => {
       const starCount = i + 1;
+      console.log(starCount);
+      setSaoBinhLuan(starCount);
       stars.forEach((star, i) => {
         if (i < starCount) {
           star.classList.add("active");
