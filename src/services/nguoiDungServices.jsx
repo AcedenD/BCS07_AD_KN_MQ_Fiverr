@@ -9,11 +9,11 @@ export const nguoiDungServ = {
 
   dangKy: (data) => {
     console.log(data);
-    return https.post("/api/QuanLyNguoiDung/DangKy", data);
+    return https.post("api/auth/signup", data);
   },
 
   getAllUser: () => {
-    return https.get("/api/QuanLyNguoiDung/LayDanhSachNguoiDung?MaNhom=GP03");
+    return https.get("/api/users");
   },
 
   deleteUser: (taiKhoan) => {

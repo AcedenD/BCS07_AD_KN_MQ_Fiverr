@@ -12,7 +12,7 @@ import FormLogin from "./Components/FormLogin/FormLogin";
 import FormSignUp from "./Components/FormSignUp/FormSignUp";
 
 import JobDetail from "./pages/JobDetail/JobDetail";
-
+import UserProfile from "./pages/UserProfile/UserProfile";
 
 function App() {
   return (
@@ -22,6 +22,7 @@ function App() {
           <Route index element={<HomePage />} />
           <Route path="signup" element={<FormSignUp />} />
           <Route path="/login" element={<FormLogin />} />
+          <Route path="/userprofile" element={<UserProfile />} />
           <Route path="title/:id" element={<Title />} />
           <Route path="categories/:id" element={<Categories />} />
           <Route path="jobDetail/:id" element={<JobDetail />} />
@@ -29,7 +30,7 @@ function App() {
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" />
           <Route path="job" />
-          <Route path="job-type" element={<JobTypeManage />}/>
+          <Route path="job-type" element={<JobTypeManage />} />
           <Route path="service" element={<ServiceManage />} />
         </Route>
         <Route path="*" element={<Page404 />} />

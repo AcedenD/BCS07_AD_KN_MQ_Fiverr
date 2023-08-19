@@ -1,34 +1,71 @@
-import React from "react";
+import React, { useState } from "react";
 
 import "./Header.scss";
 import { NavLink } from "react-router-dom";
+import { useSelector } from "react-redux";
 // import Login from "../../pages/Login/Login";
 
-const Header = () => {
+const Header = (props) => {
+  const [color, setColor] = useState(false);
+  const changeColor = () => {
+    if (window.scrollY >= 90) {
+      setColor(true);
+    } else {
+      setColor(false);
+    }
+  };
+  window.addEventListener("scroll", changeColor);
+  const { hoTen } = useSelector((state) => state.nguoiDung);
+
   return (
-    <div className="wrapper-header text-white">
+    <div
+      className={`wrapper-header ${
+        props.removeFixed && !color ? "" : "fixed"
+      } ${
+        color
+          ? "scroll-header text-gray-500"
+          : `${props.removeFixed ? "" : "text-white"}`
+      }`}
+    >
       <nav className="border-gray-200 ">
-        <div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-4">
+        <div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-3">
           <a href="/" className="flex items-center">
-            <span className="self-center text-4xl font-bold whitespace-nowrap text-white">
+            <span
+              className={
+                color
+                  ? "self-center text-4xl font-bold whitespace-nowrap text-[#58595c]"
+                  : "self-center text-4xl font-bold whitespace-nowrap"
+              }
+            >
               fiverr
               <span className=" text-[#1dbf73]">.</span>
             </span>
           </a>
           <div className="flex justify-center items-center gap-2">
             <div className="flex items-center md:order-2">
-              <NavLink
-                to={"signup"}
-                className="text-white font-bold text-md px-3 py-2 md:px-2 md:py-1 mr-1 md:mr-2 "
-              >
-                Sign up
-              </NavLink>
-              <NavLink
-                to={"/login"}
-                className="text-white hover:bg-[#1dbf73] text-md px-3 py-2 md:px-4 md:py-1.5 mr-1 md:mr-2 border border-[#fff] bg-[transparent] ease-in duration-200 "
-              >
-                Login
-              </NavLink>
+              {hoTen != null ? (
+                <NavLink to={"/userprofile"} className=" text-xl">
+                  <i className="fa-solid fa-circle-user ml-2" />
+                  <span className="font-bold text-md ml-2"></span>
+                  {hoTen.user.name}
+                </NavLink>
+              ) : (
+                <div>
+                  <NavLink
+                    to={"signup"}
+                    className="font-bold text-md px-3 py-2 md:px-2 md:py-1 mr-1 md:mr-2 "
+                  >
+                    Sign up
+                  </NavLink>
+                  <NavLink
+                    to={"/login"}
+                    className="hover:bg-[#1dbf73] text-md px-3 py-2 md:px-4 md:py-1.5 mr-1 md:mr-2 border border-[#fff] bg-[transparent] ease-in duration-200 "
+                  >
+                    Login
+                  </NavLink>
+                </div>
+              )}
+
               <button
                 data-collapse-toggle="mega-menu-icons"
                 type="button"
@@ -56,56 +93,187 @@ const Header = () => {
             </div>
             <div
               id="mega-menu-icons"
-              className="items-end justify-between hidden w-full md:flex md:w-auto md:order-1"
+              className="flex-col items-end justify-between hidden w-full md:flex md:w-auto md:order-1"
             >
-              <ul className="flex flex-col mt-4 font-medium md:flex-row md:space-x-8 md:mt-0">
+              <ul className="flex flex-col mt-4 font-bold md:flex-row md:space-x-8 md:mt-0">
                 <li>
-                  <a
-                    href="..."
-                    className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
+                  <NavLink
+                    to={""}
+                    className="block py-2 pl-3 pr-4 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
                     aria-current="page"
                   >
                     Fiverr Business
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="..."
-                    className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
+                  <NavLink
+                    to={""}
+                    className="block py-2 pl-3 pr-4 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
                   >
                     Explore
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="..."
-                    className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
+                  <NavLink
+                    to={""}
+                    className="block py-2 pl-3 pr-4 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
                   >
                     <i className="fa-solid fa-globe mr-1" />
                     English
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="..."
-                    className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
+                  <NavLink
+                    to={""}
+                    className="block py-2 pl-3 pr-4 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
                   >
                     US$ USD
-                  </a>
+                  </NavLink>
                 </li>
                 <li>
-                  <a
-                    href="..."
-                    className="block py-2 pl-3 pr-4 text-white border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
+                  <NavLink
+                    to={""}
+                    className="block py-2 pl-3 pr-4 border-b border-gray-100 hover:bg-gray-50 md:hover:bg-transparent md:border-0 md:p-0 ease-in duration-200"
                   >
                     Become a Seller
-                  </a>
+                  </NavLink>
                 </li>
               </ul>
             </div>
           </div>
         </div>
       </nav>
+      <div
+        className={`nav2 items-center justify-center hidden font-light w-full md:flex md:w-auto md:order-1 ${
+          !color ? "display-none" : ""
+        }`}
+      >
+        <ul className="flex flex-col mt-4 font-light md:flex-row md:space-x-8 md:mt-0">
+          <li className="nav2-item">
+            <NavLink className="nav-link">Graphics & Design</NavLink>
+            <ul className="nav2-dropdown">
+              <p className="font-bold">Graphics</p>
+              <li>
+                <NavLink className="font-light">
+                  Social Media Advertising
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Video Editing</NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Visual Effects</NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="nav2-item">
+            <NavLink className="nav-link">Digital Marketing</NavLink>
+            <ul className="nav2-dropdown">
+              <p className="font-bold">Marketing</p>
+              <li>
+                <NavLink className="font-light">
+                  Social Media Advertising
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Visual Effects</NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="nav2-item">
+            <NavLink className="nav-link">Writing & Translation</NavLink>
+            <ul className="nav2-dropdown">
+              <p className="font-bold">Writing</p>
+              <li>
+                <NavLink className="font-light">Visual Effects</NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Songwriters</NavLink>
+              </li>
+              <li>
+                <p className="font-bold">Translation</p>
+              </li>
+              <li>
+                <NavLink className="font-light">Video Editing</NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Producers & Composers</NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="nav2-item">
+            <NavLink className="nav-link">Video & Animation</NavLink>
+            <ul className="nav2-dropdown">
+              <p className="font-bold">Social & Marketing Videos</p>
+              <li>
+                <NavLink className="font-light">Short Video Ads</NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Social Media Videos</NavLink>
+              </li>
+              <p className="font-bold">Video Editing & Post-Production</p>
+              <li>
+                <NavLink className="font-light">Video Editing</NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Visual Effects</NavLink>
+              </li>
+              <p className="font-bold">Media</p>
+              <li>
+                <NavLink className="font-light">Social Media Videos</NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Video Editing</NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="nav2-item">
+            <NavLink className="nav-link">Music & Audio</NavLink>
+            <ul className="nav2-dropdown">
+              <p className="font-bold">Music Production & Writing</p>
+              <li>
+                <NavLink className="font-light">Producers & Composers</NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Songwriters</NavLink>
+              </li>
+              <p className="font-bold">Beat Productions</p>
+              <li>
+                <NavLink className="font-light">Articles & Blog Posts</NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="nav2-item">
+            <NavLink className="nav-link">Programing & Tech</NavLink>
+            <ul className="nav2-dropdown">
+              <p className="font-bold">Graphics</p>
+              <li>
+                <NavLink className="font-light">
+                  Social Media Advertising
+                </NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Video Editing</NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Visual Effects</NavLink>
+              </li>
+            </ul>
+          </li>
+          <li className="nav2-item">
+            <NavLink className="nav-link">Javascriptest</NavLink>
+            <ul className="nav2-dropdown">
+              <p className="font-bold">Javascriptest</p>
+              <li>
+                <NavLink className="font-light">Video Editing</NavLink>
+              </li>
+              <li>
+                <NavLink className="font-light">Visual Effects</NavLink>
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </div>
     </div>
   );
 };
