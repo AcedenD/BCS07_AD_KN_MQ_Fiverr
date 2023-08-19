@@ -1,12 +1,18 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import CheckoutContent from "./CheckoutContent";
+import { layDuLieuLocal } from "../../utils/localStore";
+import { useSelector } from "react-redux";
 
-const CheckOut = (props) => {
+const CheckOut = () => {
+  const congViec = layDuLieuLocal("congViec");
+  const { congViecData } = useSelector((state) => state.congViec);
   const [tab, setTab] = useState("basic");
 
   const tabPanel = document.querySelectorAll('[role="tabpanel"]');
 
   const tabButton = document.querySelectorAll('[role="tab"]');
+
+  useEffect(() => {}, []);
 
   const toggleTab = (tab) => {
     let tabAC = document.getElementById(tab).getAttribute("aria-controls");
@@ -94,7 +100,7 @@ const CheckOut = (props) => {
           role="tabpanel"
           aria-labelledby="basic-tab"
         >
-          <CheckoutContent tab={tab} />
+          <CheckoutContent tab={tab} congViec={congViec} />
         </div>
         <div
           class="hidden bg-gray-50"
@@ -102,7 +108,7 @@ const CheckOut = (props) => {
           role="tabpanel"
           aria-labelledby="standard-tab"
         >
-          <CheckoutContent tab={tab} />
+          <CheckoutContent tab={tab} congViec={congViec} />
         </div>
         <div
           class="hidden bg-gray-50 "
@@ -110,7 +116,7 @@ const CheckOut = (props) => {
           role="tabpanel"
           aria-labelledby="premium-tab"
         >
-          <CheckoutContent tab={tab} />
+          <CheckoutContent tab={tab} congViec={congViec} />
         </div>
       </div>
     </div>

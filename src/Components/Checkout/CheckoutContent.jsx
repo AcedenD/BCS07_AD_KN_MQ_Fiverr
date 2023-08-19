@@ -3,18 +3,20 @@ import { layDuLieuLocal } from "../../utils/localStore";
 import moment from "moment";
 import { serviceServ } from "../../services/serviceServices";
 import { Table, message } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { layCongViecChiTiet } from "../../redux/slices/congViecSlice";
+import { useParams } from "react-router-dom";
 
 const CheckoutContent = (props) => {
-  const { tab } = props;
+  const { tab, congViec } = props;
+  const { id } = useParams();
   const [messageApi, contextHolder] = message.useMessage();
   const [hide, setHide] = useState(true);
-  const congViec = layDuLieuLocal("congViec");
 
-  const user = layDuLieuLocal("user");
-  const currentUser = user.user;
+  const userId = layDuLieuLocal("userId");
   const [congViecThue, setCongViecThue] = useState({
-    maCongViec: congViec.id,
-    maNguoiThue: currentUser.id,
+    maCongViec: id,
+    maNguoiThue: userId,
     ngayThue: moment(new Date()).format("DD/MM/YYYY"),
     hoanThanh: false,
   });

@@ -1,10 +1,26 @@
 import React from "react";
 import { NavLink } from "react-router-dom";
+import { congViecServ } from "../../services/congViecServices";
+import { luuXuongLocal } from "../../utils/localStore";
 
 const CategoriesCard = (props) => {
   const { congViecInfo } = props;
   console.log(congViecInfo);
   const { tenNguoiTao, avatar, congViec } = congViecInfo;
+
+  const layCongViecChiTiet = (id) => {
+    congViecServ
+      .layCongViecChiTiet(id)
+      .then((res) => {
+        console.log(res.data.content[0]);
+        luuXuongLocal("congViec", res.data.content[0].congViec);
+        window.location.href = `/jobDetail/${id}`;
+        console.log("lay cong viec thanh cong");
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  };
 
   return (
     <div class="max-w-sm bg-white border border-gray-200 rounded-lg shadow ">
@@ -34,8 +50,13 @@ const CategoriesCard = (props) => {
           </div>
         </div>
 
-        <NavLink to={`/jobDetail/${congViec.id}`}>
-          <h5 class="mt-5 mb-2 text-sm md:text-base  tracking-tight text-gray-600 font-semibold hover:text-[#1dbf73] transition duration-200 ease-in-out h-[60px]">
+        <NavLink>
+          <h5
+            class="mt-5 mb-2 text-sm md:text-base  tracking-tight text-gray-600 font-semibold hover:text-[#1dbf73] transition duration-200 ease-in-out h-[60px]"
+            onClick={() => {
+              layCongViecChiTiet(congViec.id);
+            }}
+          >
             {congViec.tenCongViec}
           </h5>
         </NavLink>
