@@ -3,9 +3,11 @@ import CheckoutContent from "./CheckoutContent";
 import { layDuLieuLocal } from "../../utils/localStore";
 import { useSelector } from "react-redux";
 
-const CheckOut = () => {
-  const congViec = layDuLieuLocal("congViec");
+const CheckOut = (props) => {
+  const { congViec } = props;
+  // const congViec = layDuLieuLocal("congViec");
   const { congViecData } = useSelector((state) => state.congViec);
+
   const [tab, setTab] = useState("basic");
 
   const tabPanel = document.querySelectorAll('[role="tabpanel"]');
