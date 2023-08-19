@@ -4,19 +4,22 @@ import { layDuLieuLocal } from "../../utils/localStore";
 import moment from "moment";
 import { binhLuanServ } from "../../services/binhLuanServices";
 import { message } from "antd";
+import { useParams } from "react-router-dom";
 
 const AddComment = (props) => {
   const { reload_binhLuan } = props;
+  const { id } = useParams();
+
   const [saoBinhLuan, setSaoBinhLuan] = useState(0);
   const [hover, setHover] = useState(0);
   const [messageApi, contextHolder] = message.useMessage();
-  const congViec = layDuLieuLocal("congViec");
-  const user = layDuLieuLocal("user");
+  // const congViec = layDuLieuLocal("congViec");
+  const userId = layDuLieuLocal("userId");
   const formik = useFormik({
     initialValues: {
       id: "0",
-      maCongViec: congViec.id,
-      maNguoiBinhLuan: user.user.id,
+      maCongViec: id,
+      maNguoiBinhLuan: userId,
       noiDung: "",
       ngayBinhLuan: moment(new Date()).format("DD/MM/YYYY"),
       saoBinhLuan: "0",

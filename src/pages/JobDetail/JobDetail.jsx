@@ -1,4 +1,4 @@
-import { Breadcrumb } from "antd";
+import { Breadcrumb, message } from "antd";
 import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { congViecServ } from "../../services/congViecServices";
@@ -19,6 +19,7 @@ import { layCongViecChiTiet } from "../../redux/slices/congViecSlice";
 const JobDetail = () => {
   const { id } = useParams();
   const dispatch = useDispatch();
+  const [messageApi, contextHolder] = message.useMessage();
 
   const [congViec, setCongViec] = useState({});
   const [avatar, setAvatar] = useState("");
@@ -44,11 +45,18 @@ const JobDetail = () => {
           dispatch(set_loading_ended());
         }, 150);
       })
-      .catch((err) => {});
+      .catch((err) => {
+        dispatch(set_loading_ended());
+        messageApi.error("Không tìm thấy công việc này, với id là " + id);
+        setTimeout(() => {
+          window.location.href = "/noJobFound";
+        }, 1500);
+      });
   }, []);
 
   return (
     <div className="max-w-screen-xl mx-5 lg:mx-auto mt-32 py-2 grid grid-cols-3 gap-5 ">
+      {contextHolder}
       <div className="jobDetail_left  col-span-2 min-h-screen p-10 ">
         <Breadcrumb
           className={"breadcrumb text-lg font-semibold mb-5"}

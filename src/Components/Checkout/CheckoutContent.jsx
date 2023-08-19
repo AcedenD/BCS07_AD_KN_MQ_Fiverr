@@ -25,6 +25,7 @@ const CheckoutContent = (props) => {
     serviceServ
       .addService(congViecThue)
       .then((res) => {
+        console.log(res);
         messageApi.success("Thêm Công Việc Thành Công");
       })
       .catch((err) => {
@@ -39,13 +40,13 @@ const CheckoutContent = (props) => {
   const giaTienTheoTab = (tab) => {
     switch (tab) {
       case "basic":
-        return congViec.giaTien;
+        return congViec?.giaTien;
       case "standard":
-        return congViec.giaTien + 5;
+        return congViec?.giaTien + 5;
       case "premium":
-        return congViec.giaTien + 10;
+        return congViec?.giaTien + 10;
       default:
-        return congViec.giaTien;
+        return congViec?.giaTien;
     }
   };
 
@@ -57,7 +58,7 @@ const CheckoutContent = (props) => {
         <div>US${giaTienTheoTab(tab)}</div>
       </div>
       <div className="w-full flex flex-col">
-        <p className="text-sm text-gray-400 mb-4">{congViec.moTaNgan}</p>
+        <p className="text-sm text-gray-400 mb-4">{congViec?.moTaNgan}</p>
         <div className="flex flex-row text-sm text-gray-500 mb-4">
           <div className="w-1/2">
             <span className="font-semibold">
@@ -142,11 +143,11 @@ const CheckoutContent = (props) => {
                       Price
                     </th>
                     <td class="px-2 py-3 text-white bg-[#1dbf73]">
-                      ${congViec.giaTien}
+                      ${congViec?.giaTien}
                     </td>
-                    <td class="px-2 py-3  ">${congViec.giaTien + 5}</td>
+                    <td class="px-2 py-3  ">${congViec?.giaTien + 5}</td>
                     <td class="px-2 py-3 bg-[#1dbf73] text-white">
-                      ${congViec.giaTien + 10}
+                      ${congViec?.giaTien + 10}
                     </td>
                   </tr>
                   <tr>
