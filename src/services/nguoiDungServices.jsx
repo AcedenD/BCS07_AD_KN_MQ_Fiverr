@@ -16,17 +16,15 @@ export const nguoiDungServ = {
     return https.get("/api/users");
   },
 
-  deleteUser: (taiKhoan) => {
-    return https.delete(
-      `/api/QuanLyNguoiDung/XoaNguoiDung?TaiKhoan=${taiKhoan}`
-    );
+  deleteUser: (id) => {
+    return https.delete(`/api/users?id=${id}`);
   },
 
   addUser: (data) => {
-    return https.post("/api/QuanLyNguoiDung/ThemNguoiDung", data);
+    return https.post("/api/users", data);
   },
 
-  updateUser: (data) => {
-    return https.post("/api/QuanLyNguoiDung/CapNhatThongTinNguoiDung", data);
+  updateUser: (id, data) => {
+    return https.post(`/api/users?id=${id}`, data);
   },
 };

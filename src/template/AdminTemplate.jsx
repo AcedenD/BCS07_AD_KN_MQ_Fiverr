@@ -1,13 +1,7 @@
 import React, { useEffect, useState } from "react";
-import {
-  MenuFoldOutlined,
-  MenuUnfoldOutlined,
-  UploadOutlined,
-  UserOutlined,
-  VideoCameraOutlined,
-} from "@ant-design/icons";
+import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
 import { Layout, Menu, Button, theme } from "antd";
-import { NavLink, Outlet } from "react-router-dom";
+import { NavLink, Outlet, useNavigate } from "react-router-dom";
 import { layDuLieuLocal } from "../utils/localStore";
 
 const { Header, Sider, Content } = Layout;
@@ -17,18 +11,17 @@ const AdminTemplate = () => {
   const {
     token: { colorBgContainer },
   } = theme.useToken();
+  const navigate = useNavigate();
 
   useEffect(() => {
-    // console.log("helo admin");
-    // const user = layDuLieuLocal("user");
-    // console.log(user);
-    // if (user) {
-    //   if (user.maLoaiNguoiDung != "QuanTri") {
-    //     window.location.href = "https://www.google.com";
-    //   }
-    // } else {
-    //   window.location.href = "https://www.google.com";
-    // }
+    const user = layDuLieuLocal("user");
+    if (user) {
+      if (user.user.role !== "ADMIN") {
+        navigate("../");
+      } else {
+        navigate("../admin/user");
+      }
+    }
   }, []);
 
   return (

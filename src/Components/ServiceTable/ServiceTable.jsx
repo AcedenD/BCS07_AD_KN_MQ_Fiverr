@@ -1,14 +1,10 @@
-
-
-import React, { useRef, useState } from 'react'
-import {Drawer, Space, Table, Tag } from 'antd';
-import { useDispatch, useSelector } from 'react-redux';
-import { NavLink } from 'react-router-dom';
-import { serviceServ } from '../../services/serviceServices';
-import { getAllService } from '../../redux/slices/serviceSlice';
-import FormEditService from '../FormServices/FormEditService';
-
-
+import React, { useRef, useState } from "react";
+import { Drawer, Space, Table, Tag } from "antd";
+import { useDispatch, useSelector } from "react-redux";
+import { NavLink } from "react-router-dom";
+import { serviceServ } from "../../services/serviceServices";
+import { getAllService } from "../../redux/slices/serviceSlice";
+import FormEditService from "../FormServices/FormEditService";
 
 const ServiceTable = () => {
   const { serviceData } = useSelector((state) => state.services);
@@ -25,9 +21,9 @@ const ServiceTable = () => {
 
   const columns = [
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
+      title: "ID",
+      dataIndex: "id",
+      key: "id",
     },
     {
       title: "Job ID",
@@ -61,7 +57,7 @@ const ServiceTable = () => {
             onClick={() => {
               console.log(record);
               const userConfirmed = window.confirm(
-                `Do you really want to delete?}`
+                `Do you really want to delete?`
               );
               if (userConfirmed) {
                 serviceServ
@@ -80,44 +76,46 @@ const ServiceTable = () => {
             <i class="fa-solid fa-trash-can"></i>
           </button>
           <button
-      className='py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 suration-500'
-      title="Sửa" onClick={() => showDrawer2(record.id)} >
-      <i class="fa-solid fa-pen-to-square"></i>
-    </button>
+            className="py-2 px-5 bg-yellow-600 text-white rounded-lg hover:bg-yellow-700 suration-500"
+            title="Sửa"
+            onClick={() => showDrawer2(record.id)}
+          >
+            <i class="fa-solid fa-pen-to-square"></i>
+          </button>
         </Space>
       ),
     },
   ];
-   //Drawers 2
-   const [drawer2Visible, setDrawer2Visible] = useState(false);
-   const [selectedServiceId, setSelectedServiceId] = useState(null);
-   const [open2, setOpen2] = useState(false);
-   const formRef = useRef();
-   const showDrawer2 = (serviceId) => {
+  //Drawers 2
+  const [drawer2Visible, setDrawer2Visible] = useState(false);
+  const [selectedServiceId, setSelectedServiceId] = useState(null);
+  const [open2, setOpen2] = useState(false);
+  const formRef = useRef();
+  const showDrawer2 = (serviceId) => {
     setSelectedServiceId(serviceId);
-     setOpen2(true);
-   };
-   const onClose2 = () => {
-     setOpen2(false);
-     // setFormData({});
-     // setFormKey(prevKey => prevKey + 1);
-   };
+    setOpen2(true);
+  };
+  const onClose2 = () => {
+    setOpen2(false);
+    // setFormData({});
+    // setFormKey(prevKey => prevKey + 1);
+  };
 
   return (
     <>
-    <Drawer
-      title="Service"
-      width={720}
-      onClose={onClose2}
-      open={open2}
-      bodyStyle={{ paddingBottom: 80 }}>
-        <FormEditService serviceId={selectedServiceId}/>
-      {/* <FormAddJobType formData={data} formKey={formKey} jobType={values} /> */}
-    </Drawer>
-    <Table columns={columns} dataSource={serviceData} />
-  </>
-  )
-}
-
+      <Drawer
+        title="Service"
+        width={720}
+        onClose={onClose2}
+        open={open2}
+        bodyStyle={{ paddingBottom: 80 }}
+      >
+        <FormEditService serviceId={selectedServiceId} />
+        {/* <FormAddJobType formData={data} formKey={formKey} jobType={values} /> */}
+      </Drawer>
+      <Table columns={columns} dataSource={serviceData} />
+    </>
+  );
+};
 
 export default ServiceTable;

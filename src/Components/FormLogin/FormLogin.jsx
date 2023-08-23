@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import * as yup from "yup";
 import { nguoiDungServ } from "../../services/nguoiDungServices";
 import { luuXuongLocal } from "../../utils/localStore";
@@ -25,7 +25,6 @@ const FormLogin = () => {
       nguoiDungServ
         .dangNhap(values)
         .then((res) => {
-          console.log(res);
           messageApi.success("Đăng nhập thành công!");
           dispatch(setDuLieuHoTen(res.data.content));
           luuXuongLocal("user", res.data.content);
@@ -36,8 +35,7 @@ const FormLogin = () => {
             navigate("/");
           }, [800]);
         })
-        .catch((err) => {
-          console.log(err);
+        .catch(() => {
           messageApi.error("Mật khẩu không đúng!");
         });
     },
@@ -50,6 +48,7 @@ const FormLogin = () => {
     }),
   });
   const { handleChange, handleSubmit, handleBlur } = formik;
+
   return (
     <div>
       {contextHolder}
