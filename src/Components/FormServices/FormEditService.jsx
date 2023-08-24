@@ -53,7 +53,7 @@ const formik = useFormik({
   });
 
   const handleChangeDatePicker =(value) =>{
-    let ngayThue = moment(value).format('DD/MM/YYYY');
+    let ngayThue = moment(value).format('MM/DD/YYYY');
     formik.setFieldValue('ngayThue',ngayThue)
     }
 
@@ -104,7 +104,7 @@ const{handleSubmit, handleChange, values} =formik
     Ngày Thuê Công Việc
   </label>
   <DatePicker
-          format="DD/MM/YYYY" 
+          format="MM/DD/YYYY" 
           name="ngayThue"
           id="ngayThue"
           placeholder="Xin Nhập Ngày Thuê"

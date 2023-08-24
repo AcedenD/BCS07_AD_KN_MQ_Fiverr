@@ -5,28 +5,33 @@ import { serviceServ } from "../../services/serviceServices";
 export const getAllService = createAsyncThunk(
   "service/getAllService",
   async () => {
-    console.log("get all service");
     const res = await serviceServ.getAllService();
     return res.data.content;
   }
 );
-
+export const layDanhSachDaThue = createAsyncThunk(
+  "service/layDanhSachDaThue",
+  async () => {
+    const res = await serviceServ.layDanhSachDaThue();
+    return res.data.content;
+  }
+);
 const initialState = {
   hoTen: layDuLieuLocal("user"),
   serviceData: [],
+  danhSachDaThueData: [],
 };
 
 export const serviceSlice = createSlice({
   name: "services",
   initialState,
-
   reducers: {},
   extraReducers: (builder) => {
     builder.addCase(getAllService.fulfilled, (state, action) => {
-      //   const index = state.serviceData.findIndex(
-      //     (service) => service.taiKhoan === action.payload.taiKhoan
-      //   );
       state.serviceData = action.payload;
+    });
+    builder.addCase(layDanhSachDaThue.fulfilled, (state, action) => {
+      state.danhSachDaThueData = action.payload;
     });
   },
 });
