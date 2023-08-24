@@ -13,6 +13,7 @@ import FormSignUp from "./Components/FormSignUp/FormSignUp";
 
 import JobDetail from "./pages/JobDetail/JobDetail";
 import UserProfile from "./pages/UserProfile/UserProfile";
+import UserManage from "./pages/UserManage/UserManage";
 
 function App() {
   return (
@@ -28,7 +29,7 @@ function App() {
           <Route path="jobDetail/:id" element={<JobDetail />} />
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
-          <Route path="user" />
+          <Route path="user" element={<UserManage />} />
           <Route path="job" />
           <Route path="job-type" element={<JobTypeManage />} />
           <Route path="service" element={<ServiceManage />} />

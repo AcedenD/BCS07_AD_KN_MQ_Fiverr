@@ -24,8 +24,8 @@ export const nguoiDungSlice = createSlice({
     setDuLieuHoTen: (state, action) => {
       // check hoTen have value, if doesn't have then set value
       // console.log(action);
-      if (state.name == null) {
-        state.name = action.payload;
+      if (state.hoTen == null) {
+        state.hoTen = action.payload;
       }
     },
   },

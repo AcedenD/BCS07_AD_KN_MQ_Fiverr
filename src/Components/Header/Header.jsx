@@ -3,7 +3,6 @@ import React, { useState } from "react";
 import "./Header.scss";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-// import Login from "../../pages/Login/Login";
 
 const Header = (props) => {
   const [color, setColor] = useState(false);
@@ -43,7 +42,7 @@ const Header = (props) => {
           </a>
           <div className="flex justify-center items-center gap-2">
             <div className="flex items-center md:order-2">
-              {hoTen != null ? (
+              {hoTen ? (
                 <NavLink to={"/userprofile"} className=" text-xl">
                   <i className="fa-solid fa-circle-user ml-2" />
                   <span className="font-bold text-md ml-2"></span>
