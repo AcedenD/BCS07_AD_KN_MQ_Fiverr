@@ -27,6 +27,12 @@ const Title = () => {
       .layChiTietLoaiCongViec(id)
       .then((res) => {
         console.log(res.data.content[0]);
+        // TODO !! if jobType is undefine, push user back to home page
+        if (res.data.content[0] == undefined) {
+          alert("jobType not found");
+          window.location.href = "/";
+        }
+
         // dispatch({
         //   type: "GET_LOAI_CONG_VIEC",
         //   payload: res.data,
