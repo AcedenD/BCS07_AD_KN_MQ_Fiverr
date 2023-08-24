@@ -9,9 +9,6 @@ import FormAddService from '../../Components/FormServices/FormAddService';
 const ServiceManage = () => {
   const [services, setServices] = useState([]);
   const [formKey, setFormKey] = useState(0);
-
-
-
   const dispatch = useDispatch();
   //edit
   const [formData, setFormData] = useState({});
@@ -20,7 +17,6 @@ const ServiceManage = () => {
   const loadService = (service) => {
     setValues(service);
   };
-
   useEffect(() => {
     dispatch(getAllService());
   }, [dispatch]);
