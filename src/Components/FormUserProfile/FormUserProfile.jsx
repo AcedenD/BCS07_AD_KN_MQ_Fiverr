@@ -8,9 +8,10 @@ const FormUserProfile = () => {
   const currentUser = hoTen.user;
 
   return (
+    <div>
     <div className="wrapper-userprofile">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-6">
+      {/* <div className="container mx-auto"> */}
+        {/* <div className="grid grid-cols-6"> */}
           <div className="col-span-2 mx-3">
             <div className="flex flex-col gap-10">
               <div className="card w-full border p-5 flex flex-col">
@@ -179,10 +180,11 @@ const FormUserProfile = () => {
                   </div>
                 </div>
               </div>
-            </div>
-          </div>
+            {/* </div> */}
+          {/* </div> */}
         </div>
       </div>
+    </div>
     </div>
   );
 };

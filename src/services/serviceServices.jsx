@@ -16,4 +16,7 @@ export const serviceServ = {
   getServiceDetail: (id) => {
     return https.get(`/api/thue-cong-viec/${id}`);
   },
+  layDanhSachDaThue: () => {
+    return https.get("/api/thue-cong-viec/lay-danh-sach-da-thue");
+  },
 };
