@@ -1,8 +1,12 @@
 import React from "react";
+import { useSelector } from "react-redux";
 
 import "./FormUserProfile.scss";
 
 const FormUserProfile = () => {
+  const { hoTen } = useSelector((state) => state.nguoiDung);
+  const currentUser = hoTen.user;
+
   return (
     <div className="wrapper-userprofile">
       <div className="container mx-auto">
@@ -11,15 +15,17 @@ const FormUserProfile = () => {
             <div className="flex flex-col gap-10">
               <div className="card w-full border p-5 flex flex-col">
                 <div className="card-body mb-3 text-center">
-                  <h1 className="avatar my-6 mx-auto">N</h1>
+                  <h1 className="avatar my-6 mx-auto">
+                    {currentUser.name[0] ?? "A"}
+                  </h1>
                   <div className="text-lg font-bold">
                     Your display name{" "}
                     <span className="text-sm mx-3">
                       <i class="fa-solid fa-pen"></i>
                     </span>
-                    <span className="status">NEW</span>
+                    <span className="status">{currentUser.role}</span>
                   </div>
-                  <div className="name text-gray-500">@john_smile</div>
+                  <div className="name text-gray-500">{currentUser.email}</div>
                   <span className="text-sm">
                     <i class="fa-solid fa-pen"></i>
                   </span>
@@ -70,24 +76,74 @@ const FormUserProfile = () => {
               </div>
               <div className="card w-full border p-5 flex flex-col">
                 <div className="card-footer" style={{ border: "none" }}>
-                  <div className="flex justify-between items-center mb-10">
+                  <div className="flex justify-between items-center mb-3">
                     <b className="text-lg text-black">Description</b>
-                    <a className="text-[#00698c] font-medium" href="#">
+                    <button className="text-[#00698c] font-medium">
                       Edit Description
-                    </a>
+                    </button>
+                  </div>
+                  <div className="flex justify-between items-center mb-3">
+                    <p className="text-lg text-black">Name</p>
+                    <p className="text-[#00698c] font-medium">
+                      {currentUser.name}
+                    </p>
+                  </div>
+                  <div className="flex justify-between items-center mb-3">
+                    <p className="text-lg text-black">Phone</p>
+                    <p className="text-[#00698c] font-medium">
+                      {currentUser.phone}
+                    </p>
+                  </div>
+                  <div className="flex justify-between items-center mb-3">
+                    <p className="text-lg text-black">Birthday</p>
+                    <p className="text-[#00698c] font-medium">
+                      {currentUser.birthday}
+                    </p>
                   </div>
                 </div>
                 <div className="card-footer">
                   <div className="flex justify-between items-center mb-3">
                     <b className="text-base text-black mt-3">Languages</b>
-                    <a className="text-[#00698c] font-medium" href="">
+                    <butotn className="text-[#00698c] font-medium">
                       Add New
-                    </a>
+                    </butotn>
                   </div>
                   <div className="flex justify-between items-center mb-5">
                     <b className="text-sm text-gray-500 font-medium">
                       English - Basic
                     </b>
+                  </div>
+                </div>
+                <div className="card-footer">
+                  <div className="flex justify-between items-center mb-3">
+                    <b className="text-base text-black mt-3">Skill</b>
+                    <button className="text-[#00698c] font-medium">Edit</button>
+                  </div>
+                  <div className="flex justify-between items-center mb-5">
+                    {currentUser.skill?.map((skill, index) => (
+                      <b
+                        key={index}
+                        className="text-sm text-gray-500 font-medium"
+                      >
+                        {skill}
+                      </b>
+                    ))}
+                  </div>
+                </div>
+                <div className="card-footer">
+                  <div className="flex justify-between items-center mb-3">
+                    <b className="text-base text-black mt-3">Certification</b>
+                    <button className="text-[#00698c] font-medium">Edit</button>
+                  </div>
+                  <div className="flex justify-between items-center mb-5">
+                    {currentUser.certification?.map((certification, index) => (
+                      <b
+                        key={index}
+                        className="text-sm text-gray-500 font-medium"
+                      >
+                        {certification}
+                      </b>
+                    ))}
                   </div>
                 </div>
                 <div className="card-footer">
@@ -97,20 +153,20 @@ const FormUserProfile = () => {
                     </b>
                   </div>
                   <div className="flex justify-between text-[#00698c] font-medium mb-3">
-                    <p>
+                    <button>
                       <i class="fa-solid fa-plus me-3"></i>Facebook
-                    </p>
+                    </button>
                   </div>
                   <div className="flex justify-between font-medium">
-                    <p>
+                    <button>
                       <i class="fa-brands fa-google-plus me-3"></i>Google
-                    </p>
+                    </button>
                   </div>
                 </div>
               </div>
               <div className="card w-full border p-5">
                 <div className="card-body mb-3">
-                  <div className="text-lg font-bold mb-4 text-base">
+                  <div className="text-lg font-bold mb-4">
                     Shared activity information
                   </div>
                   <div className="text-black text-sm">

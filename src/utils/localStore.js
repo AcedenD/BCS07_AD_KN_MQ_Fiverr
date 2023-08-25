@@ -17,3 +17,7 @@ export const layDuLieuLocal = (ten) => {
 export const xoaDuLieuLocal = (ten) => {
   localStorage.removeItem(ten);
 };
+
+export const xoaTatCaDuLieuLocal = () => {
+  localStorage.clear();
+};

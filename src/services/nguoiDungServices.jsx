@@ -25,6 +25,6 @@ export const nguoiDungServ = {
   },
 
   updateUser: (id, data) => {
-    return https.post(`/api/users?id=${id}`, data);
+    return https.put(`/api/users/${id}`, data);
   },
 };
