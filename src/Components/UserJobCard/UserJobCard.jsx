@@ -18,7 +18,7 @@ const UserJobCard = () => {
     const userConfirmed = window.confirm("Do you really want to delete?");
     if (userConfirmed) {
       serviceServ
-        .deleteData(id)
+      .deleteService(id)
         .then((res) => {
           alert('Delete successful');
           dispatch(layDanhSachDaThue());
