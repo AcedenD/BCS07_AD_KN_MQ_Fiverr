@@ -10,7 +10,7 @@ const Header = (props) => {
   const [color, setColor] = useState(false);
 
   const { hoTen } = useSelector((state) => state.nguoiDung);
-  const role = hoTen.user.role;
+  const role = hoTen?.user?.role ?? "";
 
   const changeColor = () => {
     if (window.scrollY >= 90) {
