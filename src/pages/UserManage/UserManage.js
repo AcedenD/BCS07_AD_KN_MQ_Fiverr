@@ -1,14 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import UserTable from "../../Components/UserTable/UserTable";
-import { Modal } from "antd";
 import FormUserManage from "../../Components/FormUserManage/FormUserManage";
 import { getAllUser } from "../../redux/slices/nguoiDungSlice";
 import Search from "antd/es/input/Search";
 
 const UserManage = () => {
   const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
   const [currentUsers, setCurrentUsers] = useState([]); // Dữ liệu state thay đổi theo giá trị tìm kiếm trong input
 
   const { users } = useSelector((state) => state.nguoiDung); // Lấy mảng user từ redux nguoiDungSlice
@@ -17,19 +15,6 @@ const UserManage = () => {
   const showModal = () => {
     setOpen(true);
   };
-
-  const handleOk = () => {
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    setOpen(false);
-  };
-
   const onSearch = (value) => {
     // Tìm kiếm theo name
     const tempCurrentUsers = users.filter(({ name }) =>
@@ -66,17 +51,7 @@ const UserManage = () => {
       <UserTable currentUsers={currentUsers} />
       {/* Modal */}
       {open && (
-        <Modal
-          title={"ADD NEW USER"}
-          open={open}
-          confirmLoading={confirmLoading}
-          onOk={handleOk}
-          onCancel={handleCancel}
-          okButtonProps={{ type: "default", htmlType: "submit" }}
-          cancelButtonProps={{ htmlType: "reset" }}
-        >
-          <FormUserManage />
-        </Modal>
+        <FormUserManage title="ADD NEW USER" setOpen={setOpen} open={open} />
       )}
     </div>
   );

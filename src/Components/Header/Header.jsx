@@ -3,9 +3,14 @@ import React, { useState } from "react";
 import "./Header.scss";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { Dropdown } from "antd";
+import { xoaTatCaDuLieuLocal } from "../../utils/localStore";
 
 const Header = (props) => {
   const [color, setColor] = useState(false);
+
+  const { hoTen } = useSelector((state) => state.nguoiDung);
+
   const changeColor = () => {
     if (window.scrollY >= 90) {
       setColor(true);
@@ -14,7 +19,29 @@ const Header = (props) => {
     }
   };
   window.addEventListener("scroll", changeColor);
-  const { hoTen } = useSelector((state) => state.nguoiDung);
+
+  const handleClickLogout = () => {
+    xoaTatCaDuLieuLocal();
+  };
+
+  const items = [
+    {
+      label: (
+        <NavLink to={"/userprofile"} className=" text-lg">
+          Your profile
+        </NavLink>
+      ),
+      key: "1",
+    },
+    {
+      label: (
+        <NavLink to={"/login"} onClick={handleClickLogout} className=" text-lg">
+          LogOut
+        </NavLink>
+      ),
+      key: "2",
+    },
+  ];
 
   return (
     <div
@@ -43,11 +70,17 @@ const Header = (props) => {
           <div className="flex justify-center items-center gap-2">
             <div className="flex items-center md:order-2">
               {hoTen ? (
-                <NavLink to={"/userprofile"} className=" text-xl">
-                  <i className="fa-solid fa-circle-user ml-2" />
-                  <span className="font-bold text-md ml-2"></span>
-                  {hoTen.user.name}
-                </NavLink>
+                <Dropdown
+                  menu={{
+                    items,
+                  }}
+                >
+                  <div className=" text-xl">
+                    <i className="fa-solid fa-circle-user ml-2" />
+                    <span className="font-bold text-md ml-2"></span>
+                    {hoTen.user.name}
+                  </div>
+                </Dropdown>
               ) : (
                 <div>
                   <NavLink

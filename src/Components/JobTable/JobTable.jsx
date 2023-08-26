@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Table, Space } from "antd";
 import { useDispatch } from "react-redux";
-import { nguoiDungServ } from "../../services/nguoiDungServices";
-import { getAllUser } from "../../redux/slices/nguoiDungSlice";
-import FormUserManage from "../FormUserManage/FormUserManage";
+import FormJobManage from "../FormJobManage/FormJobManage";
+import { getAllJob } from "../../redux/slices/congViecSlice";
+import { congViecServ } from "../../services/congViecServices";
 
-const UserTable = (props) => {
+const JobTable = (props) => {
   const [open, setOpen] = useState(false);
   const [selectedRowId, setSelectedRowId] = useState("");
   const dispatch = useDispatch();
@@ -19,50 +19,29 @@ const UserTable = (props) => {
     },
     {
       title: "Name",
-      dataIndex: "name",
-      key: "name",
+      dataIndex: "tenCongViec",
+      key: "tenCongViec",
     },
     {
-      title: "Gender",
-      dataIndex: "gender",
-      key: "gender",
-      render: (gender) => (
+      title: "Creator",
+      dataIndex: "nguoiTao",
+      key: "nguoiTao",
+    },
+    {
+      title: "Prices",
+      dataIndex: "giaTien",
+      key: "giaTien",
+    },
+    {
+      title: "Describe",
+      dataIndex: "moTaNgan",
+      key: "moTaNgan",
+      render: (Describe) => (
         <p className="textOverflow" style={{ width: "200px" }}>
-          {gender ? "Male" : "Female"}
+          {Describe}
         </p>
       ),
     },
-    {
-      title: "Email",
-      dataIndex: "email",
-      key: "email",
-    },
-    {
-      title: "Phone",
-      dataIndex: "phone",
-      key: "phone",
-    },
-    {
-      title: "Role",
-      dataIndex: "role",
-      key: "role",
-    },
-    // {
-    //   title: "Certification",
-    //   dataIndex: "certification",
-    //   key: "certification",
-    //   render: (certification) => (
-    //     <p className="textOverflow" style={{ width: "200px" }}>
-    //       {certification}
-    //     </p>
-    //   ),
-    // },
-    // {
-    //   title: "Skill",
-    //   dataIndex: "skill",
-    //   key: "skill",
-    //   render: (skill) => (skill ? "Completed" : "Not Completed"),
-    // },
     {
       title: "Action",
       key: "action",
@@ -73,15 +52,15 @@ const UserTable = (props) => {
             title="Xóa"
             onClick={() => {
               console.log(record);
-              const userConfirmed = window.confirm(
+              const jobConfirmed = window.confirm(
                 `Do you really want to delete?`
               );
-              if (userConfirmed) {
-                nguoiDungServ
-                  .deleteUser(record.id)
+              if (jobConfirmed) {
+                congViecServ
+                  .deleteJob(record.id)
                   .then((res) => {
                     alert("delete successful");
-                    dispatch(getAllUser());
+                    dispatch(getAllJob());
                   })
                   .catch((err) => {
                     console.log(err);
@@ -111,11 +90,11 @@ const UserTable = (props) => {
 
   return (
     <>
-      <Table columns={columns} dataSource={props.currentUsers} />
+      <Table columns={columns} dataSource={props.currentJobs} />
       {open && (
-        <FormUserManage
+        <FormJobManage
           selectedRowId={selectedRowId}
-          title="EDIT USER"
+          title="EDIT JOB"
           setOpen={setOpen}
           open={open}
         />
@@ -124,4 +103,4 @@ const UserTable = (props) => {
   );
 };
 
-export default UserTable;
+export default JobTable;

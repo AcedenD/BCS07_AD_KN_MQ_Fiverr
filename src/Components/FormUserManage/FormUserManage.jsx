@@ -1,5 +1,5 @@
-import { message } from "antd";
-import React from "react";
+import { Modal, Radio, message } from "antd";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
 import { getAllUser } from "../../redux/slices/nguoiDungSlice";
@@ -7,6 +7,8 @@ import { useFormik } from "formik";
 import { nguoiDungServ } from "../../services/nguoiDungServices";
 
 const FormUserManage = (props) => {
+  const { title, setOpen, open } = props;
+  const [confirmLoading, setConfirmLoading] = useState(false);
   const [messageApi, contextHolder] = message.useMessage();
   const { users } = useSelector((state) => state.nguoiDung);
   const dispatch = useDispatch();
@@ -14,60 +16,85 @@ const FormUserManage = (props) => {
   // lấy chi tiết người dùng dựa vào selectedRowId
   const userDetail = users.find(({ id }) => id === props.selectedRowId);
 
-  const formik = useFormik({
-    initialValues: userDetail
-      ? {
-          email: userDetail.email ?? "",
-          name: userDetail.name ?? "",
-          password: userDetail.password ?? "",
-          phone: userDetail.phone ?? "",
-        }
-      : {
-          email: "",
-          name: "",
-          password: "",
-          phone: "",
-        },
-    onSubmit: async (values) => {
-      console.log(values);
-      try {
-        // Nếu userDetail !== undefined thì API update được gọi, ngược lại API add sẽ được gọi
-        if (userDetail) {
-          await nguoiDungServ.updateUser(values);
-          messageApi.success("Update User Thành Công");
-        } else {
-          await nguoiDungServ.addUser(values);
-          messageApi.success("Thêm User Thành Công");
-        }
-        dispatch(getAllUser());
-        formik.resetForm();
-      } catch (error) {
-        messageApi.error(
-          error.response.data.content
-            ? error.response.data.content
-            : "Không hợp lệ"
-        );
-        formik.resetForm();
+  const handleOk = async () => {
+    setConfirmLoading(true);
+    const request = {
+      ...values,
+      ...{
+        id: userDetail?.id ?? Math.ceil(Math.random(1, 1000)),
+        gender: values.gender === "male",
+        birthday: "",
+        skill: [],
+        certification: [],
+      },
+    };
+    console.log("request: ", request);
+    try {
+      // Nếu userDetail !== undefined thì API update được gọi, ngược lại API add sẽ được gọi
+
+      if (userDetail) {
+        await nguoiDungServ.updateUser(userDetail?.id, request);
+        messageApi.success("Update User Thành Công");
+      } else {
+        await nguoiDungServ.addUser(request);
+        messageApi.success("Thêm User Thành Công");
       }
+      dispatch(getAllUser());
+      setTimeout(() => {
+        formik.resetForm();
+        setOpen(false);
+        setConfirmLoading(false);
+      }, 2000);
+    } catch (error) {
+      messageApi.error(
+        error.response.data.content
+          ? error.response.data.content
+          : "Không hợp lệ"
+      );
+      setTimeout(() => {
+        formik.resetForm();
+        setOpen(false);
+        setConfirmLoading(false);
+      }, 2000);
+    }
+  };
+
+  const handleCancel = () => {
+    setOpen(false);
+  };
+
+  const formik = useFormik({
+    initialValues: {
+      email: userDetail?.email ?? "",
+      name: userDetail?.name ?? "",
+      phone: userDetail?.phone ?? "",
+      gender: userDetail ? (userDetail?.gender ? "male" : "female") : "female",
     },
     // use to post values to server
     validationSchema: yup.object({
       email: yup.string().required("Vui lòng nhập email!"),
       name: yup.string().required("Vui lòng nhập tên!"),
-      password: yup
-        .string()
-        .required("Vui lòng nhập mật khẩu!")
-        .min(3, "Mật khẩu ít nhất 3 kí tự!"),
       phone: yup.string().required("Vui lòng nhập số điện thoại!"),
     }),
   });
-  const { handleChange, handleSubmit, handleBlur, values, handleReset } =
-    formik;
-
+  const { handleChange, handleBlur, values, isValid, dirty } = formik;
+  console.log("values: ", values);
   return (
-    <div>
+    <Modal
+      title={title}
+      open={open}
+      confirmLoading={confirmLoading}
+      onOk={handleOk}
+      onCancel={handleCancel}
+      okButtonProps={{
+        type: "default",
+        htmlType: "submit",
+        disabled: !(dirty && isValid),
+      }}
+      cancelButtonProps={{ htmlType: "reset" }}
+    >
       {contextHolder}
-      <form className="space-y-6" onSubmit={handleSubmit} onReset={handleReset}>
+      <form className="space-y-6">
         <div>
           <label
             htmlFor="email"
@@ -77,6 +104,7 @@ const FormUserManage = (props) => {
           </label>
           <div className="mt-2">
             <input
+              readOnly={!!userDetail}
               value={values.email}
               onChange={handleChange}
               onBlur={handleBlur}
@@ -126,36 +154,6 @@ const FormUserManage = (props) => {
         <div>
           <div className="flex items-center justify-between">
             <label
-              htmlFor="password"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Password
-            </label>
-          </div>
-          <div className="mt-2">
-            <input
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="password"
-              name="password"
-              type="password"
-              autoComplete="current-password"
-              required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
-            />
-          </div>
-          {values.password.length &&
-          formik.errors.password &&
-          formik.touched.password ? (
-            <p className=" text-red-600">{formik.errors.password}</p>
-          ) : (
-            ""
-          )}
-        </div>
-        <div>
-          <div className="flex items-center justify-between">
-            <label
               htmlFor="phone"
               className="block text-sm font-medium leading-6 text-gray-900"
             >
@@ -182,9 +180,21 @@ const FormUserManage = (props) => {
           ) : (
             ""
           )}
+          <Radio.Group
+            className="mt-3"
+            name="gender"
+            defaultValue={values.gender}
+          >
+            <Radio onChange={handleChange} value="male">
+              Male
+            </Radio>
+            <Radio onChange={handleChange} value="female">
+              Female
+            </Radio>
+          </Radio.Group>
         </div>
       </form>
-    </div>
+    </Modal>
   );
 };
 
