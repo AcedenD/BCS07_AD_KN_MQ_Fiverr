@@ -10,6 +10,7 @@ const Header = (props) => {
   const [color, setColor] = useState(false);
 
   const { hoTen } = useSelector((state) => state.nguoiDung);
+  const role = hoTen.user.role;
 
   const changeColor = () => {
     if (window.scrollY >= 90) {
@@ -40,6 +41,18 @@ const Header = (props) => {
         </NavLink>
       ),
       key: "2",
+    },
+    {
+      label:
+        role == "ADMIN" ? (
+          <NavLink to={"/admin"} className="text-lg ">
+            <span className="text-red-600">ADMIN</span>
+          </NavLink>
+        ) : (
+          ""
+        ),
+
+      key: "3",
     },
   ];
 
