@@ -29,4 +29,8 @@ export const congViecServ = {
   layCongViecChiTiet: (id) => {
     return https.get(`/api/cong-viec/lay-cong-viec-chi-tiet/${id}`);
   },
+
+  layMenuLoaiCongViec: () => {
+    return https.get("/api/cong-viec/lay-menu-loai-cong-viec");
+  },
 };

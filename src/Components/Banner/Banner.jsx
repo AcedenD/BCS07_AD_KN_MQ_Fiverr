@@ -9,22 +9,27 @@ const Banner = () => {
     {
       order: 0,
       class: "hero-bannerImg1",
+      name: "jordan",
     },
     {
       order: 1,
       class: "hero-bannerImg2",
+      name: "christina",
     },
     {
       order: 2,
       class: "hero-bannerImg3",
+      name: "scarlett",
     },
     {
       order: 3,
       class: "hero-bannerImg4",
+      name: "colin",
     },
     {
       order: 4,
       class: "hero-bannerImg5",
+      name: "jenny",
     },
   ];
 
@@ -48,11 +53,11 @@ const Banner = () => {
               } hero-background`}
             >
               <div className="brand flex justify-center items-center gap-2">
-                <div className="img border rounded-full">
+                <div className="img border rounded-full  overflow-hidden">
                   <img
-                    className="w-full h-full overflow-hidden"
-                    srcSet="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_40,dpr_1.0/v1/attachments/generic_asset/asset/7539ee9d7a6ab02e3d23069ebefb32c8-1690386499432/colin-2x.png 1x, https://fiverr-res.cloudinary.com/q_auto,f_auto,w_40,dpr_2.0/v1/attachments/generic_asset/asset/7539ee9d7a6ab02e3d23069ebefb32c8-1690386499432/colin-2x.png 2x"
-                    src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_40,dpr_1.0/v1/attachments/generic_asset/asset/7539ee9d7a6ab02e3d23069ebefb32c8-1690386499432/colin-2x.png"
+                    className="w-full h-full"
+                    // src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_40,dpr_1.0/v1/attachments/generic_asset/asset/7539ee9d7a6ab02e3d23069ebefb32c8-1690386499432/colin-2x.png"
+                    src={`/images/${item.name}.png`}
                     alt="Colin"
                   />
                 </div>

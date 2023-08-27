@@ -37,13 +37,13 @@ const FormUserProfile = () => {
                 </h1>
                 <div className="text-lg font-bold">
                   Your display name{" "}
-                  <span className="text-sm mx-3">
+                  <span className="text-sm mx-3" onClick={showModal}>
                     <i class="fa-solid fa-pen"></i>
                   </span>
                   <span className="status">{userDetail?.role}</span>
                 </div>
                 <div className="name text-gray-500">{userDetail?.email}</div>
-                <span className="text-sm">
+                <span className="text-sm" onClick={showModal}>
                   <i class="fa-solid fa-pen"></i>
                 </span>
                 <span className="status online">online</span>
