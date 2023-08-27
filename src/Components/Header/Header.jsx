@@ -91,7 +91,7 @@ const Header = (props) => {
                   <div className=" text-xl">
                     <i className="fa-solid fa-circle-user ml-2" />
                     <span className="font-bold text-md ml-2"></span>
-                    {hoTen.user.name}
+                    {hoTen.user?.name}
                   </div>
                 </Dropdown>
               ) : (
