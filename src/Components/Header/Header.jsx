@@ -216,7 +216,9 @@ const Header = (props) => {
         <ul className="flex flex-col mt-4 font-light md:flex-row md:space-x-8 md:mt-0">
           {typeJobMenu?.map(({ tenLoaiCongViec, id, dsNhomChiTietLoai }) => (
             <li key={id} className="nav2-item">
-              <NavLink className="nav-link">{tenLoaiCongViec}</NavLink>
+              <NavLink to={`title/${id}`} className="nav-link">
+                {tenLoaiCongViec}
+              </NavLink>
               {dsNhomChiTietLoai.length > 0 && (
                 <ul className="nav2-dropdown">
                   {dsNhomChiTietLoai?.map(({ id, tenNhom, dsChiTietLoai }) => (
@@ -225,7 +227,10 @@ const Header = (props) => {
                       <ul>
                         {dsChiTietLoai?.map(({ id, tenChiTiet }) => (
                           <li key={id} className="item-detail">
-                            <NavLink className="font-light">
+                            <NavLink
+                              to={`categories/${id}`}
+                              className="font-light"
+                            >
                               {tenChiTiet}
                             </NavLink>
                           </li>
