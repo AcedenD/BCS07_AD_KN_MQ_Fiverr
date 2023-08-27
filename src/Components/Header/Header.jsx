@@ -10,7 +10,7 @@ const Header = (props) => {
   const [color, setColor] = useState(false);
 
   const { hoTen } = useSelector((state) => state.nguoiDung);
-  const role = hoTen?.user?.role ?? "";
+  const role = hoTen?.role ?? "";
 
   const changeColor = () => {
     if (window.scrollY >= 90) {
@@ -91,7 +91,7 @@ const Header = (props) => {
                   <div className=" text-xl">
                     <i className="fa-solid fa-circle-user ml-2" />
                     <span className="font-bold text-md ml-2"></span>
-                    {hoTen.user.name}
+                    {hoTen?.name}
                   </div>
                 </Dropdown>
               ) : (

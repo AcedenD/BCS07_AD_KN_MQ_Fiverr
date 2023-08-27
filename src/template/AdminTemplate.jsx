@@ -16,7 +16,7 @@ const AdminTemplate = () => {
   useEffect(() => {
     const user = layDuLieuLocal("user");
     if (user) {
-      if (user.user.role !== "ADMIN") {
+      if (user?.role !== "ADMIN") {
         navigate("../");
       } else {
         navigate("../admin/user");

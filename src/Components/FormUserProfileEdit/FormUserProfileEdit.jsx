@@ -29,7 +29,6 @@ const FormUserProfileEdit = (props) => {
           .then((res) => {
             messageApi.success("Update User Thành Công!");
             dispatch(getAllUser());
-            dispatch(setDuLieuHoTen(res.data.content));
             luuXuongLocal("user", res.data.content);
 
             setTimeout(() => {
