@@ -1,14 +1,7 @@
-import React, { useEffect } from "react";
+import React from "react";
 import {
-  Form,
-  Input,
   DatePicker,
   Switch,
-  Upload,
-  Button,
-  Col,
-  Row,
-  Space,
   message,
 } from "antd";
 import { Formik, useFormik } from "formik";
@@ -31,7 +24,6 @@ const FormAddService = () => {
     },
 
     onSubmit: async (values) => {
-      console.log(values);
       try {
         const res = await serviceServ.addService(values);
         messageApi.success("Thêm Công Việc Thành Công");

@@ -5,20 +5,16 @@ import { luuXuongLocal } from "../../utils/localStore";
 
 const CategoriesCard = (props) => {
   const { congViecInfo } = props;
-  console.log(congViecInfo);
   const { tenNguoiTao, avatar, congViec } = congViecInfo;
 
   const layCongViecChiTiet = (id) => {
     congViecServ
       .layCongViecChiTiet(id)
       .then((res) => {
-        console.log(res.data.content[0]);
         luuXuongLocal("congViec", res.data.content[0].congViec);
         window.location.href = `/jobDetail/${id}`;
-        console.log("lay cong viec thanh cong");
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 

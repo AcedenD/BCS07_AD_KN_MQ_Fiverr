@@ -26,11 +26,9 @@ const AddComment = (props) => {
     },
 
     onSubmit: async (values) => {
-      console.log(values);
       try {
         const res = await binhLuanServ.addBinhLuan(values);
         messageApi.success("Thêm Công Việc Thành Công");
-        console.log(res);
         formik.resetForm();
         reload_binhLuan();
       } catch (error) {

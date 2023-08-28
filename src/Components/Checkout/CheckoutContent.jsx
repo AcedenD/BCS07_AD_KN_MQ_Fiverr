@@ -25,7 +25,6 @@ const CheckoutContent = (props) => {
     serviceServ
       .addService(congViecThue)
       .then((res) => {
-        console.log(res);
         messageApi.success("Thêm Công Việc Thành Công");
       })
       .catch((err) => {
