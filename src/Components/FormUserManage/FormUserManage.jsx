@@ -24,14 +24,14 @@ const FormUserManage = (props) => {
         id: userDetail?.id ?? Math.ceil(Math.random(1, 1000)),
         gender: values.gender === "male",
         birthday: userDetail?.birthday ?? "",
-        skill: userDetail?.skill ?? [],
-        certification: userDetail?.certification ?? [],
+        role: values.role.length ? values.role : "User",
+        skill: values.skill.split(","),
+        certification: values.certification.split(","),
       },
     };
 
     try {
       // Nếu userDetail !== undefined thì API update được gọi, ngược lại API add sẽ được gọi
-
       if (userDetail) {
         await nguoiDungServ.updateUser(userDetail?.id, request);
         messageApi.success("Update User Thành Công");
@@ -69,6 +69,9 @@ const FormUserManage = (props) => {
       name: userDetail?.name ?? "",
       phone: userDetail?.phone ?? "",
       password: userDetail?.password ?? "",
+      skill: userDetail?.skill?.join(",") ?? "",
+      certification: userDetail?.certification?.join(",") ?? "",
+      role: userDetail?.role ?? "",
       gender: userDetail ? (userDetail?.gender ? "male" : "female") : "female",
     },
     // use to post values to server
@@ -213,19 +216,113 @@ const FormUserManage = (props) => {
           ) : (
             ""
           )}
-          <Radio.Group
-            className="mt-3"
-            name="gender"
-            defaultValue={values.gender}
-          >
-            <Radio onChange={handleChange} value="male">
-              Male
-            </Radio>
-            <Radio onChange={handleChange} value="female">
-              Female
-            </Radio>
-          </Radio.Group>
         </div>
+
+        {userDetail && (
+          <div>
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="role"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Role
+              </label>
+            </div>
+            <div className="mt-2">
+              <input
+                value={values.role}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="role"
+                name="role"
+                type="text"
+                required
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              />
+            </div>
+            {values.role.length && formik.errors.role && formik.touched.role ? (
+              <p className=" text-red-600">{formik.errors.role}</p>
+            ) : (
+              ""
+            )}
+          </div>
+        )}
+
+        {userDetail && (
+          <div>
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="skill"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Skill
+              </label>
+            </div>
+            <div className="mt-2">
+              <input
+                value={values.skill}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="skill"
+                name="skill"
+                type="text"
+                required
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              />
+            </div>
+            {values.skill.length &&
+            formik.errors.skill &&
+            formik.touched.skill ? (
+              <p className=" text-red-600">{formik.errors.skill}</p>
+            ) : (
+              ""
+            )}
+          </div>
+        )}
+
+        {userDetail && (
+          <div>
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="phocertificationne"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Certification
+              </label>
+            </div>
+            <div className="mt-2">
+              <input
+                value={values.certification}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="certification"
+                name="certification"
+                type="text"
+                required
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              />
+            </div>
+            {values.certification.length &&
+            formik.errors.certification &&
+            formik.touched.certification ? (
+              <p className=" text-red-600">{formik.errors.certification}</p>
+            ) : (
+              ""
+            )}
+          </div>
+        )}
+        <Radio.Group
+          className="mt-3"
+          name="gender"
+          defaultValue={values.gender}
+        >
+          <Radio onChange={handleChange} value="male">
+            Male
+          </Radio>
+          <Radio onChange={handleChange} value="female">
+            Female
+          </Radio>
+        </Radio.Group>
       </form>
     </Modal>
   );
