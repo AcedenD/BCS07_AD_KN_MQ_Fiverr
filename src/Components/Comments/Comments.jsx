@@ -15,7 +15,6 @@ const Comments = (props) => {
     binhLuanServ
       .getBinhLuan(id)
       .then((res) => {
-        // console.log(res.data.content);
         setBinhLuan(res.data.content);
       })
       .catch((err) => {});
@@ -44,7 +43,6 @@ const Comments = (props) => {
     binhLuanServ
       .getBinhLuan(id)
       .then((res) => {
-        // console.log(res.data.content);
         setBinhLuan(res.data.content);
       })
       .catch((err) => {});
