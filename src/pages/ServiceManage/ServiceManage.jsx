@@ -43,7 +43,7 @@ const ServiceManage = () => {
   return (<div >
     <button
       className='bg-green-600 px-5 py-2 text-white rounded-lg mb-5 ' onClick={showDrawer1} >
-      <i class="fa-solid fa-plus"></i>  Thêm Service
+      <i class="fa-solid fa-plus"></i>  ADD NEW
     </button>
     {/* <AdminSearch onSearch={handleSearch} /> */}
 

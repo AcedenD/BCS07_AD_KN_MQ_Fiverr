@@ -14,13 +14,12 @@ const AdminTemplate = () => {
   const navigate = useNavigate();
 
   useEffect(() => {
-    const user = layDuLieuLocal("user");
-    if (user) {
-      if (user?.role !== "ADMIN") {
-        navigate("../");
-      } else {
-        navigate("../admin/user");
-      }
+    const role = layDuLieuLocal("role");
+    console.log(role);
+    if (role !== "ADMIN") {
+      navigate("../");
+    } else {
+      navigate("../admin/user");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

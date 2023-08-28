@@ -15,26 +15,31 @@ const JobTable = (props) => {
     {
       title: "ID",
       dataIndex: "id",
+      width: "3%",
       key: "id",
     },
     {
       title: "Name",
       dataIndex: "tenCongViec",
       key: "tenCongViec",
+      width: "10%",
     },
     {
       title: "Creator",
       dataIndex: "nguoiTao",
+      width: "3%",
       key: "nguoiTao",
     },
     {
       title: "Prices",
+      width: "3%",
       dataIndex: "giaTien",
       key: "giaTien",
     },
     {
       title: "Describe",
       dataIndex: "moTaNgan",
+      width: "10%",
       key: "moTaNgan",
       render: (Describe) => (
         <p className="textOverflow" style={{ width: "200px" }}>
@@ -45,6 +50,7 @@ const JobTable = (props) => {
     {
       title: "Action",
       key: "action",
+      width: "10%",
       render: (_, record) => (
         <Space size="middle">
           <button
@@ -90,7 +96,7 @@ const JobTable = (props) => {
 
   return (
     <>
-      <Table columns={columns} dataSource={props.currentJobs} />
+      <Table columns={columns} dataSource={props.currentJobs}  scroll={{ x: 'max-content' }} />
       {open && (
         <FormJobManage
           selectedRowId={selectedRowId}

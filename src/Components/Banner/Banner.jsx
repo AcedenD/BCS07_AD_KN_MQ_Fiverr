@@ -5,31 +5,40 @@ import "./Banner.scss";
 
 const Banner = () => {
   const [currentIndex, setCurrentIndex] = useState(0);
+  const searchInput = () => {
+    const searchTerm = document.querySelector("#search-input").value;
+    window.location.href = `/result/${searchTerm}`;
+  };
   const items = [
     {
       order: 0,
       class: "hero-bannerImg1",
       name: "jordan",
+      role: "Creative Director",
     },
     {
       order: 1,
       class: "hero-bannerImg2",
       name: "christina",
+      role: "Engineering Manager",
     },
     {
       order: 2,
       class: "hero-bannerImg3",
       name: "scarlett",
+      role: "Marketing Director",
     },
     {
       order: 3,
       class: "hero-bannerImg4",
       name: "colin",
+      role: "Product Manager",
     },
     {
       order: 4,
       class: "hero-bannerImg5",
       name: "jenny",
+      role: "Design Engineer",
     },
   ];
 
@@ -58,12 +67,12 @@ const Banner = () => {
                     className="w-full h-full"
                     // src="https://fiverr-res.cloudinary.com/q_auto,f_auto,w_40,dpr_1.0/v1/attachments/generic_asset/asset/7539ee9d7a6ab02e3d23069ebefb32c8-1690386499432/colin-2x.png"
                     src={`/images/${item.name}.png`}
-                    alt="Colin"
+                    alt="${item.name}"
                   />
                 </div>
                 <div className="flex justify-center items-left flex-col">
                   <div className="flex justify-between items-center">
-                    <div>@colinstark</div>
+                    <div>{item.name}doe</div>
                     <div className="flex justify-center items-center">
                       5
                       <svg
@@ -81,7 +90,7 @@ const Banner = () => {
                     </div>
                   </div>
                   <div className="niLaqs0">
-                    <b>Creative Director</b>
+                    <b>{item.role}</b>
                   </div>
                 </div>
               </div>
@@ -101,6 +110,7 @@ const Banner = () => {
                   autoComplete="off"
                   placeholder="Search for any service..."
                   defaultValue=""
+                  id="search-input"
                 />
                 {/* <input
                   type="search"
@@ -109,7 +119,11 @@ const Banner = () => {
                   placeholder="Search for any service..."
                   defaultValue
                 /> */}
-                <button className="submit-button">
+                <button
+                  type="button"
+                  onClick={searchInput}
+                  className="submit-button"
+                >
                   <div className="submit-button-icon">
                     <svg
                       width={16}
@@ -128,34 +142,22 @@ const Banner = () => {
               Popular:{" "}
               <ul>
                 <li>
-                  <a
-                    href="/categories/graphics-design/website-design?source=hplo_search_tag&pos=1&name=website-design"
-                    className="text-body-2"
-                  >
+                  <a href="result/web" className="text-body-2">
                     Website Design
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/categories/programming-tech/wordpress-services?source=hplo_search_tag&pos=2&name=wordpress-services"
-                    className="text-body-2"
-                  >
+                  <a href="result/word" className="text-body-2">
                     WordPress
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/categories/graphics-design/creative-logo-design?source=hplo_search_tag&pos=3&name=creative-logo-design"
-                    className="text-body-2"
-                  >
+                  <a href="result/logo" className="text-body-2">
                     Logo Design
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/cp/ai-services?source=hplo_search_tag&pos=4&name=ai-services"
-                    className="text-body-2"
-                  >
+                  <a href="result/ai" className="text-body-2">
                     AI Services
                   </a>
                 </li>

@@ -15,6 +15,7 @@ import JobDetail from "./pages/JobDetail/JobDetail";
 import UserProfile from "./pages/UserProfile/UserProfile";
 import UserManage from "./pages/UserManage/UserManage";
 import JobManage from "./pages/JobManage/JobManage";
+import Result from "./pages/Result/Result";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="title/:id" element={<Title />} />
           <Route path="categories/:id" element={<Categories />} />
           <Route path="jobDetail/:id" element={<JobDetail />} />
+          <Route path="result/:search" element={<Result />} />
         </Route>
         <Route path="/admin" element={<AdminTemplate />}>
           <Route path="user" element={<UserManage />} />
