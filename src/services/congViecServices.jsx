@@ -33,4 +33,8 @@ export const congViecServ = {
   layMenuLoaiCongViec: () => {
     return https.get("/api/cong-viec/lay-menu-loai-cong-viec");
   },
+
+  layDanhSachCongViecTheoTen: (ten) => {
+    return https.get(`/api/cong-viec/lay-danh-sach-cong-viec-theo-ten/${ten}`);
+  },
 };
