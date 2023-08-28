@@ -1,16 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import "./Header.scss";
 import { NavLink } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "antd";
-import { xoaTatCaDuLieuLocal } from "../../utils/localStore";
+import { layDuLieuLocal, xoaTatCaDuLieuLocal } from "../../utils/localStore";
+import { congViecServ } from "../../services/congViecServices";
+import { getAllUser } from "../../redux/slices/nguoiDungSlice";
 
 const Header = (props) => {
   const [color, setColor] = useState(false);
+  const [typeJobMenu, setTypeJobMenu] = useState([]);
 
-  const { hoTen } = useSelector((state) => state.nguoiDung);
-  const role = hoTen?.role ?? "";
+  const { users } = useSelector((state) => state.nguoiDung);
+  const dispatch = useDispatch();
+  const currentUserId = layDuLieuLocal("userId");
+
+  const userDetail = users.find(({ id }) => id === currentUserId);
+  const role = userDetail?.role ?? "";
+  console.log("userDetail: ", userDetail);
+  console.log("currentUserId: ", currentUserId);
 
   const changeColor = () => {
     if (window.scrollY >= 90) {
@@ -24,6 +33,17 @@ const Header = (props) => {
   const handleClickLogout = () => {
     xoaTatCaDuLieuLocal();
   };
+
+  useEffect(() => {
+    congViecServ
+      .layMenuLoaiCongViec()
+      .then((res) => setTypeJobMenu(res.data.content ?? []))
+      .catch((err) => console.log("error: ", err));
+  }, []);
+
+  useEffect(() => {
+    dispatch(getAllUser());
+  }, [dispatch]);
 
   const items = [
     {
@@ -44,7 +64,7 @@ const Header = (props) => {
     },
     {
       label:
-        role == "ADMIN" ? (
+        role === "ADMIN" ? (
           <NavLink to={"/admin"} className="text-lg ">
             <span className="text-red-600">ADMIN</span>
           </NavLink>
@@ -82,7 +102,7 @@ const Header = (props) => {
           </a>
           <div className="flex justify-center items-center gap-2">
             <div className="flex items-center md:order-2">
-              {hoTen ? (
+              {userDetail ? (
                 <Dropdown
                   menu={{
                     items,
@@ -91,7 +111,7 @@ const Header = (props) => {
                   <div className=" text-xl">
                     <i className="fa-solid fa-circle-user ml-2" />
                     <span className="font-bold text-md ml-2"></span>
-                    {hoTen?.name}
+                    {userDetail?.name}
                   </div>
                 </Dropdown>
               ) : (
@@ -194,129 +214,34 @@ const Header = (props) => {
         }`}
       >
         <ul className="flex flex-col mt-4 font-light md:flex-row md:space-x-8 md:mt-0">
-          <li className="nav2-item">
-            <NavLink className="nav-link">Graphics & Design</NavLink>
-            <ul className="nav2-dropdown">
-              <p className="font-bold">Graphics</p>
-              <li>
-                <NavLink className="font-light">
-                  Social Media Advertising
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Video Editing</NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Visual Effects</NavLink>
-              </li>
-            </ul>
-          </li>
-          <li className="nav2-item">
-            <NavLink className="nav-link">Digital Marketing</NavLink>
-            <ul className="nav2-dropdown">
-              <p className="font-bold">Marketing</p>
-              <li>
-                <NavLink className="font-light">
-                  Social Media Advertising
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Visual Effects</NavLink>
-              </li>
-            </ul>
-          </li>
-          <li className="nav2-item">
-            <NavLink className="nav-link">Writing & Translation</NavLink>
-            <ul className="nav2-dropdown">
-              <p className="font-bold">Writing</p>
-              <li>
-                <NavLink className="font-light">Visual Effects</NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Songwriters</NavLink>
-              </li>
-              <li>
-                <p className="font-bold">Translation</p>
-              </li>
-              <li>
-                <NavLink className="font-light">Video Editing</NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Producers & Composers</NavLink>
-              </li>
-            </ul>
-          </li>
-          <li className="nav2-item">
-            <NavLink className="nav-link">Video & Animation</NavLink>
-            <ul className="nav2-dropdown">
-              <p className="font-bold">Social & Marketing Videos</p>
-              <li>
-                <NavLink className="font-light">Short Video Ads</NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Social Media Videos</NavLink>
-              </li>
-              <p className="font-bold">Video Editing & Post-Production</p>
-              <li>
-                <NavLink className="font-light">Video Editing</NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Visual Effects</NavLink>
-              </li>
-              <p className="font-bold">Media</p>
-              <li>
-                <NavLink className="font-light">Social Media Videos</NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Video Editing</NavLink>
-              </li>
-            </ul>
-          </li>
-          <li className="nav2-item">
-            <NavLink className="nav-link">Music & Audio</NavLink>
-            <ul className="nav2-dropdown">
-              <p className="font-bold">Music Production & Writing</p>
-              <li>
-                <NavLink className="font-light">Producers & Composers</NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Songwriters</NavLink>
-              </li>
-              <p className="font-bold">Beat Productions</p>
-              <li>
-                <NavLink className="font-light">Articles & Blog Posts</NavLink>
-              </li>
-            </ul>
-          </li>
-          <li className="nav2-item">
-            <NavLink className="nav-link">Programing & Tech</NavLink>
-            <ul className="nav2-dropdown">
-              <p className="font-bold">Graphics</p>
-              <li>
-                <NavLink className="font-light">
-                  Social Media Advertising
-                </NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Video Editing</NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Visual Effects</NavLink>
-              </li>
-            </ul>
-          </li>
-          <li className="nav2-item">
-            <NavLink className="nav-link">Javascriptest</NavLink>
-            <ul className="nav2-dropdown">
-              <p className="font-bold">Javascriptest</p>
-              <li>
-                <NavLink className="font-light">Video Editing</NavLink>
-              </li>
-              <li>
-                <NavLink className="font-light">Visual Effects</NavLink>
-              </li>
-            </ul>
-          </li>
+          {typeJobMenu?.map(({ tenLoaiCongViec, id, dsNhomChiTietLoai }) => (
+            <li key={id} className="nav2-item">
+              <NavLink to={`title/${id}`} className="nav-link">
+                {tenLoaiCongViec}
+              </NavLink>
+              {dsNhomChiTietLoai.length > 0 && (
+                <ul className="nav2-dropdown">
+                  {dsNhomChiTietLoai?.map(({ id, tenNhom, dsChiTietLoai }) => (
+                    <li key={id} className="font-bold">
+                      {tenNhom}
+                      <ul>
+                        {dsChiTietLoai?.map(({ id, tenChiTiet }) => (
+                          <li key={id} className="item-detail">
+                            <NavLink
+                              to={`categories/${id}`}
+                              className="font-light"
+                            >
+                              {tenChiTiet}
+                            </NavLink>
+                          </li>
+                        ))}
+                      </ul>
+                    </li>
+                  ))}
+                </ul>
+              )}
+            </li>
+          ))}
         </ul>
       </div>
     </div>
