@@ -142,34 +142,22 @@ const Banner = () => {
               Popular:{" "}
               <ul>
                 <li>
-                  <a
-                    href="/categories/graphics-design/website-design?source=hplo_search_tag&pos=1&name=website-design"
-                    className="text-body-2"
-                  >
+                  <a href="result/web" className="text-body-2">
                     Website Design
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/categories/programming-tech/wordpress-services?source=hplo_search_tag&pos=2&name=wordpress-services"
-                    className="text-body-2"
-                  >
+                  <a href="result/word" className="text-body-2">
                     WordPress
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/categories/graphics-design/creative-logo-design?source=hplo_search_tag&pos=3&name=creative-logo-design"
-                    className="text-body-2"
-                  >
+                  <a href="result/logo" className="text-body-2">
                     Logo Design
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="/cp/ai-services?source=hplo_search_tag&pos=4&name=ai-services"
-                    className="text-body-2"
-                  >
+                  <a href="result/ai" className="text-body-2">
                     AI Services
                   </a>
                 </li>
