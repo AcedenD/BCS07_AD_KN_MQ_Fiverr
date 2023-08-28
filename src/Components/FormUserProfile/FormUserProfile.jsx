@@ -96,7 +96,7 @@ const FormUserProfile = () => {
                 <div className="flex justify-between items-center mb-3">
                   <b className="text-lg text-black">Description</b>
                   <button
-                    className="text-[#00698c] font-medium"
+                    className="text-[#1dbf73] font-medium"
                     onClick={showModal}
                   >
                     Edit Description
@@ -104,19 +104,19 @@ const FormUserProfile = () => {
                 </div>
                 <div className="flex justify-between items-center mb-3">
                   <p className="text-lg text-black">Name</p>
-                  <p className="text-[#00698c] font-medium">
+                  <p className="text-[#1dbf73] font-medium">
                     {userDetail?.name}
                   </p>
                 </div>
                 <div className="flex justify-between items-center mb-3">
                   <p className="text-lg text-black">Phone</p>
-                  <p className="text-[#00698c] font-medium">
+                  <p className="text-[#1dbf73] font-medium">
                     {userDetail?.phone}
                   </p>
                 </div>
                 <div className="flex justify-between items-center mb-3">
                   <p className="text-lg text-black">Birthday</p>
-                  <p className="text-[#00698c] font-medium">
+                  <p className="text-[#1dbf73] font-medium">
                     {userDetail?.birthday}
                   </p>
                 </div>
@@ -135,7 +135,7 @@ const FormUserProfile = () => {
                 <div className="flex justify-between items-center mb-3">
                   <b className="text-base text-black mt-3">Skill</b>
                   <button
-                    className="text-[#00698c] font-medium"
+                    className="text-[#1dbf73] font-medium"
                     onClick={showModal}
                   >
                     Edit
@@ -156,7 +156,7 @@ const FormUserProfile = () => {
                 <div className="flex justify-between items-center mb-3">
                   <b className="text-base text-black mt-3">Certification</b>
                   <button
-                    className="text-[#00698c] font-medium"
+                    className="text-[#1dbf73] font-medium"
                     onClick={showModal}
                   >
                     Edit
@@ -179,7 +179,7 @@ const FormUserProfile = () => {
                     Linked Accounts
                   </b>
                 </div>
-                <div className="flex justify-between text-[#00698c] font-medium mb-3">
+                <div className="flex justify-between text-[#1dbf73] font-medium mb-3">
                   <button>
                     <i class="fa-solid fa-plus me-3"></i>Facebook
                   </button>
@@ -200,7 +200,7 @@ const FormUserProfile = () => {
                   In order to provide the best possible work and service, some
                   information about your activity on Fiverr may be shared with
                   sellers.
-                  <a href="..." className="text-[#00698c] font-medium">
+                  <a href="..." className="text-[#1dbf73] font-medium">
                     Manage settings
                   </a>
                 </div>

@@ -26,8 +26,8 @@ const FormLogin = () => {
         .dangNhap(values)
         .then((res) => {
           messageApi.success("Đăng nhập thành công!");
-          dispatch(setDuLieuHoTen(res.data.content));
-          luuXuongLocal("user", res.data.content);
+          dispatch(setDuLieuHoTen(res.data.content.user));
+          luuXuongLocal("user", res.data.content.user);
           luuXuongLocal("token", res.data.content.token);
           luuXuongLocal("role", res.data.content.user.role);
           luuXuongLocal("userId", res.data.content.user.id);
