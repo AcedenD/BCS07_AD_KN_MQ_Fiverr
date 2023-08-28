@@ -23,12 +23,12 @@ const FormUserManage = (props) => {
       ...{
         id: userDetail?.id ?? Math.ceil(Math.random(1, 1000)),
         gender: values.gender === "male",
-        birthday: "",
-        skill: [],
-        certification: [],
+        birthday: userDetail?.birthday ?? "",
+        skill: userDetail?.skill ?? [],
+        certification: userDetail?.certification ?? [],
       },
     };
-    console.log("request: ", request);
+
     try {
       // Nếu userDetail !== undefined thì API update được gọi, ngược lại API add sẽ được gọi
 
@@ -68,6 +68,7 @@ const FormUserManage = (props) => {
       email: userDetail?.email ?? "",
       name: userDetail?.name ?? "",
       phone: userDetail?.phone ?? "",
+      password: userDetail?.password ?? "",
       gender: userDetail ? (userDetail?.gender ? "male" : "female") : "female",
     },
     // use to post values to server
@@ -75,6 +76,7 @@ const FormUserManage = (props) => {
       email: yup.string().required("Vui lòng nhập email!"),
       name: yup.string().required("Vui lòng nhập tên!"),
       phone: yup.string().required("Vui lòng nhập số điện thoại!"),
+      password: yup.string().required("Vui lòng nhập password!"),
     }),
   });
   const { handleChange, handleBlur, values, isValid, dirty } = formik;
@@ -151,6 +153,37 @@ const FormUserManage = (props) => {
             ""
           )}
         </div>
+
+        <div>
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="name"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Password
+            </label>
+          </div>
+          <div className="mt-2">
+            <input
+              value={values.password}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              id="password"
+              name="password"
+              type="password"
+              required
+              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+            />
+          </div>
+          {values.password.length &&
+          formik.errors.password &&
+          formik.touched.password ? (
+            <p className=" text-red-600">{formik.errors.password}</p>
+          ) : (
+            ""
+          )}
+        </div>
+
         <div>
           <div className="flex items-center justify-between">
             <label
