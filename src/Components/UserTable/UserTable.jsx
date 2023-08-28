@@ -27,7 +27,7 @@ const UserTable = (props) => {
       dataIndex: "gender",
       key: "gender",
       render: (gender) => (
-        <p className="textOverflow" style={{ width: "200px" }}>
+        <p className="textOverflow" style={{ width: "40%" }}>
           {gender ? "Male" : "Female"}
         </p>
       ),
@@ -47,22 +47,6 @@ const UserTable = (props) => {
       dataIndex: "role",
       key: "role",
     },
-    // {
-    //   title: "Certification",
-    //   dataIndex: "certification",
-    //   key: "certification",
-    //   render: (certification) => (
-    //     <p className="textOverflow" style={{ width: "200px" }}>
-    //       {certification}
-    //     </p>
-    //   ),
-    // },
-    // {
-    //   title: "Skill",
-    //   dataIndex: "skill",
-    //   key: "skill",
-    //   render: (skill) => (skill ? "Completed" : "Not Completed"),
-    // },
     {
       title: "Action",
       key: "action",
@@ -111,7 +95,7 @@ const UserTable = (props) => {
 
   return (
     <>
-      <Table columns={columns} dataSource={props.currentUsers} />
+      <Table columns={columns} dataSource={props.currentUsers}  scroll={{ x: 'max-content' }}/>
       {open && (
         <FormUserManage
           selectedRowId={selectedRowId}

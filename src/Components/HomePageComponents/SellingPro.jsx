@@ -3,7 +3,7 @@ import { Col, Row, Modal, Typography, Button } from "antd";
 import { PlayCircleOutlined } from "@ant-design/icons";
 import videoSource from "../../assets/video/homepage.mp4";
 import imgSource from "../../assets/img/selling.png";
-import { Content } from "antd/es/layout/layout";
+import "./MainCategories.scss";
 
 const { Title } = Typography;
 
@@ -26,8 +26,8 @@ function SellingPro() {
   }, [visible]);
 
   return (
-    <div>
-      <Content className="container">
+    <div style={{ backgroundColor: "#f1fdf7" }}>
+      <div  className="main-categories max-w-5xl mx-auto py-20" >
         <Row gutter={50}>
           <Col xl={12} sm={24}>
             <div>
@@ -129,7 +129,7 @@ function SellingPro() {
             </Modal>
           </Col>
         </Row>
-      </Content>
+      </div>
     </div>
   );
 }
