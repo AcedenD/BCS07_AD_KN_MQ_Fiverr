@@ -31,6 +31,7 @@ console.log(jobTypeData);
     {
       title: "Action",
       key: "action",
+      
       render: (_, record) => (
         <Space size="middle">
           <button
@@ -92,7 +93,7 @@ console.log(jobTypeData);
       bodyStyle={{ paddingBottom: 80 }}>
         <FormEditMJobType jobId={selectedJobId}/>
     </Drawer>
-    <Table columns={columns} dataSource={jobTypeData} />
+    <Table columns={columns} dataSource={jobTypeData}  scroll={{ x: 'max-content' }} />
 </>
   )
 }

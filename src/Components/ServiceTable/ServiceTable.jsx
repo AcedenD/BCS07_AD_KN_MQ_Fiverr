@@ -113,7 +113,7 @@ const ServiceTable = () => {
         <FormEditService serviceId={selectedServiceId} />
         {/* <FormAddJobType formData={data} formKey={formKey} jobType={values} /> */}
       </Drawer>
-      <Table columns={columns} dataSource={serviceData} />
+      <Table columns={columns} dataSource={serviceData}  scroll={{ x: 'max-content' }}/>
     </>
   );
 };

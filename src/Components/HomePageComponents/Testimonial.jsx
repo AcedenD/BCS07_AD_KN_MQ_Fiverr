@@ -1,4 +1,3 @@
-import { Content } from "antd/es/layout/layout";
 import React, { Component, useEffect, useRef, useState } from "react";
 import Slider from "react-slick";
 import { Row, Col, Modal, Typography } from "antd";
@@ -6,6 +5,7 @@ import { PlayCircleOutlined } from "@ant-design/icons";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Title from "antd/es/typography/Title";
+import "./MainCategories.scss";
 
 function Testimonial() {
   const settings = {
@@ -34,7 +34,7 @@ function Testimonial() {
   }, [visible]);
   return (
     <>
-      <Content className="container">
+      <div  className="main-categories max-w-5xl mx-auto py-20">
         <Slider {...settings}>
           <div>
             <Row gutter={50}>
@@ -317,7 +317,7 @@ function Testimonial() {
             </Row>
           </div>
         </Slider>
-      </Content>
+      </div>
     </>
   );
 }
