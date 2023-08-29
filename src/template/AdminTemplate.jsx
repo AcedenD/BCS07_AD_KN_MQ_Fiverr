@@ -21,6 +21,7 @@ const AdminTemplate = () => {
     } else {
       navigate("../admin/user");
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   return (

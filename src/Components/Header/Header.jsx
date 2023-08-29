@@ -18,8 +18,6 @@ const Header = (props) => {
 
   const userDetail = users.find(({ id }) => id === currentUserId);
   const role = userDetail?.role ?? "";
-  console.log("userDetail: ", userDetail);
-  console.log("currentUserId: ", currentUserId);
 
   const changeColor = () => {
     if (window.scrollY >= 90) {
@@ -84,7 +82,7 @@ const Header = (props) => {
         color
           ? "scroll-header text-gray-500"
           : `${props.removeFixed ? "" : "text-white"}`
-      }`}
+      } ${currentUserId ? "" : "header-login"}`}
     >
       <nav className="border-gray-200 ">
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-3">
