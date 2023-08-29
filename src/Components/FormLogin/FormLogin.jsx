@@ -76,7 +76,7 @@ const FormLogin = () => {
                   type="text"
                   autoComplete="email"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                  className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
                 />
               </div>
               {formik.errors.email && formik.touched.email ? (
@@ -102,7 +102,7 @@ const FormLogin = () => {
                   </a>
                 </div>
               </div>
-              <div className="mt-2">
+              <div className="relative mt-2">
                 <input
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -111,8 +111,33 @@ const FormLogin = () => {
                   type="password"
                   autoComplete="current-password"
                   required
-                  className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                  className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
                 />
+                <span
+                  onClick={() => {
+                    if (
+                      document.getElementById("password").type == "password"
+                    ) {
+                      document.getElementById("password").type = "text";
+                      document
+                        .getElementById("eye3")
+                        .classList.remove("fa-eye-slash");
+                      document.getElementById("eye3").classList.add("fa-eye");
+                    } else {
+                      document.getElementById("password").type = "password";
+                      document
+                        .getElementById("eye3")
+                        .classList.remove("fa-eye");
+                      document
+                        .getElementById("eye3")
+                        .classList.add("fa-eye-slash");
+                    }
+                  }}
+                  className="absolute right-0 top-0 text-gray-500 hover:text-gray-600 dark:text-gray-500 dark:hover:text-gray-600 transition-colors duration-400"
+                  style={{ cursor: "pointer", margin: "8px 15px" }}
+                >
+                  <i className="fa-regular fa-eye" id="eye3"></i>
+                </span>
               </div>
               {formik.errors.password && formik.touched.password ? (
                 <p className=" text-red-600">{formik.errors.password}</p>

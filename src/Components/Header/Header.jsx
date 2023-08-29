@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 
 import "./Header.scss";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { Dropdown } from "antd";
 import { layDuLieuLocal, xoaTatCaDuLieuLocal } from "../../utils/localStore";
@@ -11,6 +11,10 @@ import { getAllUser } from "../../redux/slices/nguoiDungSlice";
 const Header = (props) => {
   const [color, setColor] = useState(false);
   const [typeJobMenu, setTypeJobMenu] = useState([]);
+  const location = useLocation();
+  const pathName = location.pathname.split("/")[1];
+  const isChangeColor =
+    pathName === "signup" || pathName === "login" || pathName === "categories";
 
   const { users } = useSelector((state) => state.nguoiDung);
   const dispatch = useDispatch();
@@ -76,13 +80,11 @@ const Header = (props) => {
 
   return (
     <div
-      className={`wrapper-header ${
+      className={`wrapper-header text-gray-500 ${
         props.removeFixed && !color ? "" : "fixed"
       } ${
-        color
-          ? "scroll-header text-gray-500"
-          : `${props.removeFixed ? "" : "text-white"}`
-      } ${currentUserId ? "" : "header-login"}`}
+        color ? "scroll-header " : `${props.removeFixed ? "" : "text-white"}`
+      } ${isChangeColor ? "header-login" : ""}`}
     >
       <nav className="border-gray-200 ">
         <div className="flex flex-wrap items-center justify-between max-w-screen-xl mx-auto p-3">
@@ -122,7 +124,7 @@ const Header = (props) => {
                   </NavLink>
                   <NavLink
                     to={"/login"}
-                    className="hover:bg-[#1dbf73] text-md px-3 py-2 md:px-4 md:py-1.5 mr-1 md:mr-2 border border-[#fff] bg-[transparent] ease-in duration-200 "
+                    className="hover:bg-[#1dbf73] font-bold text-md px-3 py-2 md:px-4 md:py-1.5 mr-1 md:mr-2 border border-[#fff] bg-[transparent] ease-in duration-200 "
                   >
                     Login
                   </NavLink>

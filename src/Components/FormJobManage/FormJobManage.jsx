@@ -1,4 +1,4 @@
-import { Modal, message } from "antd";
+import { Button, Modal, message } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
@@ -96,15 +96,26 @@ const FormJobManage = (props) => {
     <Modal
       title={title}
       open={open}
-      confirmLoading={confirmLoading}
       onOk={handleOk}
       onCancel={handleCancel}
       okButtonProps={{
         type: "default",
         htmlType: "submit",
-        disabled: !(dirty && isValid),
       }}
       cancelButtonProps={{ htmlType: "reset" }}
+      footer={[
+        <Button key="back" onClick={handleCancel}>
+          Cancel
+        </Button>,
+        <Button
+          key="submit"
+          loading={confirmLoading}
+          onClick={handleOk}
+          disabled={!(dirty && isValid)}
+        >
+          Save
+        </Button>,
+      ]}
     >
       {contextHolder}
       <form className="space-y-6">
@@ -125,7 +136,7 @@ const FormJobManage = (props) => {
               name="nguoiTao"
               type="text"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.nguoiTao.length &&
@@ -155,7 +166,7 @@ const FormJobManage = (props) => {
               name="tenCongViec"
               type="text"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.tenCongViec.length &&
@@ -185,7 +196,7 @@ const FormJobManage = (props) => {
               type="text"
               autoComplete="current-password"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.giaTien.length &&
@@ -215,7 +226,7 @@ const FormJobManage = (props) => {
               type="text"
               autoComplete="current-password"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.moTaNgan.length &&

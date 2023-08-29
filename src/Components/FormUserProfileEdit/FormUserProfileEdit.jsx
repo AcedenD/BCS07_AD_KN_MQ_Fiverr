@@ -1,4 +1,4 @@
-import { Modal, Radio, message } from "antd";
+import { Button, Modal, Radio, message } from "antd";
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import * as yup from "yup";
@@ -21,13 +21,11 @@ const FormUserProfileEdit = (props) => {
     };
     console.log("request: ", request);
     try {
-      // Nếu userDetail !== undefined thì API update được gọi, ngược lại API add sẽ được gọi
-
       if (props.userDetail) {
         await nguoiDungServ
           .updateUser(props.userDetail?.id, request)
           .then((res) => {
-            messageApi.success("Update User Thành Công!");
+            messageApi.success("Cập nhật thành Công!");
             dispatch(getAllUser());
             luuXuongLocal("user", res.data.content);
 
@@ -39,7 +37,7 @@ const FormUserProfileEdit = (props) => {
           });
       }
     } catch (error) {
-      messageApi.error("Không hợp lệ");
+      messageApi.error("Oops! Có lỗi xảy ra rồi!");
       setTimeout(() => {
         formik.resetForm();
         setOpen(false);
@@ -78,15 +76,26 @@ const FormUserProfileEdit = (props) => {
     <Modal
       title={title}
       open={open}
-      confirmLoading={confirmLoading}
       onOk={handleOk}
       onCancel={handleCancel}
       okButtonProps={{
         type: "default",
         htmlType: "submit",
-        disabled: !(dirty && isValid),
       }}
       cancelButtonProps={{ htmlType: "reset" }}
+      footer={[
+        <Button key="back" onClick={handleCancel}>
+          Cancel
+        </Button>,
+        <Button
+          key="submit"
+          loading={confirmLoading}
+          onClick={handleOk}
+          disabled={!(dirty && isValid)}
+        >
+          Save
+        </Button>,
+      ]}
     >
       {contextHolder}
       <form className="space-y-6">
@@ -106,7 +115,7 @@ const FormUserProfileEdit = (props) => {
               name="email"
               type="text"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.email.length &&
@@ -136,7 +145,7 @@ const FormUserProfileEdit = (props) => {
               name="name"
               type="text"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.name.length && formik.errors.name && formik.touched.name ? (
@@ -164,7 +173,7 @@ const FormUserProfileEdit = (props) => {
               type="text"
               autoComplete="current-password"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.phone.length &&
@@ -194,7 +203,7 @@ const FormUserProfileEdit = (props) => {
               type="text"
               autoComplete="current-password"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.birthday.length &&
