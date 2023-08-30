@@ -108,7 +108,7 @@ const Header = (props) => {
                     items,
                   }}
                 >
-                  <div className=" text-xl">
+                  <div className=" text-xl mr-2">
                     <i className="fa-solid fa-circle-user ml-2" />
                     <span className="font-bold text-md ml-2"></span>
                     {userDetail?.name}
