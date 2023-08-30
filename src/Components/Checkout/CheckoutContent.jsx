@@ -28,9 +28,15 @@ const CheckoutContent = (props) => {
         messageApi.success("Thêm Công Việc Thành Công");
       })
       .catch((err) => {
-        messageApi.error(
-          err.response.data.content ? err.response.data.content : "Không hợp lệ"
-        );
+        if (userId) {
+          messageApi.error(
+            err.response.data.content
+              ? err.response.data.content
+              : "Không hợp lệ"
+          );
+        } else {
+          messageApi.error("Vui lòng hãy đăng nhập");
+        }
       });
   };
 

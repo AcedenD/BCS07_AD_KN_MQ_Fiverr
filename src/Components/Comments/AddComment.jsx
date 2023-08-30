@@ -9,6 +9,7 @@ import { useParams } from "react-router-dom";
 const AddComment = (props) => {
   const { reload_binhLuan } = props;
   const { id } = useParams();
+  const currentUser = layDuLieuLocal("user");
 
   const [saoBinhLuan, setSaoBinhLuan] = useState(0);
   const [hover, setHover] = useState(0);
@@ -28,15 +29,19 @@ const AddComment = (props) => {
     onSubmit: async (values) => {
       try {
         const res = await binhLuanServ.addBinhLuan(values);
-        messageApi.success("Thêm Công Việc Thành Công");
+        messageApi.success("Thêm Comment Thành Công");
         formik.resetForm();
         reload_binhLuan();
       } catch (error) {
-        messageApi.error(
-          error.response.data.content
-            ? error.response.data.content
-            : "Không hợp lệ"
-        );
+        if (currentUser) {
+          messageApi.error(
+            error.response.data.content
+              ? error.response.data.content
+              : "Không hợp lệ"
+          );
+        } else {
+          messageApi.error("Vui lòng hãy đăng nhập");
+        }
         formik.resetForm();
       }
     },

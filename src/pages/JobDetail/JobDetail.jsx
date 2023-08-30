@@ -79,6 +79,9 @@ const JobDetail = () => {
           tenNguoiTao={tenNguoiTao}
           tenChiTietLoai={tenChiTietLoai}
         />
+        <div className="mobile">
+          <CheckOut congViec={congViec} />
+        </div>
         <FAQ />
         <Reviews congViec={congViec} />
 
