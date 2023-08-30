@@ -134,6 +134,11 @@
                   font-weight: bold;
                   padding: 8px 10px;
                   transition: all linear 0.3s;
+
+                  
+                  @media screen and (max-width: 992px) {
+                    font-size: 10px;
+                  }
                 }
   
                 &:hover {

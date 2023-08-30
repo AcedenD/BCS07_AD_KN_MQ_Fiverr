@@ -72,7 +72,7 @@ const Banner = () => {
                 </div>
                 <div className="flex justify-center items-left flex-col">
                   <div className="flex justify-between items-center">
-                    <div>{item.name}doe</div>
+                    <div>@{item.name}doe</div>
                     <div className="flex justify-center items-center">
                       5
                       <svg

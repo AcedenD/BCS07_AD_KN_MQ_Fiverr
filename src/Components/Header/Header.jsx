@@ -14,7 +14,10 @@ const Header = (props) => {
   const location = useLocation();
   const pathName = location.pathname.split("/")[1];
   const isChangeColor =
-    pathName === "signup" || pathName === "login" || pathName === "categories";
+    pathName === "signup" ||
+    pathName === "login" ||
+    pathName === "categories" ||
+    pathName === "jobDetail";
 
   const { users } = useSelector((state) => state.nguoiDung);
   const dispatch = useDispatch();
@@ -24,7 +27,7 @@ const Header = (props) => {
   const role = userDetail?.role ?? "";
 
   const changeColor = () => {
-    if (window.scrollY >= 90) {
+    if (window.scrollY >= 1) {
       setColor(true);
     } else {
       setColor(false);
