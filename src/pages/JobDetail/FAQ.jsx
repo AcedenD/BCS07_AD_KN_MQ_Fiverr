@@ -33,7 +33,7 @@ const FAQ = () => {
 
   return (
     <div>
-      <h2 className="text-xl font-bold text-gray-700 mb-6">FAQ</h2>
+      <h2 className="text-xl font-bold text-gray-700 mb-6 mt-7">FAQ</h2>
       <div id="accordion-collapse" data-accordion="collapse">
         {faqList.map((item, index) => {
           return (

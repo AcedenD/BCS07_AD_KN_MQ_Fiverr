@@ -43,9 +43,7 @@ const JobDetailCard = (props) => {
           alt=""
         />
       </div>
-      <div className="mobile">
-        <CheckOut />
-      </div>
+
       <div className="jobDetail_content py-6 border-b-[1px] border-gray-400 ">
         <div className="jobDescription ">
           <h2 className="text-xl font-bold text-gray-700 ">About this Gig</h2>
