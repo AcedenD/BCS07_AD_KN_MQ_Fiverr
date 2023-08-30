@@ -13,14 +13,13 @@ const FormUserProfile = () => {
   const currentUserId = layDuLieuLocal("userId");
 
   const userDetail = users.find(({ id }) => id === currentUserId);
-  console.log("userDetail: ", userDetail);
 
   const showModal = () => {
     setOpen(true);
   };
 
   useEffect(() => {
-    dispatch(getAllUser()); // Gọi API /users và lưu vào biến users trên redux bằng dispatch()
+    dispatch(getAllUser());
   }, [dispatch]);
 
   return (
@@ -35,34 +34,31 @@ const FormUserProfile = () => {
                 <h1 className="avatar my-6 mx-auto">
                   {userDetail?.name[0] ?? "A"}
                 </h1>
-                <div className="text-lg font-bold">
-                  Your display name{" "}
-                  <span className="text-sm mx-3" onClick={showModal}>
-                    <i class="fa-solid fa-pen"></i>
-                  </span>
-                  <span className="status">{userDetail?.role}</span>
+                {/* <div className="text-lg font-bold">Your display name</div> */}
+                <div className="name text-2xl font-bold text-[#000]">
+                  {userDetail?.email}
+                  <span className="status ml-2">{userDetail?.role}</span>
                 </div>
-                <div className="name text-gray-500">{userDetail?.email}</div>
                 <span className="text-sm" onClick={showModal}>
-                  <i class="fa-solid fa-pen"></i>
+                  <i className="fa-solid text-base fa-pen cursor-pointer text-gray-400 hover:text-[#000] ease-in duration-200"></i>
                 </span>
                 <span className="status online">online</span>
               </div>
-              <button className="btn-preview mb-5">
+              <button className="btn-preview mb-5 hover:bg-[#1dbf73]">
                 Preview Fiverr Profile
               </button>
               <div className="card-footer">
                 <div className="flex justify-between mb-3">
                   <p>
-                    <i class="fa-solid fa-location-dot me-3"></i>From
+                    <i className="fa-solid fa-location-dot me-3"></i>From
                   </p>
-                  <b>Vietnam</b>
+                  <b className="text-[#1dbf73]">Vietnam</b>
                 </div>
                 <div className="flex justify-between">
                   <p>
                     <i class="fa-solid fa-user me-3"></i>Member since
                   </p>
-                  <b>Aug 2023</b>
+                  <b className="text-[#1dbf73]">Aug 2023</b>
                 </div>
               </div>
             </div>
@@ -99,7 +95,7 @@ const FormUserProfile = () => {
                     className="text-[#1dbf73] font-medium"
                     onClick={showModal}
                   >
-                    Edit Description
+                    <i className="fa-solid text-base fa-pen cursor-pointer text-gray-400 hover:text-[#000] ease-in duration-200"></i>
                   </button>
                 </div>
                 <div className="flex justify-between items-center mb-3">
@@ -138,7 +134,7 @@ const FormUserProfile = () => {
                     className="text-[#1dbf73] font-medium"
                     onClick={showModal}
                   >
-                    Edit
+                    <i className="fa-solid text-base fa-pen cursor-pointer text-gray-400 hover:text-[#000] ease-in duration-200"></i>
                   </button>
                 </div>
                 <div className="flex justify-between items-center mb-5">
@@ -159,7 +155,7 @@ const FormUserProfile = () => {
                     className="text-[#1dbf73] font-medium"
                     onClick={showModal}
                   >
-                    Edit
+                    <i className="fa-solid text-base fa-pen cursor-pointer text-gray-400 hover:text-[#000] ease-in duration-200"></i>
                   </button>
                 </div>
                 <div className="flex justify-between items-center mb-5">

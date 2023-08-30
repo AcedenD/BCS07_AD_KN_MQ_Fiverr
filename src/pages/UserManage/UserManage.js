@@ -7,9 +7,9 @@ import Search from "antd/es/input/Search";
 
 const UserManage = () => {
   const [open, setOpen] = useState(false);
-  const [currentUsers, setCurrentUsers] = useState([]); // Dữ liệu state thay đổi theo giá trị tìm kiếm trong input
+  const [currentUsers, setCurrentUsers] = useState([]);
 
-  const { users } = useSelector((state) => state.nguoiDung); // Lấy mảng user từ redux nguoiDungSlice
+  const { users } = useSelector((state) => state.nguoiDung);
   const dispatch = useDispatch();
 
   const showModal = () => {
@@ -24,7 +24,7 @@ const UserManage = () => {
   };
 
   useEffect(() => {
-    dispatch(getAllUser()); // Gọi API /users và lưu vào biến users trên redux bằng dispatch()
+    dispatch(getAllUser());
   }, [dispatch]);
 
   useEffect(() => {

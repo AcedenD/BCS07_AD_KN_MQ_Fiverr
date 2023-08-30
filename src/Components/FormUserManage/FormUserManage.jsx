@@ -1,4 +1,4 @@
-import { Modal, Radio, message } from "antd";
+import { Button, Modal, Radio, message } from "antd";
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import * as yup from "yup";
@@ -34,10 +34,10 @@ const FormUserManage = (props) => {
       // Nếu userDetail !== undefined thì API update được gọi, ngược lại API add sẽ được gọi
       if (userDetail) {
         await nguoiDungServ.updateUser(userDetail?.id, request);
-        messageApi.success("Update User Thành Công");
+        messageApi.success("Cập nhật thành Công!");
       } else {
         await nguoiDungServ.addUser(request);
-        messageApi.success("Thêm User Thành Công");
+        messageApi.success("Thêm thành Công!");
       }
       dispatch(getAllUser());
       setTimeout(() => {
@@ -49,7 +49,7 @@ const FormUserManage = (props) => {
       messageApi.error(
         error.response.data.content
           ? error.response.data.content
-          : "Không hợp lệ"
+          : "Oops! Có lỗi xảy ra rồi!"
       );
       setTimeout(() => {
         formik.resetForm();
@@ -75,12 +75,20 @@ const FormUserManage = (props) => {
       gender: userDetail ? (userDetail?.gender ? "male" : "female") : "female",
     },
     // use to post values to server
-    validationSchema: yup.object({
-      email: yup.string().required("Vui lòng nhập email!"),
-      name: yup.string().required("Vui lòng nhập tên!"),
-      phone: yup.string().required("Vui lòng nhập số điện thoại!"),
-      password: yup.string().required("Vui lòng nhập password!"),
-    }),
+    validationSchema: yup.object(
+      userDetail
+        ? {
+            email: yup.string().required("Vui lòng nhập email!"),
+            name: yup.string().required("Vui lòng nhập tên!"),
+            phone: yup.string().required("Vui lòng nhập số điện thoại!"),
+          }
+        : {
+            email: yup.string().required("Vui lòng nhập email!"),
+            name: yup.string().required("Vui lòng nhập tên!"),
+            phone: yup.string().required("Vui lòng nhập số điện thoại!"),
+            password: yup.string().required("Vui lòng nhập password!"),
+          }
+    ),
   });
   const { handleChange, handleBlur, values, isValid, dirty } = formik;
   console.log("values: ", values);
@@ -88,15 +96,26 @@ const FormUserManage = (props) => {
     <Modal
       title={title}
       open={open}
-      confirmLoading={confirmLoading}
       onOk={handleOk}
       onCancel={handleCancel}
       okButtonProps={{
         type: "default",
         htmlType: "submit",
-        disabled: !(dirty && isValid),
       }}
       cancelButtonProps={{ htmlType: "reset" }}
+      footer={[
+        <Button key="back" onClick={handleCancel}>
+          Cancel
+        </Button>,
+        <Button
+          key="submit"
+          loading={confirmLoading}
+          onClick={handleOk}
+          disabled={!(dirty && isValid)}
+        >
+          Save
+        </Button>,
+      ]}
     >
       {contextHolder}
       <form className="space-y-6">
@@ -117,7 +136,7 @@ const FormUserManage = (props) => {
               name="email"
               type="text"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.email.length &&
@@ -147,7 +166,7 @@ const FormUserManage = (props) => {
               name="name"
               type="text"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.name.length && formik.errors.name && formik.touched.name ? (
@@ -157,35 +176,37 @@ const FormUserManage = (props) => {
           )}
         </div>
 
-        <div>
-          <div className="flex items-center justify-between">
-            <label
-              htmlFor="name"
-              className="block text-sm font-medium leading-6 text-gray-900"
-            >
-              Password
-            </label>
+        {!userDetail && (
+          <div>
+            <div className="flex items-center justify-between">
+              <label
+                htmlFor="name"
+                className="block text-sm font-medium leading-6 text-gray-900"
+              >
+                Password
+              </label>
+            </div>
+            <div className="mt-2">
+              <input
+                value={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur}
+                id="password"
+                name="password"
+                type="password"
+                required
+                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              />
+            </div>
+            {values.password.length &&
+            formik.errors.password &&
+            formik.touched.password ? (
+              <p className=" text-red-600">{formik.errors.password}</p>
+            ) : (
+              ""
+            )}
           </div>
-          <div className="mt-2">
-            <input
-              value={values.password}
-              onChange={handleChange}
-              onBlur={handleBlur}
-              id="password"
-              name="password"
-              type="password"
-              required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
-            />
-          </div>
-          {values.password.length &&
-          formik.errors.password &&
-          formik.touched.password ? (
-            <p className=" text-red-600">{formik.errors.password}</p>
-          ) : (
-            ""
-          )}
-        </div>
+        )}
 
         <div>
           <div className="flex items-center justify-between">
@@ -206,7 +227,7 @@ const FormUserManage = (props) => {
               type="text"
               autoComplete="current-password"
               required
-              className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
             />
           </div>
           {values.phone.length &&
@@ -237,7 +258,7 @@ const FormUserManage = (props) => {
                 name="role"
                 type="text"
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
               />
             </div>
             {values.role.length && formik.errors.role && formik.touched.role ? (
@@ -267,7 +288,7 @@ const FormUserManage = (props) => {
                 name="skill"
                 type="text"
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
               />
             </div>
             {values.skill.length &&
@@ -299,7 +320,7 @@ const FormUserManage = (props) => {
                 name="certification"
                 type="text"
                 required
-                className="block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+                className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
               />
             </div>
             {values.certification.length &&

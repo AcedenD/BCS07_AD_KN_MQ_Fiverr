@@ -43,24 +43,28 @@ const CarouselServices = () => {
     ],
   };
   const images = [
-    "https://themesflat.co/html/hnk/images/projects/1.jpg",
-    "https://themesflat.co/html/hnk/images/projects/2.jpg",
-    "https://themesflat.co/html/hnk/images/projects/3.jpg",
-    "https://themesflat.co/html/hnk/images/projects/4.jpg",
-    "https://themesflat.co/html/hnk/images/projects/5.jpg",
-    "https://themesflat.co/html/hnk/images/projects/6.jpg",
-    "https://themesflat.co/html/hnk/images/projects/7.jpg",
-    "https://themesflat.co/html/hnk/images/projects/8.jpg",
+    "https://demo5.cybersoft.edu.vn/img/crs1.png",
+    "https://demo5.cybersoft.edu.vn/img/crs2.png",
+    "https://demo5.cybersoft.edu.vn/img/crs3.png",
+    "https://demo5.cybersoft.edu.vn/img/crs4.png",
+    "https://demo5.cybersoft.edu.vn/img/crs5.png",
+    "https://demo5.cybersoft.edu.vn/img/crs6.png",
+    "https://demo5.cybersoft.edu.vn/img/crs7.png",
+    "https://demo5.cybersoft.edu.vn/img/crs8.png",
+    "https://demo5.cybersoft.edu.vn/img/crs9.png",
+    "https://demo5.cybersoft.edu.vn/img/crs10.png",
   ];
 
   return (
     <div className="wrapper-services mb-5 pb-3">
       <div className="container mx-auto">
-        <h1>Popular services</h1>
+        <h1 className="text-3xl font-semibold mb-10 text-gray-600">
+          Popular professional services
+        </h1>
         <div className="row">
           <Slider {...settings}>
             {images.map((img, index) => (
-              <div key={index} className="px-3">
+              <div key={index} className="px-2">
                 <div className="card">
                   <div className="layout-img">
                     <img className="w-full h-full" src={img} alt="service" />
