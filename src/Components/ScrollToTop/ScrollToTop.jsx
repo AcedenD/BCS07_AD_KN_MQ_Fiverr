@@ -19,14 +19,13 @@ const ScrollToTop = () => {
     });
   };
   return (
-    <div className="top-to-btm">
+    <>
       {showTopBtn && (
-        <i
-          onClick={goToTop}
-          className="icon-position icon-style fa-solid fa-arrow-up"
-        ></i>
+        <div className="top-to-btm" onClick={goToTop}>
+          <i className="fa-solid fa-arrow-up"></i>
+        </div>
       )}
-    </div>
+    </>
   );
 };
 

@@ -18,6 +18,8 @@ const FormUserProfileEdit = (props) => {
     const request = {
       ...values,
       gender: values.gender === "male",
+      skill: values.skill.split(","),
+      certification: values.certification.split(","),
     };
     console.log("request: ", request);
     try {
@@ -57,6 +59,8 @@ const FormUserProfileEdit = (props) => {
       name: props.userDetail?.name ?? "",
       phone: props.userDetail?.phone ?? "",
       birthday: props.userDetail?.birthday ?? "",
+      skill: props.userDetail?.skill?.join(",") ?? "",
+      certification: props.userDetail?.certification?.join(",") ?? "",
       gender: props.userDetail
         ? props.userDetail?.gender
           ? "male"
@@ -71,7 +75,7 @@ const FormUserProfileEdit = (props) => {
     }),
   });
   const { handleChange, handleBlur, values, isValid, dirty } = formik;
-  console.log("values: ", values);
+
   return (
     <Modal
       title={title}
@@ -126,7 +130,6 @@ const FormUserProfileEdit = (props) => {
             ""
           )}
         </div>
-
         <div>
           <div className="flex items-center justify-between">
             <label
@@ -225,6 +228,66 @@ const FormUserProfileEdit = (props) => {
               Female
             </Radio>
           </Radio.Group>
+        </div>
+
+        <div>
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="skill"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Skill
+            </label>
+          </div>
+          <div className="mt-2">
+            <input
+              value={values.skill}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              id="skill"
+              name="skill"
+              type="text"
+              required
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+            />
+          </div>
+          {values.skill.length &&
+          formik.errors.skill &&
+          formik.touched.skill ? (
+            <p className=" text-red-600">{formik.errors.skill}</p>
+          ) : (
+            ""
+          )}
+        </div>
+
+        <div>
+          <div className="flex items-center justify-between">
+            <label
+              htmlFor="phocertificationne"
+              className="block text-sm font-medium leading-6 text-gray-900"
+            >
+              Certification
+            </label>
+          </div>
+          <div className="mt-2">
+            <input
+              value={values.certification}
+              onChange={handleChange}
+              onBlur={handleBlur}
+              id="certification"
+              name="certification"
+              type="text"
+              required
+              className="pl-2 block w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:outline-[#1dbf73] sm:text-sm sm:leading-6"
+            />
+          </div>
+          {values.certification.length &&
+          formik.errors.certification &&
+          formik.touched.certification ? (
+            <p className=" text-red-600">{formik.errors.certification}</p>
+          ) : (
+            ""
+          )}
         </div>
       </form>
     </Modal>

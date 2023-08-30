@@ -138,7 +138,7 @@ const Banner = () => {
                 </button>
               </form>
             </div>
-            <div className="popular">
+            <div className="popular hidden md:flex">
               Popular:{" "}
               <ul>
                 <li>

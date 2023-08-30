@@ -67,3 +67,14 @@
 .display-none {
   display: none;
 }
+
+.header-column {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #fff;
+  color: #73767d;
+  padding: 25px;
+}
