@@ -334,21 +334,10 @@ const FormSignUp = () => {
           </div>
           <div className="flex gap-x-4 sm:col-span-2">
             <div className="flex h-6 items-center">
-              {/* Enabled: "bg-indigo-600", Not Enabled: "bg-gray-200" */}
-              <button
-                type="button"
-                className="bg-gray-200 flex w-8 flex-none cursor-pointer rounded-full p-px ring-1 ring-inset ring-gray-900/5 transition-colors duration-200 ease-in-out focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#1dbf73]"
-                role="switch"
-                aria-checked="false"
-                aria-labelledby="switch-1-label"
-              >
-                <span className="sr-only">Agree to policies</span>
-                {/* Enabled: "translate-x-3.5", Not Enabled: "translate-x-0" */}
-                <span
-                  aria-hidden="true"
-                  className="translate-x-0 h-4 w-4 transform rounded-full bg-white shadow-sm ring-1 ring-gray-900/5 transition duration-200 ease-in-out"
-                />
-              </button>
+              <label className="relative inline-flex items-center cursor-pointer h-full">
+                <input type="checkbox" defaultValue className="sr-only peer" />
+                <div className="w-9 h-5 bg-gray-400  rounded-full peer  peer-checked:after:translate-x-full  after:content-[''] after:absolute sm:after:top-[4px] after:top-[16px] after:left-[2px] after:bg-white  after:rounded-full after:h-4 after:w-4 after:transition-all after:duration-300 peer-checked:bg-[#1dbf73]" />
+              </label>
             </div>
 
             <label
