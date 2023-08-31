@@ -69,12 +69,6 @@ const CarouselServices = () => {
                   <div className="layout-img">
                     <img className="w-full h-full" src={img} alt="service" />
                   </div>
-                  <div className="card-body">
-                    <div className="title fw-bold text-fs-16">
-                      Unclock growth online
-                    </div>
-                    <div className="name text-fs-10 textLinesOverflow">SEO</div>
-                  </div>
                 </div>
               </div>
             ))}
