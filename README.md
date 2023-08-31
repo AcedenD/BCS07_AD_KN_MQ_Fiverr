@@ -1,8 +1,3 @@
-Test account:
-
-- testadmin@gmail.com
-- testadmin!23
-
 Folders to create:
 
 - Components
@@ -38,3 +33,6 @@ Libraries to install
 color:
 main green: #1dbf73
 darker green: #0C3B24
+
+known bugs:
+<code style="color : red">Major - token doesn't fully work until reload the page.</code>
