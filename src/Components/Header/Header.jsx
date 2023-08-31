@@ -18,7 +18,8 @@ const Header = (props) => {
     pathName === "signup" ||
     pathName === "login" ||
     pathName === "categories" ||
-    pathName === "jobDetail";
+    pathName === "jobDetail" ||
+    pathName === "result";
 
   const { users } = useSelector((state) => state.nguoiDung);
   const dispatch = useDispatch();

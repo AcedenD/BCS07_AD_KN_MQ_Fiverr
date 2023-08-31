@@ -73,7 +73,7 @@ const Result = () => {
   }, []);
 
   return (
-    <div className="max-w-screen-xl mx-5 lg:mx-auto py-2">
+    <div className="max-w-screen-xl mx-5 lg:mx-auto py-24">
       <Breadcrumb
         separator=">"
         items={[
