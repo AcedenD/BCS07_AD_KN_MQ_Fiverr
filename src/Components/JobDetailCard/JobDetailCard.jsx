@@ -17,12 +17,12 @@ const JobDetailCard = (props) => {
           </p>
         </div>
         <div className="seller_level">
-          <p className="text-md text-gray-500">
+          <p className="md:text-lg text-gray-500 text-sm">
             Level {congViec.saoCongViec} Seller
           </p>
         </div>
         <div className="seller_star_rating flex ">
-          <div className="stars">
+          <div className="stars text-sm ">
             <i className="fa-solid fa-star text-[#ffb33e] "></i>
             <i className="fa-solid fa-star text-[#ffb33e]"></i>
             <i className="fa-solid fa-star text-[#ffb33e]"></i>

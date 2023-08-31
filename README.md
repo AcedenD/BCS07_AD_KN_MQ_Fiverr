@@ -1,3 +1,6 @@
+Task management:
+https://docs.google.com/spreadsheets/d/1EdppvnYpvNKnfRAItBKkTPSBDbNnh90a6kiqpM9ebtI/edit?usp=sharing
+
 Folders to create:
 
 - Components

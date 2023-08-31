@@ -55,6 +55,41 @@ const Title = () => {
         dispatch(set_loading_ended());
       });
   }, []);
+  useEffect(() => {
+    dispatch(set_loading_started());
+    console.log("getting loai cong viec id: " + id);
+    congViecServ
+      .layChiTietLoaiCongViec(id)
+      .then((res) => {
+        console.log(res.data.content[0]);
+        // TODO !! if jobType is undefine, push user back to home page
+        if (res.data.content[0] == undefined) {
+          alert("jobType not found");
+          window.location.href = "/";
+        }
+
+        // dispatch({
+        //   type: "GET_LOAI_CONG_VIEC",
+        //   payload: res.data,
+        // });
+        document.title = `Explore ${res.data.content[0].tenLoaiCongViec}`;
+        console.log(res.data.content[0]);
+        setLoaiCongViec(res.data.content[0]);
+        console.log(res.data.content[0].dsNhomChiTietLoai);
+        setNhomChiTietLoai(res.data.content[0].dsNhomChiTietLoai);
+
+        setTimeout(() => {
+          dispatch(set_loading_ended());
+          // console.log(loaiCongViec);
+          // console.log(nhomChiTietLoai);
+          // console.log(chiTietLoai);
+        }, 800);
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(set_loading_ended());
+      });
+  }, [id]);
 
   return (
     <div className="max-w-full">

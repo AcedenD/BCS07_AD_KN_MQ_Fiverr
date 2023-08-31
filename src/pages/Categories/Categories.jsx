@@ -74,6 +74,30 @@ const Categories = () => {
         console.log(err);
         dispatch(set_loading_ended());
       });
+  }, [id]);
+
+  useEffect(() => {
+    dispatch(set_loading_started());
+    console.log("getting loai cong viec id: " + id);
+    congViecServ
+      .layCongViecTheoChiTietLoai(id)
+      .then((res) => {
+        // console.log(res.data);
+        console.log(res.data.content);
+        setAvaCongViec(res.data.content);
+        // console.log(res.data.content[0].tenChiTietLoai);
+        setLoaiCongViec(res.data.content[0].tenChiTietLoai);
+        setTenLoaiCongViec(res.data.content[0].tenLoaiCongViec);
+        document.title = `${res.data.content[0].tenChiTietLoai}`;
+
+        setTimeout(() => {
+          dispatch(set_loading_ended());
+        }, 150);
+      })
+      .catch((err) => {
+        console.log(err);
+        dispatch(set_loading_ended());
+      });
   }, []);
 
   return (
