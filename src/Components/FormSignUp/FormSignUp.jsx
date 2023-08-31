@@ -336,7 +336,7 @@ const FormSignUp = () => {
             <div className="flex h-6 items-center">
               <label className="relative inline-flex items-center cursor-pointer h-full">
                 <input type="checkbox" defaultValue className="sr-only peer" />
-                <div className="w-9 h-5 bg-gray-400  rounded-full peer  peer-checked:after:translate-x-full  after:content-[''] after:absolute sm:after:top-[4px] after:top-[16px] after:left-[2px] after:bg-white  after:rounded-full after:h-4 after:w-4 after:transition-all after:duration-300 peer-checked:bg-[#1dbf73]" />
+                <div className="w-9 h-5 bg-gray-400  rounded-full peer  peer-checked:after:translate-x-full  after:content-[''] after:absolute after:top-[4px] after:left-[2px] after:bg-white  after:rounded-full after:h-4 after:w-4 after:transition-all after:duration-300 peer-checked:bg-[#1dbf73]" />
               </label>
             </div>
 
