@@ -10,6 +10,7 @@ import { getAllUser } from "../../redux/slices/nguoiDungSlice";
 
 const Header = (props) => {
   const [color, setColor] = useState(false);
+  const [isHeaderOpen, setIsHeaderOpen] = useState(false);
   const [typeJobMenu, setTypeJobMenu] = useState([]);
   const location = useLocation();
   const pathName = location.pathname.split("/")[1];
@@ -111,7 +112,7 @@ const Header = (props) => {
                     items,
                   }}
                 >
-                  <div className=" text-xl">
+                  <div className=" text-xl mr-2">
                     <i className="fa-solid fa-circle-user ml-2" />
                     <span className="font-bold text-md ml-2"></span>
                     {userDetail?.name}
@@ -135,11 +136,9 @@ const Header = (props) => {
               )}
 
               <button
-                data-collapse-toggle="mega-menu-icons"
                 type="button"
                 className="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg md:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                aria-controls="mega-menu-icons"
-                aria-expanded="false"
+                onClick={() => setIsHeaderOpen(!isHeaderOpen)}
               >
                 <span className="sr-only">Open main menu</span>
                 <svg
@@ -161,8 +160,18 @@ const Header = (props) => {
             </div>
             <div
               id="mega-menu-icons"
-              className="flex-col items-end justify-between hidden w-full md:flex md:w-auto md:order-1"
+              className={`flex-col items-end justify-between ${
+                isHeaderOpen ? "header-column" : "hidden"
+              } w-full md:flex md:w-auto md:order-1`}
             >
+              {isHeaderOpen && (
+                <div className="w-full flex justify-end items-center">
+                  <i
+                    className="fa-solid fa-rectangle-xmark text-xl"
+                    onClick={() => setIsHeaderOpen(!isHeaderOpen)}
+                  ></i>
+                </div>
+              )}
               <ul className="flex flex-col mt-4 font-bold md:flex-row md:space-x-8 md:mt-0">
                 <li>
                   <NavLink
