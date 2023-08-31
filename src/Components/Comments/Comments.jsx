@@ -33,7 +33,7 @@ const Comments = (props) => {
       })
       .catch((err) => {
         messageApi.error(
-          "Xóa bình luận thất bại, bình luận này không còn tồn tại"
+          "Xóa bình luận thất bại, ban không có quyền xóa bình luận "
         );
         // setBinhLuan(binhLuan.filter((item) => item.id !== id));
       });
